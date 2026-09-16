@@ -13,6 +13,7 @@ The fixed dataset and evaluation runners form a separate measurement boundary: r
 - `scripts/harness.py`, `tests/harness/`: control-plane checks only.
 - `verification/evidence/`: generated command records, separate from future RAG evaluation reports.
 - `docs/`: workflow, Definition of Done, evaluation contracts and decisions.
-- `data/raw/`: versioned evaluation policy corpus (`eval-policy-corpus` v1) with seller-scoped documents and `corpus.json` identities. Other application paths (`src/`, application `tests/`, `evals/`) are created with their real work.
+- `data/raw/`: versioned evaluation policy corpus (`eval-policy-corpus` v1) with seller-scoped documents and `corpus.json` identities.
+- `evals/datasets/`: versioned evaluation questions (`eval-policy-questions` v1). Reports, runners and other application paths (`src/`, application `tests/`) are created with their real work.
 
 Record significant choices in `docs/decisions/` when evidence requires them; do not select technologies merely to fill out an architecture document.

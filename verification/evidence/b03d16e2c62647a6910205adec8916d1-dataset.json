@@ -1,0 +1,18 @@
+{
+  "task_id": null,
+  "gate": "dataset",
+  "command": [
+    "/usr/bin/python3",
+    "scripts/harness.py",
+    "_run",
+    "dataset"
+  ],
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "timestamp": "2026-09-16T08:56:25.351409+00:00",
+  "snapshot_sha256": "a1e33dd6c139eb395f2fb1e32d00ba4ce1d5c09e4cc3bd285e29ed42dadb73f6",
+  "exit_code": 3,
+  "status": "unavailable",
+  "stdout": "UNAVAILABLE: dataset has no implemented application runner/fixtures. No checks passed.\n",
+  "stderr": ""
+}

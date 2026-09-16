@@ -2,7 +2,7 @@
 
 ## Current State — Last Updated: 2026-09-16
 
-Current Objective: p1-policies verified. Phase 0 remains verified. phase-1 is in_progress; p1-annotations and p1-dataset-checks are not started. No evaluation questions, dataset runner, or RAG baseline implemented.
+Current Objective: p1-annotations verified. Phase 0 remains verified. phase-1 is in_progress; p1-dataset-checks is not started. Dataset validator, RAG baseline, and application runners remain unimplemented.
 
 ### What changed
 - Read PROJECT_SPEC.md completely before editing and retained it unchanged.
@@ -25,10 +25,10 @@ Current Objective: p1-policies verified. Phase 0 remains verified. phase-1 is in
 - Empty or wholly skipped harness test suites now fail explicitly; regression tests cover both.
 
 ### Blockers
-No blocker for p1-policies. Dataset, retrieval, generation and other application gates remain unimplemented. No evaluation questions or scores have been invented.
+No blocker for p1-annotations. Dataset, retrieval, generation and other application gates remain unimplemented. Annotation quality is not certified by the harness gate.
 
 ### Next Session
-Read session-handoff.md. Stop after p1-policies. When authorized, start p1-annotations against `data/raw/corpus.json`.
+Read session-handoff.md. Stop after p1-annotations. When authorized, start p1-dataset-checks.
 
 ## Follow-up — 2026-09-16: bounded tasks and exit codes
 
@@ -85,3 +85,14 @@ Read session-handoff.md. Stop after p1-policies. When authorized, start p1-annot
 - Startup: first `./init.sh` in the sandbox failed when timeout tests could not SIGKILL child processes (PermissionError). Rerun outside the sandbox: `./init.sh` exit 0; evidence `verification/evidence/075e7cbaa4534f79b1724cc1f8855ce4-harness.json`.
 - `python3 scripts/harness.py verify-task p1-policies`: exit 0; 47 harness tests passed; evidence `verification/evidence/3a25d8308ab1447b9003e94034379eab-harness.json`. Task status verified. Dataset and other application gates were not run and remain unimplemented.
 - Next eligible task: p1-annotations. Phase 1 stays in_progress until remaining children and the dataset gate are done. A roadmap entry is not authorization to start p1-annotations.
+
+## Follow-up — 2026-09-16: p1-annotations
+
+- Authorized p1-annotations only. Kept phase-1 in_progress. Did not start p1-dataset-checks or any RAG pipeline.
+- Added `eval-policy-questions` version 1 at `evals/datasets/eval-policy-questions-v1.json`: 40 cases against `eval-policy-corpus` v1. Distribution is 16 simple, 8 paraphrased, 6 multi-policy, 6 unanswerable, 4 ambiguous/adversarial. Each case has `case_id`, `seller_id`, `query`, `answerable`, `expected_sources`, and `expected_source_identity` (`seller_id`, `document_id`, `version`, section). Answerable cases include `expected_answer_points`. Four Beacon cases cover overlapping `document_id` values with conflicting rules.
+- Did not implement a dataset validator or wire the dataset gate. Harness-only verification does not certify annotation quality.
+- Updated EVALUATION.md, ARCHITECTURE.md, README.md, and feature_list.json.
+- Startup: first `./init.sh` in the sandbox failed when timeout tests could not SIGKILL child processes (PermissionError). Evidence: `verification/evidence/9fac34c436684d7db440a1d217f4aa21-harness.json`. Rerun outside the sandbox: `./init.sh` exit 0; evidence `verification/evidence/344436e9931e4667ba91c56c32ad0c6a-harness.json`.
+- `python3 scripts/harness.py verify-task p1-annotations`: exit 0; 47 harness tests passed; evidence `verification/evidence/209bb01e170b4ad78ebf33d52eaca563-harness.json`. Task status verified.
+- `python3 scripts/harness.py verify dataset`: exit 3; unavailable. Evidence `verification/evidence/b03d16e2c62647a6910205adec8916d1-dataset.json`. Not treated as passed.
+- Next eligible task: p1-dataset-checks. Phase 1 stays in_progress until that child and the dataset gate are done. A roadmap entry is not authorization to start p1-dataset-checks.

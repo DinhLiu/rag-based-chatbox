@@ -1,0 +1,930 @@
+{
+  "dataset_id": "eval-policy-questions",
+  "dataset_version": "1",
+  "corpus_id": "eval-policy-corpus",
+  "corpus_version": "1",
+  "created_at": "2026-09-16",
+  "notes": "Fixed Phase 1 evaluation questions for eval-policy-corpus v1. seller-aurora is the primary seller. seller-beacon cases exist only for isolation against overlapping document_id values. Distribution follows PROJECT_SPEC.md §22. Schema validity does not certify annotation quality; p1-dataset-checks owns that gate.",
+  "distribution": {
+    "simple": 16,
+    "paraphrased": 8,
+    "multi_policy": 6,
+    "unanswerable": 6,
+    "ambiguous_adversarial": 4
+  },
+  "cases": [
+    {
+      "case_id": "aurora-simple-01",
+      "seller_id": "seller-aurora",
+      "category": "simple",
+      "query": "Can I return a product after 7 days?",
+      "answerable": true,
+      "expected_sources": ["return_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "expected_answer_points": [
+        "products may be returned within 14 days of delivery",
+        "the 14-day period starts on the carrier delivery confirmation date"
+      ]
+    },
+    {
+      "case_id": "aurora-simple-02",
+      "seller_id": "seller-aurora",
+      "category": "simple",
+      "query": "Must a returned product be unused and in its original packaging?",
+      "answerable": true,
+      "expected_sources": ["return_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "expected_answer_points": [
+        "returned products must be unused and in their original packaging",
+        "returns must include original tags, manuals, and accessories",
+        "products with signs of use, missing parts, or damaged packaging are not eligible"
+      ]
+    },
+    {
+      "case_id": "aurora-simple-03",
+      "seller_id": "seller-aurora",
+      "category": "simple",
+      "query": "After the warehouse receives my return, how long does the refund take?",
+      "answerable": true,
+      "expected_sources": ["return_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "expected_answer_points": [
+        "approved refunds are issued to the original payment method only",
+        "refund processing takes 5 to 10 business days after the warehouse receives and inspects the return"
+      ]
+    },
+    {
+      "case_id": "aurora-simple-04",
+      "seller_id": "seller-aurora",
+      "category": "simple",
+      "query": "How long is the product warranty?",
+      "answerable": true,
+      "expected_sources": ["warranty_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "expected_answer_points": [
+        "manufacturing defects are warranted for 12 months from the delivery date"
+      ]
+    },
+    {
+      "case_id": "aurora-simple-05",
+      "seller_id": "seller-aurora",
+      "category": "simple",
+      "query": "What does the warranty cover if a manufacturing defect is confirmed?",
+      "answerable": true,
+      "expected_sources": ["warranty_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "expected_answer_points": [
+        "covers manufacturing defects in materials and workmanship during normal household use",
+        "Aurora Home Goods will repair the product or replace it with the same or a comparable item",
+        "Aurora Home Goods chooses repair or replacement"
+      ]
+    },
+    {
+      "case_id": "aurora-simple-06",
+      "seller_id": "seller-aurora",
+      "category": "simple",
+      "query": "Does the warranty cover fading, pilling, or surface scratches from ordinary use?",
+      "answerable": true,
+      "expected_sources": ["warranty_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "expected_answer_points": [
+        "the warranty does not cover normal wear and tear",
+        "fading, pilling, and surface scratches from ordinary use are not covered"
+      ]
+    },
+    {
+      "case_id": "aurora-simple-07",
+      "seller_id": "seller-aurora",
+      "category": "simple",
+      "query": "How long does standard shipping take after I pay?",
+      "answerable": true,
+      "expected_sources": ["shipping_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "expected_answer_points": [
+        "orders are processed within 1 to 2 business days after payment is confirmed",
+        "standard shipping takes 3 to 7 business days after processing"
+      ]
+    },
+    {
+      "case_id": "aurora-simple-08",
+      "seller_id": "seller-aurora",
+      "category": "simple",
+      "query": "How much does standard outbound shipping cost?",
+      "answerable": true,
+      "expected_sources": ["shipping_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "expected_answer_points": [
+        "standard outbound shipping costs $6.95",
+        "outbound shipping is free on merchandise totals of $50 or more before tax"
+      ]
+    },
+    {
+      "case_id": "aurora-simple-09",
+      "seller_id": "seller-aurora",
+      "category": "simple",
+      "query": "Which payment methods does Aurora Home Goods accept?",
+      "answerable": true,
+      "expected_sources": ["payment_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "expected_answer_points": [
+        "accepts Visa, Mastercard, and PayPal",
+        "cash on delivery is not offered"
+      ]
+    },
+    {
+      "case_id": "aurora-simple-10",
+      "seller_id": "seller-aurora",
+      "category": "simple",
+      "query": "Can I cancel an order before it is dispatched?",
+      "answerable": true,
+      "expected_sources": ["cancellation_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "expected_answer_points": [
+        "a customer may cancel at no charge before dispatch",
+        "contact Customer Care with the order number while the order is awaiting dispatch"
+      ]
+    },
+    {
+      "case_id": "aurora-simple-11",
+      "seller_id": "seller-aurora",
+      "category": "simple",
+      "query": "Can I cancel after the order has shipped?",
+      "answerable": true,
+      "expected_sources": ["cancellation_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "expected_answer_points": [
+        "after dispatch the order cannot be cancelled",
+        "the customer may use the Return Policy after delivery, subject to that policy's period and condition rules"
+      ]
+    },
+    {
+      "case_id": "aurora-simple-12",
+      "seller_id": "seller-aurora",
+      "category": "simple",
+      "query": "Is Package Protection included automatically, and what does it cost?",
+      "answerable": true,
+      "expected_sources": ["insurance_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "expected_answer_points": [
+        "Package Protection costs $2.99 per order at checkout",
+        "it is optional and is not included automatically"
+      ]
+    },
+    {
+      "case_id": "aurora-simple-13",
+      "seller_id": "seller-aurora",
+      "category": "simple",
+      "query": "How can I contact Customer Care?",
+      "answerable": true,
+      "expected_sources": ["customer_care"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "expected_answer_points": [
+        "email support@aurorahomegoods.example with the order number",
+        "telephone support is not offered"
+      ]
+    },
+    {
+      "case_id": "aurora-simple-14",
+      "seller_id": "seller-aurora",
+      "category": "simple",
+      "query": "When is my payment method charged?",
+      "answerable": true,
+      "expected_sources": ["payment_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "expected_answer_points": [
+        "the selected payment method is charged when the order is dispatched"
+      ]
+    },
+    {
+      "case_id": "beacon-simple-15",
+      "seller_id": "seller-beacon",
+      "category": "simple",
+      "query": "How many days do I have to return a Beacon Outdoor Supply order?",
+      "answerable": true,
+      "expected_sources": ["return_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "expected_answer_points": [
+        "returns are accepted within 7 days of delivery",
+        "the 7-day period starts on the carrier's delivery date"
+      ]
+    },
+    {
+      "case_id": "beacon-simple-16",
+      "seller_id": "seller-beacon",
+      "category": "simple",
+      "query": "Does the Beacon warranty cover accidental water damage?",
+      "answerable": true,
+      "expected_sources": ["warranty_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 1"
+        },
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "expected_answer_points": [
+        "products are warranted for 6 months from the delivery date",
+        "the warranty covers manufacturing defects and accidental damage during normal outdoor use",
+        "accidental water damage to covered products is included"
+      ]
+    },
+    {
+      "case_id": "aurora-paraphrased-01",
+      "seller_id": "seller-aurora",
+      "category": "paraphrased",
+      "query": "I received my order last week. Can I send it back?",
+      "answerable": true,
+      "expected_sources": ["return_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 2"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "expected_answer_points": [
+        "returns are allowed within 14 days of delivery",
+        "the product must be unused, in original packaging, and include original tags, manuals, and accessories"
+      ]
+    },
+    {
+      "case_id": "aurora-paraphrased-02",
+      "seller_id": "seller-aurora",
+      "category": "paraphrased",
+      "query": "After your warehouse inspects my approved return, how many business days until the refund is processed?",
+      "answerable": true,
+      "expected_sources": ["return_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "expected_answer_points": [
+        "refund processing takes 5 to 10 business days after the warehouse receives and inspects the return",
+        "refunds are issued to the original payment method only"
+      ]
+    },
+    {
+      "case_id": "aurora-paraphrased-03",
+      "seller_id": "seller-aurora",
+      "category": "paraphrased",
+      "query": "A factory defect showed up two months after delivery. Is that still under warranty?",
+      "answerable": true,
+      "expected_sources": ["warranty_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 1"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "expected_answer_points": [
+        "manufacturing defects are covered for 12 months from delivery",
+        "coverage includes defects that appear during the 12-month period during normal household use"
+      ]
+    },
+    {
+      "case_id": "aurora-paraphrased-04",
+      "seller_id": "seller-aurora",
+      "category": "paraphrased",
+      "query": "My merchandise total is $60 before tax. Do I still pay the $6.95 standard shipping fee?",
+      "answerable": true,
+      "expected_sources": ["shipping_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "expected_answer_points": [
+        "outbound shipping is free on merchandise totals of $50 or more before tax"
+      ]
+    },
+    {
+      "case_id": "aurora-paraphrased-05",
+      "seller_id": "seller-aurora",
+      "category": "paraphrased",
+      "query": "My order is still waiting to be sent out. Can I stop it without a fee?",
+      "answerable": true,
+      "expected_sources": ["cancellation_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "expected_answer_points": [
+        "a customer may cancel at no charge before dispatch",
+        "contact Customer Care with the order number while the order is awaiting dispatch"
+      ]
+    },
+    {
+      "case_id": "aurora-paraphrased-06",
+      "seller_id": "seller-aurora",
+      "category": "paraphrased",
+      "query": "Can I call support about my order instead of emailing?",
+      "answerable": true,
+      "expected_sources": ["customer_care"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "expected_answer_points": [
+        "telephone support is not offered",
+        "email support@aurorahomegoods.example with the order number"
+      ]
+    },
+    {
+      "case_id": "aurora-paraphrased-07",
+      "seller_id": "seller-aurora",
+      "category": "paraphrased",
+      "query": "If I choose express shipping, how fast does it arrive and what extra do I pay?",
+      "answerable": true,
+      "expected_sources": ["shipping_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "expected_answer_points": [
+        "express shipping takes 1 to 2 business days after processing",
+        "express adds a $12 fee in addition to any standard shipping charge that would otherwise apply",
+        "the $50 free-shipping threshold does not waive the express fee"
+      ]
+    },
+    {
+      "case_id": "beacon-paraphrased-08",
+      "seller_id": "seller-beacon",
+      "category": "paraphrased",
+      "query": "If I change my mind and send an unused Beacon order back, do I get the full purchase amount back?",
+      "answerable": true,
+      "expected_sources": ["return_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 2"
+        },
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 4"
+        }
+      ],
+      "expected_answer_points": [
+        "change-of-mind returns have a 15% restocking fee deducted from the refund",
+        "returned products must be unused and in original packaging",
+        "approved refunds are issued to the original payment method within 14 business days after the warehouse receives the return"
+      ]
+    },
+    {
+      "case_id": "aurora-multi-01",
+      "seller_id": "seller-aurora",
+      "category": "multi_policy",
+      "query": "If my product is defective, can I exchange it and who pays the shipping fee?",
+      "answerable": true,
+      "expected_sources": ["exchange_policy", "shipping_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 2"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "expected_answer_points": [
+        "a defective-product exchange may be requested within 30 days of delivery",
+        "Customer Care must confirm the defect from the customer's description and photographs",
+        "Aurora Home Goods pays shipping to return the defective product and shipping to send the replacement"
+      ]
+    },
+    {
+      "case_id": "aurora-multi-02",
+      "seller_id": "seller-aurora",
+      "category": "multi_policy",
+      "query": "How long does a refund take?",
+      "answerable": true,
+      "expected_sources": ["return_policy", "payment_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 5"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "expected_answer_points": [
+        "after the warehouse receives and inspects the return, refund processing takes 5 to 10 business days",
+        "card refunds appear within 5 to 10 business days after Aurora Home Goods issues the refund",
+        "PayPal refunds appear within 3 to 5 business days after Aurora Home Goods issues the refund",
+        "refunds are sent only to the original payment method"
+      ]
+    },
+    {
+      "case_id": "aurora-multi-03",
+      "seller_id": "seller-aurora",
+      "category": "multi_policy",
+      "query": "My order already shipped. Can I cancel it, or can I still send it back when it arrives if I no longer want it?",
+      "answerable": true,
+      "expected_sources": ["cancellation_policy", "return_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 2"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "expected_answer_points": [
+        "after dispatch the order cannot be cancelled",
+        "the customer may use the Return Policy after delivery",
+        "returns are allowed within 14 days of delivery if unused, in original packaging, with original tags, manuals, and accessories"
+      ]
+    },
+    {
+      "case_id": "aurora-multi-04",
+      "seller_id": "seller-aurora",
+      "category": "multi_policy",
+      "query": "I want a different color of an unused item. Who pays shipping for the exchange?",
+      "answerable": true,
+      "expected_sources": ["exchange_policy", "return_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 1"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "expected_answer_points": [
+        "an unused product may be exchanged for a different size, color, or equivalent model within 14 days of delivery",
+        "the original product must meet the unused and original-packaging conditions in the Return Policy",
+        "the customer pays shipping both ways for preference exchanges"
+      ]
+    },
+    {
+      "case_id": "aurora-multi-05",
+      "seller_id": "seller-aurora",
+      "category": "multi_policy",
+      "query": "How do I make a warranty claim?",
+      "answerable": true,
+      "expected_sources": ["warranty_policy", "customer_care"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 4"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 1"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 4"
+        }
+      ],
+      "expected_answer_points": [
+        "contact Customer Care with the order number, a description of the defect, and photographs",
+        "claims must be submitted before the 12-month coverage period ends",
+        "email support@aurorahomegoods.example",
+        "include the order number, product name, and relevant photographs when asking about defects"
+      ]
+    },
+    {
+      "case_id": "beacon-multi-06",
+      "seller_id": "seller-beacon",
+      "category": "multi_policy",
+      "query": "If Beacon confirms my tracked package is lost, will you send a replacement, and who pays shipping if I later return something?",
+      "answerable": true,
+      "expected_sources": ["shipping_policy", "return_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3"
+        },
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "expected_answer_points": [
+        "if the carrier confirms the loss, Beacon Outdoor Supply refunds the merchandise value",
+        "replacement shipments are not offered",
+        "the customer pays return shipping in all cases, including items the customer believes are defective"
+      ]
+    },
+    {
+      "case_id": "aurora-unanswerable-01",
+      "seller_id": "seller-aurora",
+      "category": "unanswerable",
+      "query": "Can I get a refund because I simply changed my mind after 45 days?",
+      "answerable": false,
+      "expected_sources": ["return_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6"
+        }
+      ],
+      "notes": "Return Policy states it does not describe returns requested after the 14-day period. Do not infer a refusal rule beyond that limit."
+    },
+    {
+      "case_id": "aurora-unanswerable-02",
+      "seller_id": "seller-aurora",
+      "category": "unanswerable",
+      "query": "Does the warranty cover accidental water damage?",
+      "answerable": false,
+      "expected_sources": ["warranty_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "notes": "Aurora warranty does not specify whether accidental or water damage is covered or excluded. A confident yes or no is a high-severity failure. Do not use seller-beacon coverage."
+    },
+    {
+      "case_id": "aurora-unanswerable-03",
+      "seller_id": "seller-aurora",
+      "category": "unanswerable",
+      "query": "Can I return a discounted item?",
+      "answerable": false,
+      "expected_sources": ["return_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6"
+        }
+      ],
+      "notes": "Return Policy does not describe returns of discounted, promotional, or final-sale items."
+    },
+    {
+      "case_id": "aurora-unanswerable-04",
+      "seller_id": "seller-aurora",
+      "category": "unanswerable",
+      "query": "Do you ship internationally, and who pays duties?",
+      "answerable": false,
+      "expected_sources": ["shipping_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "notes": "Shipping Policy does not describe international shipping, duties, or cross-border delivery times."
+    },
+    {
+      "case_id": "aurora-unanswerable-05",
+      "seller_id": "seller-aurora",
+      "category": "unanswerable",
+      "query": "My package is late but not lost. Do I get compensation?",
+      "answerable": false,
+      "expected_sources": ["shipping_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 4"
+        }
+      ],
+      "notes": "Shipping Policy does not describe compensation for late delivery when the package is not lost."
+    },
+    {
+      "case_id": "aurora-unanswerable-06",
+      "seller_id": "seller-aurora",
+      "category": "unanswerable",
+      "query": "What laptop should I buy for machine learning?",
+      "answerable": false,
+      "expected_sources": [],
+      "expected_source_identity": [],
+      "notes": "Out of seller knowledge-base scope. Do not answer from general LLM knowledge."
+    },
+    {
+      "case_id": "aurora-adversarial-01",
+      "seller_id": "seller-aurora",
+      "category": "ambiguous_adversarial",
+      "query": "The warranty only mentions manufacturing defects, so accidental water damage is excluded, right?",
+      "answerable": false,
+      "expected_sources": ["warranty_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "notes": "Adversarial inference. Absence of an explicit water-damage statement is not an exclusion. Do not answer no."
+    },
+    {
+      "case_id": "aurora-adversarial-02",
+      "seller_id": "seller-aurora",
+      "category": "ambiguous_adversarial",
+      "query": "Is there a 15% restocking fee on change-of-mind returns?",
+      "answerable": false,
+      "expected_sources": ["return_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 4"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "notes": "Isolation trap: 15% restocking is a seller-beacon rule. Aurora Return Policy does not mention a restocking fee. Do not answer from Beacon documents."
+    },
+    {
+      "case_id": "aurora-adversarial-03",
+      "seller_id": "seller-aurora",
+      "category": "ambiguous_adversarial",
+      "query": "Is the warranty only 6 months?",
+      "answerable": true,
+      "expected_sources": ["warranty_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "expected_answer_points": [
+        "Aurora Home Goods warrants manufacturing defects for 12 months from the delivery date"
+      ],
+      "notes": "Isolation trap: 6 months is seller-beacon coverage. Answer from Aurora evidence only."
+    },
+    {
+      "case_id": "aurora-adversarial-04",
+      "seller_id": "seller-aurora",
+      "category": "ambiguous_adversarial",
+      "query": "The fabric shade is slightly different from the photos. Can I exchange it?",
+      "answerable": false,
+      "expected_sources": ["exchange_policy"],
+      "expected_source_identity": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 4"
+        }
+      ],
+      "notes": "Policy reviews minor cosmetic variation case by case and does not define a standard outcome. Do not give a confident yes or no."
+    }
+  ]
+}

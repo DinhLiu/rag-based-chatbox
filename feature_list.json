@@ -400,7 +400,7 @@
       "parent": "phase-1",
       "name": "Evaluation questions and annotations",
       "description": "Bounded task within Evaluation Dataset.",
-      "status": "not_started",
+      "status": "verified",
       "scope": "baseline",
       "spec_sections": [
         "17",
@@ -417,7 +417,9 @@
         "harness"
       ],
       "blocker": null,
-      "evidence": []
+      "evidence": [
+        "verification/evidence/209bb01e170b4ad78ebf33d52eaca563-harness.json"
+      ]
     },
     {
       "id": "p1-dataset-checks",
