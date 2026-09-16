@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-09-16T07:52:52.463790+00:00",
+  "runs": [
+    {
+      "command": [
+        "python3",
+        "scripts/harness.py",
+        "status"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "stdout": "Current milestone: phase-1 \u2014 Evaluation Dataset [not_started]\nEligibility is for starting work, not proof that verification gates are available.\n\nEligible task:\n  p1-policies (open phase-1 first)\n\nBlocked:\n  p1-annotations \u2192 waiting for p1-policies\n  p1-dataset-checks \u2192 waiting for p1-annotations\n\nInspect one record with: python3 scripts/harness.py task <id>\nA roadmap entry is not authorization to start implementation.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/harness.py",
+        "task",
+        "p1-policies"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "stdout": "{\n  \"id\": \"p1-policies\",\n  \"parent\": \"phase-1\",\n  \"name\": \"Initial policy corpus\",\n  \"description\": \"Bounded task within Evaluation Dataset.\",\n  \"status\": \"not_started\",\n  \"scope\": \"baseline\",\n  \"spec_sections\": [\n    \"17\",\n    \"22\",\n    \"28 Phase 1\"\n  ],\n  \"dependencies\": [],\n  \"acceptance_criteria\": [\n    \"Version initial policy documents with stable source and seller identities.\"\n  ],\n  \"required_gates\": [\n    \"harness\"\n  ],\n  \"blocker\": null,\n  \"evidence\": [],\n  \"effective_dependencies\": [\n    \"phase-0\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/harness.py",
+        "task",
+        "missing"
+      ],
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "usage: harness.py [-h] {check,status,task,verify,_run,verify-task} ...\nharness.py: error: Unknown task: missing\n"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/harness.py",
+        "verify",
+        "all"
+      ],
+      "expected_exit_code": 3,
+      "exit_code": 3,
+      "stdout": "harness: passed (verification/evidence/db219b00f53340ec844a7499ffb018ca-harness.json)\nunit: unavailable (verification/evidence/37bd38f2bc1c457894335c87825e909f-unit.json)\nUNAVAILABLE: unit has no implemented application runner/fixtures. No checks passed.\nintegration: unavailable (verification/evidence/d268aa2a32a341f5b797360202aacc6b-integration.json)\nUNAVAILABLE: integration has no implemented application runner/fixtures. No checks passed.\ndataset: unavailable (verification/evidence/13e35f021a8849499efbfa44272bf8b7-dataset.json)\nUNAVAILABLE: dataset has no implemented application runner/fixtures. No checks passed.\nretrieval: unavailable (verification/evidence/7737945b060b480499b3fb02a461cb38-retrieval.json)\nUNAVAILABLE: retrieval has no implemented application runner/fixtures. No checks passed.\ngeneration: unavailable (verification/evidence/51400fd381f0497bba6e85b751f8861a-generation.json)\nUNAVAILABLE: generation has no implemented application runner/fixtures. No checks passed.\nabstention: unavailable (verification/evidence/65b082271b4444ba9a3614a2910ded44-abstention.json)\nUNAVAILABLE: abstention has no implemented application runner/fixtures. No checks passed.\nisolation: unavailable (verification/evidence/693b50a320f74a5fa4c16ca6e5310207-isolation.json)\nUNAVAILABLE: isolation has no implemented application runner/fixtures. No checks passed.\nregression: unavailable (verification/evidence/d22706a9de8b4f9e84071b7b0e31ae19-regression.json)\nUNAVAILABLE: regression has no implemented application runner/fixtures. No checks passed.\nsystem: unavailable (verification/evidence/2746bf1aef3b4feba73184f2d717bea1-system.json)\nUNAVAILABLE: system has no implemented application runner/fixtures. No checks passed.\n",
+      "stderr": ""
+    }
+  ]
+}

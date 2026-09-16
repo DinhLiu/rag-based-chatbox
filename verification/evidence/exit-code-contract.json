@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-09-16T07:42:28.176958+00:00",
+  "runs": [
+    {
+      "command": [
+        "python3",
+        "scripts/harness.py",
+        "verify",
+        "all"
+      ],
+      "expected_exit_code": 3,
+      "exit_code": 3,
+      "stdout": "harness: passed (verification/evidence/5ca7c23d710c46dfb869a3caa23421d1-harness.json)\nunit: unavailable (verification/evidence/2a43d1b846144cc78cac2d15443fe06e-unit.json)\nUNAVAILABLE: unit has no implemented application runner/fixtures. No checks passed.\nintegration: unavailable (verification/evidence/69f16c6128ae4927a3f3d5874568cddd-integration.json)\nUNAVAILABLE: integration has no implemented application runner/fixtures. No checks passed.\ndataset: unavailable (verification/evidence/f43f2acafd8f4f3d8ca51e672ff92c80-dataset.json)\nUNAVAILABLE: dataset has no implemented application runner/fixtures. No checks passed.\nretrieval: unavailable (verification/evidence/c3d62d8f4cca4292a3adff3bb9bcbe3d-retrieval.json)\nUNAVAILABLE: retrieval has no implemented application runner/fixtures. No checks passed.\ngeneration: unavailable (verification/evidence/37964a84bb4d4575bd2e3d13daed999c-generation.json)\nUNAVAILABLE: generation has no implemented application runner/fixtures. No checks passed.\nabstention: unavailable (verification/evidence/4f009c27bd6942daa080073dc803eb87-abstention.json)\nUNAVAILABLE: abstention has no implemented application runner/fixtures. No checks passed.\nisolation: unavailable (verification/evidence/49538eec5f3b4987af65b2cd31086a3d-isolation.json)\nUNAVAILABLE: isolation has no implemented application runner/fixtures. No checks passed.\nregression: unavailable (verification/evidence/e68f6178017d429d87fa26dc63a79e71-regression.json)\nUNAVAILABLE: regression has no implemented application runner/fixtures. No checks passed.\nsystem: unavailable (verification/evidence/df464c2a512247a7b8ec804ed853fa01-system.json)\nUNAVAILABLE: system has no implemented application runner/fixtures. No checks passed.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/harness.py",
+        "verify",
+        "invalid-gate"
+      ],
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "usage: harness.py verify [-h]\n                         {harness,unit,integration,dataset,retrieval,generation,abstention,isolation,regression,system,all}\nharness.py verify: error: argument gate: invalid choice: 'invalid-gate' (choose from harness, unit, integration, dataset, retrieval, generation, abstention, isolation, regression, system, all)\n"
+    }
+  ]
+}

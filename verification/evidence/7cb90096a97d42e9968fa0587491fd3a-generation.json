@@ -1,0 +1,16 @@
+{
+  "task_id": null,
+  "gate": "generation",
+  "command": [
+    "/usr/bin/python3",
+    "scripts/harness.py",
+    "_run",
+    "generation"
+  ],
+  "timestamp": "2026-09-16T07:14:32.934106+00:00",
+  "snapshot_sha256": "457cf3f8514902f1f48a3a86a8fc72bfacb47832e0dec7ae786ad3084091dbfc",
+  "exit_code": 2,
+  "status": "unavailable",
+  "stdout": "UNAVAILABLE: generation has no implemented application runner/fixtures. No checks passed.\n",
+  "stderr": ""
+}

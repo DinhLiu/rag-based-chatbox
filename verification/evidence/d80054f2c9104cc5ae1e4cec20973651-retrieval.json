@@ -1,0 +1,18 @@
+{
+  "task_id": null,
+  "gate": "retrieval",
+  "command": [
+    "/usr/bin/python3",
+    "scripts/harness.py",
+    "_run",
+    "retrieval"
+  ],
+  "timeout_seconds": 600,
+  "timed_out": false,
+  "timestamp": "2026-09-16T08:19:57.542327+00:00",
+  "snapshot_sha256": "8f24b3186c0ac3bee301388ea022500de90d8c6f9d22ad47319ed0ad5333ba48",
+  "exit_code": 3,
+  "status": "unavailable",
+  "stdout": "UNAVAILABLE: retrieval has no implemented application runner/fixtures. No checks passed.\n",
+  "stderr": ""
+}

@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-09-16T07:15:31.635590+00:00",
+  "scope": "Clean-copy startup from outside repository; refusal to promote not_started Phase 1",
+  "runs": [
+    {
+      "command": [
+        "/tmp/rag-harness-clean-cr7gj4tv/repository/init.sh"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "stdout": "harness: passed (verification/evidence/a8fd1d71607a418395f2e9cabb95dc14-harness.json)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "/tmp/rag-harness-clean-cr7gj4tv/repository/scripts/harness.py",
+        "verify-task",
+        "phase-1"
+      ],
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "stdout": "Task must exist and be implemented before verification.\n",
+      "stderr": ""
+    }
+  ]
+}

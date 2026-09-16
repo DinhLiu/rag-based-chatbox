@@ -1,0 +1,16 @@
+{
+  "task_id": null,
+  "gate": "isolation",
+  "command": [
+    "/usr/bin/python3",
+    "scripts/harness.py",
+    "_run",
+    "isolation"
+  ],
+  "timestamp": "2026-09-16T07:42:28.012140+00:00",
+  "snapshot_sha256": "0c29c162e722586f7d4fd21e88843d7677b03149a344c84470d4b6dae7dbef12",
+  "exit_code": 3,
+  "status": "unavailable",
+  "stdout": "UNAVAILABLE: isolation has no implemented application runner/fixtures. No checks passed.\n",
+  "stderr": ""
+}

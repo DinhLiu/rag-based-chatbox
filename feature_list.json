@@ -1,0 +1,1222 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "PROJECT_SPEC.md",
+  "dependency_note": "Dependencies are execution prerequisites, not new product scope. Optional Phase 6 optimization and Phase 8 analytics do not block core deployment. Current authorization stops after Phase 0. Optional parent links group bounded tasks under phases; children inherit phase entry dependencies. Add discovered work as new child tasks without expanding product scope.",
+  "features": [
+    {
+      "id": "phase-0",
+      "name": "Project Foundation",
+      "description": "PROJECT_SPEC.md \u00a728 Phase 0: Project Foundation.",
+      "status": "verified",
+      "scope": "foundation",
+      "spec_sections": [
+        "1\u201331",
+        "25\u201328"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "Specification retained as authoritative",
+        "Agent instructions, architecture, repository control-plane structure, persistent state and restart workflow exist",
+        "Harness validation and negative gate tests pass"
+      ],
+      "required_gates": [
+        "harness"
+      ],
+      "blocker": null,
+      "evidence": [
+        "verification/evidence/aa70101f26554bcf898f0c6f5a7b6af6-harness.json"
+      ]
+    },
+    {
+      "id": "phase-1",
+      "name": "Evaluation Dataset",
+      "description": "PROJECT_SPEC.md \u00a728 Phase 1: Evaluation Dataset.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "17",
+        "22",
+        "28 Phase 1"
+      ],
+      "dependencies": [
+        "phase-0"
+      ],
+      "acceptance_criteria": [
+        "Initial seller policy documents",
+        "30\u201350 questions with answerable/unanswerable labels and expected evidence annotations",
+        "Versioned cases cover the suggested distribution; annotations checked against policies"
+      ],
+      "required_gates": [
+        "harness",
+        "dataset"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "phase-2",
+      "name": "Baseline Retrieval",
+      "description": "PROJECT_SPEC.md \u00a728 Phase 2: Baseline Retrieval.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "6",
+        "13",
+        "15",
+        "18",
+        "28 Phase 2"
+      ],
+      "dependencies": [
+        "phase-1"
+      ],
+      "acceptance_criteria": [
+        "PDF, Markdown, TXT and direct-text ingestion into parse/chunk/embed/vector-store/retrieve baseline",
+        "Source metadata preserved and configurable fixed/recursive chunking",
+        "Dense retrieval measured with Recall@5 and MRR@10 on fixed dataset",
+        "Every data operation is seller-scoped and isolation is tested"
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "isolation"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "phase-3",
+      "name": "Baseline Generation",
+      "description": "PROJECT_SPEC.md \u00a728 Phase 3: Baseline Generation.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "7\u201310",
+        "19",
+        "21",
+        "24",
+        "28 Phase 3"
+      ],
+      "dependencies": [
+        "phase-2"
+      ],
+      "acceptance_criteria": [
+        "Query/evidence/LLM/answer/citation pipeline",
+        "Faithfulness, relevance, citation correctness and completeness evaluated",
+        "Only evidence-supported policy claims; regression comparison and system measurements recorded"
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "phase-4",
+      "name": "Safe Abstention",
+      "description": "PROJECT_SPEC.md \u00a728 Phase 4: Safe Abstention.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "8\u20139",
+        "20",
+        "24",
+        "28 Phase 4"
+      ],
+      "dependencies": [
+        "phase-3"
+      ],
+      "acceptance_criteria": [
+        "Insufficient, conflicting, low-relevance and unrelated evidence produces safe fallback",
+        "Correct/incorrect refusals and false confident answers evaluated with abstention precision/recall and False Answer Rate",
+        "Unsupported confident answers block acceptance as high-severity failures"
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "phase-5",
+      "name": "Seller Knowledge Management",
+      "description": "PROJECT_SPEC.md \u00a728 Phase 5: Seller Knowledge Management.",
+      "status": "not_started",
+      "scope": "mvp",
+      "spec_sections": [
+        "4",
+        "6",
+        "11",
+        "13",
+        "28 Phase 5"
+      ],
+      "dependencies": [
+        "phase-4"
+      ],
+      "acceptance_criteria": [
+        "Upload/delete/replace/re-index with processing status and indexed document visibility",
+        "Stale chunks cannot affect answers after lifecycle operations complete",
+        "Seller isolation verified across document and retrieval operations"
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "phase-6",
+      "name": "Retrieval Improvements",
+      "description": "PROJECT_SPEC.md \u00a728 Phase 6: Retrieval Improvements.",
+      "status": "not_started",
+      "scope": "baseline_gated",
+      "spec_sections": [
+        "15\u201316",
+        "23\u201324",
+        "28 Phase 6"
+      ],
+      "dependencies": [
+        "phase-5"
+      ],
+      "acceptance_criteria": [
+        "Only begin with fixed dataset and measured baseline",
+        "Each authorized technique records hypothesis, baseline/new metrics, latency/cost and measurable benefit",
+        "No acceptance from a few example queries; retain regression protection"
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "phase-7",
+      "name": "Observability",
+      "description": "PROJECT_SPEC.md \u00a728 Phase 7: Observability.",
+      "status": "not_started",
+      "scope": "roadmap",
+      "spec_sections": [
+        "21",
+        "28 Phase 7"
+      ],
+      "dependencies": [
+        "phase-5"
+      ],
+      "acceptance_criteria": [
+        "Monitor retrieval results/scores, LLM responses, citations, latency, token usage, abstentions and errors",
+        "Observability preserves tenant boundaries and does not regress answer quality"
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "phase-8",
+      "name": "Policy Gap Analytics",
+      "description": "PROJECT_SPEC.md \u00a728 Phase 8: Policy Gap Analytics.",
+      "status": "not_started",
+      "scope": "planned_extension",
+      "spec_sections": [
+        "12",
+        "28 Phase 8",
+        "30"
+      ],
+      "dependencies": [
+        "phase-7"
+      ],
+      "acceptance_criteria": [
+        "Analyze unanswered questions and provide seller summaries",
+        "Keep analytics seller-scoped; extension is not required for first baseline"
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "phase-9",
+      "name": "Deployment",
+      "description": "PROJECT_SPEC.md \u00a728 Phase 9: Deployment.",
+      "status": "not_started",
+      "scope": "mvp",
+      "spec_sections": [
+        "28 Phase 9",
+        "29"
+      ],
+      "dependencies": [
+        "phase-5",
+        "phase-7"
+      ],
+      "acceptance_criteria": [
+        "Backend API, seller administration and customer chat interfaces",
+        "Complete system runs through documented commands",
+        "End-to-end MVP success criteria and regression/evaluation gates are verified"
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p0-exit-codes",
+      "parent": "phase-0",
+      "name": "Separate verification exit codes",
+      "description": "Bounded task within Project Foundation.",
+      "status": "verified",
+      "scope": "foundation",
+      "spec_sections": [
+        "1\u201331",
+        "25\u201328"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "Keep success 0, failure 1, usage error 2 and unavailable 3 distinct through CLI, aggregate results and evidence."
+      ],
+      "required_gates": [
+        "harness"
+      ],
+      "blocker": null,
+      "evidence": [
+        "verification/evidence/a1b61a38570a43dba155724b9136aa47-harness.json"
+      ]
+    },
+    {
+      "id": "p0-child-tasks",
+      "parent": "phase-0",
+      "name": "Support phase-linked tasks",
+      "description": "Bounded task within Project Foundation.",
+      "status": "verified",
+      "scope": "foundation",
+      "spec_sections": [
+        "1\u201331",
+        "25\u201328"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "Validate optional parent links, inherited prerequisites, active leaf limits and child completion before phase verification."
+      ],
+      "required_gates": [
+        "harness"
+      ],
+      "blocker": null,
+      "evidence": [
+        "verification/evidence/7c6da60e2ff248b3b70e2eb451e9cc30-harness.json"
+      ]
+    },
+    {
+      "id": "p1-policies",
+      "parent": "phase-1",
+      "name": "Initial policy corpus",
+      "description": "Bounded task within Evaluation Dataset.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "17",
+        "22",
+        "28 Phase 1"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "Version initial policy documents with stable source and seller identities."
+      ],
+      "required_gates": [
+        "harness"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p1-annotations",
+      "parent": "phase-1",
+      "name": "Evaluation questions and annotations",
+      "description": "Bounded task within Evaluation Dataset.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "17",
+        "22",
+        "28 Phase 1"
+      ],
+      "dependencies": [
+        "p1-policies"
+      ],
+      "acceptance_criteria": [
+        "Create 30\u201350 questions with answerability labels, expected sources and expected answer points following the suggested distribution."
+      ],
+      "required_gates": [
+        "harness"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p1-dataset-checks",
+      "parent": "phase-1",
+      "name": "Dataset validation",
+      "description": "Bounded task within Evaluation Dataset.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "17",
+        "22",
+        "28 Phase 1"
+      ],
+      "dependencies": [
+        "p1-annotations"
+      ],
+      "acceptance_criteria": [
+        "Check case counts, identities, coverage and annotations against policy evidence; preserve fixed dataset versions.",
+        "Implement the dataset validator and wire the dataset gate; validate the complete Phase 1 corpus and annotations, rejecting empty, invalid or wholly skipped datasets."
+      ],
+      "required_gates": [
+        "harness",
+        "dataset"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p2-ingestion",
+      "parent": "phase-2",
+      "name": "Seller-scoped ingestion and parsing",
+      "description": "Bounded task within Baseline Retrieval.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "6",
+        "13",
+        "15",
+        "18",
+        "28 Phase 2"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "Parse PDF, Markdown, TXT and direct text while preserving available source metadata and seller scope.",
+        "Implement real unit, integration and isolation checks alongside ingestion; these implementation checks must not require downstream chunking, indexing or retrieval. Extend their coverage with each later task."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "isolation"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p2-chunking",
+      "parent": "phase-2",
+      "name": "Baseline chunking",
+      "description": "Bounded task within Baseline Retrieval.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "6",
+        "13",
+        "15",
+        "18",
+        "28 Phase 2"
+      ],
+      "dependencies": [
+        "p2-ingestion"
+      ],
+      "acceptance_criteria": [
+        "Create configurable fixed/recursive chunks preserving source references and positions."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "isolation"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p2-indexing",
+      "parent": "phase-2",
+      "name": "Embedding and indexing",
+      "description": "Bounded task within Baseline Retrieval.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "6",
+        "13",
+        "15",
+        "18",
+        "28 Phase 2"
+      ],
+      "dependencies": [
+        "p2-chunking"
+      ],
+      "acceptance_criteria": [
+        "Embed and store chunks with metadata and tested seller isolation."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "isolation"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p2-retrieval",
+      "parent": "phase-2",
+      "name": "Dense retrieval",
+      "description": "Bounded task within Baseline Retrieval.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "6",
+        "13",
+        "15",
+        "18",
+        "28 Phase 2"
+      ],
+      "dependencies": [
+        "p2-indexing"
+      ],
+      "acceptance_criteria": [
+        "Retrieve dense top-K evidence only from the selected seller."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "isolation"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p2-retrieval-evaluation",
+      "parent": "phase-2",
+      "name": "Measure retrieval baseline",
+      "description": "Bounded task within Baseline Retrieval.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "6",
+        "13",
+        "15",
+        "18",
+        "28 Phase 2"
+      ],
+      "dependencies": [
+        "p2-retrieval"
+      ],
+      "acceptance_criteria": [
+        "Record Recall@5 and MRR@10 on the fixed dataset with reproducible baseline reports.",
+        "Implement and wire the retrieval evaluation runner here; compare the complete retrieval pipeline against the fixed dataset and establish the first measured dense baseline."
+      ],
+      "required_gates": [
+        "harness",
+        "dataset",
+        "retrieval",
+        "isolation"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p3-generation",
+      "parent": "phase-3",
+      "name": "Evidence-grounded generation",
+      "description": "Bounded task within Baseline Generation.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "7\u201310",
+        "19",
+        "21",
+        "24",
+        "28 Phase 3"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "Generate concise answers only from retrieved evidence, preserving policy conditions."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "isolation"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p3-citations",
+      "parent": "phase-3",
+      "name": "Citation support",
+      "description": "Bounded task within Baseline Generation.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "7\u201310",
+        "19",
+        "21",
+        "24",
+        "28 Phase 3"
+      ],
+      "dependencies": [
+        "p3-generation"
+      ],
+      "acceptance_criteria": [
+        "Provide accurate document names and sections/pages where available for supporting claims."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "isolation"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p3-generation-evaluation",
+      "parent": "phase-3",
+      "name": "Generation evaluation and regression",
+      "description": "Bounded task within Baseline Generation.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "7\u201310",
+        "19",
+        "21",
+        "24",
+        "28 Phase 3"
+      ],
+      "dependencies": [
+        "p3-citations"
+      ],
+      "acceptance_criteria": [
+        "Measure faithfulness, relevance, completeness and citation correctness; record regression and system measurements.",
+        "Implement and wire generation, regression and system evaluation runners after generation and citations exist; run the complete phase quality gates."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p4-evidence-checks",
+      "parent": "phase-4",
+      "name": "Insufficient-evidence detection",
+      "description": "Bounded task within Safe Abstention.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "8\u20139",
+        "20",
+        "24",
+        "28 Phase 4"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "Detect absent, low-relevance, incomplete, conflicting, unrelated or ungroundable evidence."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "isolation"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p4-fallback",
+      "parent": "phase-4",
+      "name": "Safe fallback response",
+      "description": "Bounded task within Safe Abstention.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "8\u20139",
+        "20",
+        "24",
+        "28 Phase 4"
+      ],
+      "dependencies": [
+        "p4-evidence-checks"
+      ],
+      "acceptance_criteria": [
+        "Return a clear evidence-limited explanation and seller-contact fallback."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "generation",
+        "isolation"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p4-abstention-evaluation",
+      "parent": "phase-4",
+      "name": "Abstention evaluation",
+      "description": "Bounded task within Safe Abstention.",
+      "status": "not_started",
+      "scope": "baseline",
+      "spec_sections": [
+        "8\u20139",
+        "20",
+        "24",
+        "28 Phase 4"
+      ],
+      "dependencies": [
+        "p4-fallback"
+      ],
+      "acceptance_criteria": [
+        "Measure abstention precision/recall and False Answer Rate; block unsupported confident answers and compare regressions.",
+        "Implement and wire the full abstention evaluation runner after evidence checks and fallback exist; measure the complete phase behavior."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p5-upload-status",
+      "parent": "phase-5",
+      "name": "Document upload and status",
+      "description": "Bounded task within Seller Knowledge Management.",
+      "status": "not_started",
+      "scope": "mvp",
+      "spec_sections": [
+        "4",
+        "6",
+        "11",
+        "13",
+        "28 Phase 5"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "Support seller-scoped upload, processing status and indexed-document visibility."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "isolation"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p5-document-lifecycle",
+      "parent": "phase-5",
+      "name": "Delete, replace and re-index",
+      "description": "Bounded task within Seller Knowledge Management.",
+      "status": "not_started",
+      "scope": "mvp",
+      "spec_sections": [
+        "4",
+        "6",
+        "11",
+        "13",
+        "28 Phase 5"
+      ],
+      "dependencies": [
+        "p5-upload-status"
+      ],
+      "acceptance_criteria": [
+        "Remove stale influence after document deletion/replacement and completed re-indexing."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p5-isolation-regression",
+      "parent": "phase-5",
+      "name": "Lifecycle and tenant regression coverage",
+      "description": "Bounded task within Seller Knowledge Management.",
+      "status": "not_started",
+      "scope": "mvp",
+      "spec_sections": [
+        "4",
+        "6",
+        "11",
+        "13",
+        "28 Phase 5"
+      ],
+      "dependencies": [
+        "p5-document-lifecycle"
+      ],
+      "acceptance_criteria": [
+        "Verify cross-seller boundaries across document operations/retrieval and protect lifecycle behavior."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p6-experiment-design",
+      "parent": "phase-6",
+      "name": "Baseline-backed experiment design",
+      "description": "Bounded task within Retrieval Improvements.",
+      "status": "not_started",
+      "scope": "baseline_gated",
+      "spec_sections": [
+        "15\u201316",
+        "23\u201324",
+        "28 Phase 6"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "Use measured baseline failures to select one authorized improvement and record hypothesis/comparison plan; do not preselect advanced techniques."
+      ],
+      "required_gates": [
+        "harness",
+        "dataset",
+        "retrieval",
+        "regression"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p6-experiment-comparison",
+      "parent": "phase-6",
+      "name": "Evaluate selected improvement",
+      "description": "Bounded task within Retrieval Improvements.",
+      "status": "not_started",
+      "scope": "baseline_gated",
+      "spec_sections": [
+        "15\u201316",
+        "23\u201324",
+        "28 Phase 6"
+      ],
+      "dependencies": [
+        "p6-experiment-design"
+      ],
+      "acceptance_criteria": [
+        "Record baseline/new metrics, latency/cost impact and conclusion for the authorized technique; require measurable benefit."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p7-trace-observations",
+      "parent": "phase-7",
+      "name": "Retrieval and answer observations",
+      "description": "Bounded task within Observability.",
+      "status": "not_started",
+      "scope": "roadmap",
+      "spec_sections": [
+        "21",
+        "28 Phase 7"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "Record retrieval results/scores, responses, citations, abstentions and errors with seller isolation."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "isolation",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p7-runtime-metrics",
+      "parent": "phase-7",
+      "name": "Runtime metrics",
+      "description": "Bounded task within Observability.",
+      "status": "not_started",
+      "scope": "roadmap",
+      "spec_sections": [
+        "21",
+        "28 Phase 7"
+      ],
+      "dependencies": [
+        "p7-trace-observations"
+      ],
+      "acceptance_criteria": [
+        "Measure end-to-end/retrieval/LLM latency, token usage, cost per query and error rate."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p8-unresolved-questions",
+      "parent": "phase-8",
+      "name": "Unresolved question records",
+      "description": "Bounded task within Policy Gap Analytics.",
+      "status": "not_started",
+      "scope": "planned_extension",
+      "spec_sections": [
+        "12",
+        "28 Phase 8",
+        "30"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "Record unanswered questions and reasons within the correct seller scope."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "isolation"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p8-gap-summaries",
+      "parent": "phase-8",
+      "name": "Seller policy-gap summaries",
+      "description": "Bounded task within Policy Gap Analytics.",
+      "status": "not_started",
+      "scope": "planned_extension",
+      "spec_sections": [
+        "12",
+        "28 Phase 8",
+        "30"
+      ],
+      "dependencies": [
+        "p8-unresolved-questions"
+      ],
+      "acceptance_criteria": [
+        "Summarize frequent unanswered questions for the seller without adding automatic clustering requirements."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p9-backend-api",
+      "parent": "phase-9",
+      "name": "Backend API",
+      "description": "Bounded task within Deployment.",
+      "status": "not_started",
+      "scope": "mvp",
+      "spec_sections": [
+        "28 Phase 9",
+        "29"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "Expose the specified seller-scoped application operations through an API."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p9-seller-interface",
+      "parent": "phase-9",
+      "name": "Seller administration interface",
+      "description": "Bounded task within Deployment.",
+      "status": "not_started",
+      "scope": "mvp",
+      "spec_sections": [
+        "28 Phase 9",
+        "29"
+      ],
+      "dependencies": [
+        "p9-backend-api"
+      ],
+      "acceptance_criteria": [
+        "Expose specified document management and status operations to sellers."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p9-customer-interface",
+      "parent": "phase-9",
+      "name": "Customer chat interface",
+      "description": "Bounded task within Deployment.",
+      "status": "not_started",
+      "scope": "mvp",
+      "spec_sections": [
+        "28 Phase 9",
+        "29"
+      ],
+      "dependencies": [
+        "p9-backend-api"
+      ],
+      "acceptance_criteria": [
+        "Expose questions, evidence-backed answers, citations and fallback behavior."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p9-runbook-smoke",
+      "parent": "phase-9",
+      "name": "Runbook and end-to-end validation",
+      "description": "Bounded task within Deployment.",
+      "status": "not_started",
+      "scope": "mvp",
+      "spec_sections": [
+        "28 Phase 9",
+        "29"
+      ],
+      "dependencies": [
+        "p9-seller-interface",
+        "p9-customer-interface"
+      ],
+      "acceptance_criteria": [
+        "Document complete-system startup and verify MVP success criteria end to end."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "generation",
+        "abstention",
+        "isolation",
+        "regression",
+        "system"
+      ],
+      "blocker": null,
+      "evidence": []
+    },
+    {
+      "id": "p0-gate-order-and-views",
+      "parent": "phase-0",
+      "name": "Stage gates and expose focused state views",
+      "description": "Remove evaluator bootstrap deadlocks and provide read-only status/task views for progressive disclosure.",
+      "status": "verified",
+      "scope": "foundation",
+      "spec_sections": [
+        "25\u201328"
+      ],
+      "dependencies": [
+        "p0-child-tasks"
+      ],
+      "acceptance_criteria": [
+        "Implementation tasks do not require quality gates built by downstream tasks; phase-level gates retain complete acceptance coverage.",
+        "status reports the current milestone, eligible work and blockers; task exposes a selected record with inherited dependencies without mutating state.",
+        "Regression tests cover gate staging and read-only views, including invalid IDs, blockers and completed milestones."
+      ],
+      "required_gates": [
+        "harness"
+      ],
+      "blocker": null,
+      "evidence": [
+        "verification/evidence/db5666f67802413ab180088134fff770-harness.json"
+      ]
+    },
+    {
+      "id": "p0-reverification-timeouts",
+      "parent": "phase-0",
+      "name": "Recover failed rechecks and bound gate runtime",
+      "description": "Cascade invalidation without invalid persisted state; record per-gate timeouts as failures.",
+      "status": "verified",
+      "scope": "foundation",
+      "spec_sections": [
+        "25\u201328"
+      ],
+      "dependencies": [
+        "p0-gate-order-and-views"
+      ],
+      "acceptance_criteria": [
+        "Failed rechecks invalidate dependent tasks recursively and reopen affected verified parents while preserving valid state and historical evidence files.",
+        "Validate candidate state before persisting verify-task transitions; recovery succeeds through real CLI commands.",
+        "Every gate has a finite timeout; timeout records failed evidence with partial output and cannot promote a task."
+      ],
+      "required_gates": [
+        "harness"
+      ],
+      "blocker": null,
+      "evidence": [
+        "verification/evidence/a4ed6f86f98b4b1eb7920edb2dff817b-harness.json"
+      ]
+    }
+  ]
+}

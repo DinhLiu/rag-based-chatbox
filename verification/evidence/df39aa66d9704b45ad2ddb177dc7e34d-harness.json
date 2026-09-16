@@ -1,0 +1,16 @@
+{
+  "task_id": null,
+  "gate": "harness",
+  "command": [
+    "/usr/bin/python3",
+    "scripts/harness.py",
+    "_run",
+    "harness"
+  ],
+  "timestamp": "2026-09-16T07:14:02.765559+00:00",
+  "snapshot_sha256": "18db557c158e36272884db402f5bc3ba0d48a9b66b1ab1e133415082f4040b5e",
+  "exit_code": 0,
+  "status": "passed",
+  "stdout": "PASS: harness structure/state, static compilation and behavioral tests. No application behavior verified.\n",
+  "stderr": "test_application_gates_are_unavailable (test_control_plane.ControlPlaneTests.test_application_gates_are_unavailable) ... ok\ntest_blocker_requires_reason (test_control_plane.ControlPlaneTests.test_blocker_requires_reason) ... ok\ntest_dependency_cycle_fails (test_control_plane.ControlPlaneTests.test_dependency_cycle_fails) ... ok\ntest_empty_and_wholly_skipped_suites_fail (test_control_plane.ControlPlaneTests.test_empty_and_wholly_skipped_suites_fail) ... ok\ntest_failed_or_unavailable_run_cannot_promote_task (test_control_plane.ControlPlaneTests.test_failed_or_unavailable_run_cannot_promote_task) ... ok\ntest_failed_unavailable_missing_and_wrong_task_evidence_fail (test_control_plane.ControlPlaneTests.test_failed_unavailable_missing_and_wrong_task_evidence_fail) ... ok\ntest_missing_routing_document_fails (test_control_plane.ControlPlaneTests.test_missing_routing_document_fails) ... ok\ntest_not_started_cannot_be_promoted (test_control_plane.ControlPlaneTests.test_not_started_cannot_be_promoted) ... ok\ntest_snapshot_tracks_source_not_session_notes (test_control_plane.ControlPlaneTests.test_snapshot_tracks_source_not_session_notes) ... ok\ntest_successful_gate_promotes_and_records_reference (test_control_plane.ControlPlaneTests.test_successful_gate_promotes_and_records_reference) ... ok\ntest_unknown_status_and_duplicate_ids_fail (test_control_plane.ControlPlaneTests.test_unknown_status_and_duplicate_ids_fail) ... ok\ntest_unverified_dependency_and_multiple_active_tasks_fail (test_control_plane.ControlPlaneTests.test_unverified_dependency_and_multiple_active_tasks_fail) ... ok\ntest_valid_initial_state (test_control_plane.ControlPlaneTests.test_valid_initial_state) ... ok\ntest_verified_without_evidence_fails (test_control_plane.ControlPlaneTests.test_verified_without_evidence_fails) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.034s\n\nOK\n"
+}

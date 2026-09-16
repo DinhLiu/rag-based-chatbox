@@ -1,0 +1,16 @@
+{
+  "task_id": null,
+  "gate": "unit",
+  "command": [
+    "/usr/bin/python3",
+    "scripts/harness.py",
+    "_run",
+    "unit"
+  ],
+  "timestamp": "2026-09-16T07:56:31.968625+00:00",
+  "snapshot_sha256": "352ec1fe5c8c9f9d6d95e673d87baeedd7890d291056ce682960d995a4b3ffcf",
+  "exit_code": 3,
+  "status": "unavailable",
+  "stdout": "UNAVAILABLE: unit has no implemented application runner/fixtures. No checks passed.\n",
+  "stderr": ""
+}
