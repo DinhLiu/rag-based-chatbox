@@ -3,19 +3,16 @@
 Last Updated: 2026-09-16
 
 ## Current Objective
-Verified p1-annotations: 40 versioned evaluation questions with answerability labels, expected sources, and expected answer points against eval-policy-corpus v1. Stop before dataset validation.
+`p1-dataset-checks` is verified. Stop before Phase 1 closure or downstream work.
 
 ## Current State
-phase-1 is in_progress. p1-policies and p1-annotations are verified. p1-dataset-checks is the next eligible leaf and remains not_started. No dataset validator, evaluation runner, or RAG pipeline exists.
+`phase-1` remains in progress. All three children (`p1-policies`, `p1-annotations`, and `p1-dataset-checks`) are verified. No leaf task is active and no downstream task is authorized.
 
 ## Changed Files
-evals/datasets/eval-policy-questions-v1.json; docs/EVALUATION.md; ARCHITECTURE.md; README.md; feature_list.json; progress.md; session-handoff.md; verification/evidence/209bb01e170b4ad78ebf33d52eaca563-harness.json. Also generated verification/evidence/344436e9931e4667ba91c56c32ad0c6a-harness.json (startup), verification/evidence/9fac34c436684d7db440a1d217f4aa21-harness.json (sandboxed init failure), and verification/evidence/b03d16e2c62647a6910205adec8916d1-dataset.json (unavailable dataset gate).
-
-## Behavior
-Dataset id `eval-policy-questions` version `1`, bound to corpus `eval-policy-corpus` version `1`. 40 cases: 16 simple, 8 paraphrased, 6 multi-policy, 6 unanswerable, 4 ambiguous/adversarial. Primary seller `seller-aurora`; four `seller-beacon` isolation cases use overlapping `document_id` values with conflicting rules. Identities are `(seller_id, document_id, version)` plus section on `expected_source_identity`.
+Added `scripts/validate_dataset.py`, `tests/dataset/test_dataset_validation.py`, and dataset-gate wiring in `scripts/harness.py`; updated the harness availability test, README, architecture, development, evaluation, task state, progress, and this handoff. Verification records are under `verification/evidence/`.
 
 ## Verification
-`python3 scripts/harness.py verify-task p1-annotations` exit 0. Required gate: harness only. Evidence: verification/evidence/209bb01e170b4ad78ebf33d52eaca563-harness.json. 47 tests passed. This does not certify annotation quality; the dataset gate is still unimplemented and was not treated as passed (`python3 scripts/harness.py verify dataset` exit 3).
+`python3 scripts/harness.py verify-task p1-dataset-checks` exited 0. Harness evidence `verification/evidence/018ea1603f8f4af394c8604a79892bed-harness.json`: 48 tests passed. Dataset evidence `verification/evidence/1a2982451f5f4268a027348d271af5e8-dataset.json`: 6 mutation tests passed; 40/40 cases executed, 0 skipped, 0 failed checks, across 12 documents and 2 sellers with distribution 16/8/6/6/4.
 
 ## Blockers and Next Step
-No blocker for p1-annotations. Do not start p1-dataset-checks unless newly authorized. When authorized: `python3 scripts/harness.py task p1-dataset-checks`, keep phase-1 in_progress, implement/wire the dataset validator, and validate this corpus and question set.
+No blocker. Next eligible action: set `phase-1` to implemented and run `python3 scripts/harness.py verify-task phase-1`. Do not start Phase 2 without separate authorization and verified Phase 1.

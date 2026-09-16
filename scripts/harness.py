@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Repository control plane only; application verification is deliberately unavailable."""
+"""Repository control plane and staged application verification gates."""
 import argparse
 import hashlib
 import json
@@ -242,6 +242,30 @@ def run_gate(gate, task_id=None, root=ROOT):
 
 
 def execute(gate):
+    if gate == 'dataset':
+        paths = [ROOT / 'scripts/validate_dataset.py',
+                 *sorted((ROOT / 'tests/dataset').glob('test_*.py'))]
+        if len(paths) == 1:
+            print('FAIL: no dataset tests collected')
+            return 1
+        for path in paths:
+            compile(path.read_text(), str(path), 'exec')
+        suite = unittest.defaultTestLoader.discover(str(ROOT / 'tests/dataset'), pattern='test_*.py')
+        if suite.countTestCases() == 0:
+            print('FAIL: no dataset tests collected')
+            return 1
+        result = unittest.TextTestRunner(verbosity=2).run(suite)
+        if len(result.skipped) == result.testsRun:
+            print('FAIL: all dataset tests skipped')
+            return 1
+        if not result.wasSuccessful():
+            return 1
+        validation = subprocess.run(
+            [sys.executable, 'scripts/validate_dataset.py'], cwd=ROOT, text=True, capture_output=True)
+        print(validation.stdout, end='')
+        if validation.stderr:
+            print(validation.stderr, file=sys.stderr, end='')
+        return validation.returncode
     if gate != 'harness':
         print(f'UNAVAILABLE: {gate} has no implemented application runner/fixtures. No checks passed.')
         return UNAVAILABLE

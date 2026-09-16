@@ -88,10 +88,14 @@ class ControlPlaneTests(unittest.TestCase):
             self.assertTrue(h.check(self.root), changes)
 
     def test_application_gates_are_unavailable(self):
-        for gate in h.GATES[1:]:
+        for gate in (gate for gate in h.GATES[1:] if gate != 'dataset'):
             with self.subTest(gate=gate), contextlib.redirect_stdout(io.StringIO()) as output:
                 self.assertEqual(h.execute(gate), 3)
                 self.assertIn('UNAVAILABLE', output.getvalue())
+
+    def test_dataset_gate_is_available(self):
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            self.assertEqual(h.execute('dataset'), 0)
 
     def test_snapshot_tracks_source_not_session_notes(self):
         before = h.snapshot(self.root)

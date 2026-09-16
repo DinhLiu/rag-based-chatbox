@@ -426,7 +426,7 @@
       "parent": "phase-1",
       "name": "Dataset validation",
       "description": "Bounded task within Evaluation Dataset.",
-      "status": "not_started",
+      "status": "verified",
       "scope": "baseline",
       "spec_sections": [
         "17",
@@ -445,7 +445,10 @@
         "dataset"
       ],
       "blocker": null,
-      "evidence": []
+      "evidence": [
+        "verification/evidence/018ea1603f8f4af394c8604a79892bed-harness.json",
+        "verification/evidence/1a2982451f5f4268a027348d271af5e8-dataset.json"
+      ]
     },
     {
       "id": "p2-ingestion",

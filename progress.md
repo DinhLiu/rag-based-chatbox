@@ -96,3 +96,12 @@ Read session-handoff.md. Stop after p1-annotations. When authorized, start p1-da
 - `python3 scripts/harness.py verify-task p1-annotations`: exit 0; 47 harness tests passed; evidence `verification/evidence/209bb01e170b4ad78ebf33d52eaca563-harness.json`. Task status verified.
 - `python3 scripts/harness.py verify dataset`: exit 3; unavailable. Evidence `verification/evidence/b03d16e2c62647a6910205adec8916d1-dataset.json`. Not treated as passed.
 - Next eligible task: p1-dataset-checks. Phase 1 stays in_progress until that child and the dataset gate are done. A roadmap entry is not authorization to start p1-dataset-checks.
+
+## Follow-up — 2026-09-16: p1-dataset-checks
+
+- Authorized and completed only `p1-dataset-checks`; no ingestion, retrieval, generation, or other downstream task was started.
+- Added the dependency-free `scripts/validate_dataset.py` validator and wired the harness `dataset` gate. It checks fixed corpus/dataset version binding, unique seller-scoped document identities and paths, document headers and sections, 30–50 case count, exact 40/20/15/15/10 distribution, case shape, seller/source identity consistency, and meaningful-token support for answer points in cited sections. Empty and skipped datasets fail.
+- Added six mutation tests under `tests/dataset/` for the real fixtures, empty cases, wholly skipped cases, cross-seller/missing-section identities, unsupported answer points, and version/distribution mismatches. Updated the harness availability test and Phase 1 documentation.
+- Startup `./init.sh` passed. Pre-promotion dataset checks passed, including `verification/evidence/ea41383a4853477589e5c27d28d70ae6-dataset.json`; `git diff --check` and `python3 scripts/harness.py check` passed.
+- `python3 scripts/harness.py verify-task p1-dataset-checks` exited 0 and promoted the task to verified. Harness evidence: `verification/evidence/018ea1603f8f4af394c8604a79892bed-harness.json` (48 tests). Dataset evidence: `verification/evidence/1a2982451f5f4268a027348d271af5e8-dataset.json` (6 mutation tests; 40 collected/executed, 0 skipped, 0 failed checks; 12 documents, 2 sellers; distribution 16/8/6/6/4).
+- No blockers. All Phase 1 children are verified; the next eligible action is Phase 1 closure: set `phase-1` to implemented and run `python3 scripts/harness.py verify-task phase-1`. Phase 2 remains unauthorized and must not start before Phase 1 is verified.

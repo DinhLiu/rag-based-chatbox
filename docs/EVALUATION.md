@@ -1,10 +1,10 @@
-# Evaluation contract (planned, not implemented)
+# Evaluation contract and dataset validation
 
-Authority: PROJECT_SPEC.md §§17–24, 29. Evaluators, scores and an accepted baseline do not exist yet.
+Authority: PROJECT_SPEC.md §§17–24, 29. Phase 1 dataset validation is implemented; retrieval/generation evaluators, scores, and an accepted baseline do not exist yet.
 
 The versioned policy corpus is `eval-policy-corpus` version `1` under `data/raw/`. `data/raw/corpus.json` is the catalog. Each document is identified by `(seller_id, document_id, version)`. `document_id` may repeat across sellers; `seller_id` is required on every later read. `seller-aurora` is the primary evaluation seller. `seller-beacon` holds overlapping document IDs with different rules for isolation cases.
 
-The versioned question set is `eval-policy-questions` version `1` at `evals/datasets/eval-policy-questions-v1.json`. It contains 40 cases (16 simple, 8 paraphrased, 6 multi-policy, 6 unanswerable, 4 ambiguous/adversarial) with query, answerable labels, expected_sources, expected_source_identity (`seller_id`, `document_id`, `version`, section), and expected_answer_points on answerable cases. Schema presence does not prove annotation correctness; p1-dataset-checks owns that validator and the dataset gate.
+The versioned question set is `eval-policy-questions` version `1` at `evals/datasets/eval-policy-questions-v1.json`. It contains 40 cases (16 simple, 8 paraphrased, 6 multi-policy, 6 unanswerable, 4 ambiguous/adversarial) with query, answerable labels, expected_sources, expected_source_identity (`seller_id`, `document_id`, `version`, section), and expected_answer_points on answerable cases. `python3 scripts/harness.py verify dataset` checks fixed version binding, seller-scoped document identities and paths, document headers and sections, case/schema integrity, exact distribution, source annotation consistency, and meaningful-token support for answer points in the cited sections. It rejects empty or skipped datasets and runs mutation tests before validating the real fixtures.
 
 Measure retrieval Recall@5 and MRR@10. Generation evaluation covers faithfulness, answer relevance, citation correctness and completeness, including important policy conditions and accurate document name/section/page references. Evaluate abstention precision/recall and False Answer Rate, covering missing, low-relevance, incomplete, conflicting and out-of-scope evidence. Confident unsupported answers are high-severity failures. Include answerable cases to detect excessive refusal.
 

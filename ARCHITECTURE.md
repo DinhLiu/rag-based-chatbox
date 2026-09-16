@@ -11,6 +11,7 @@ The fixed dataset and evaluation runners form a separate measurement boundary: r
 ## Repository map
 - Root: specification, agent routing, task state, progress and handoff.
 - `scripts/harness.py`, `tests/harness/`: control-plane checks only.
+- `scripts/validate_dataset.py`, `tests/dataset/`: dependency-free Phase 1 corpus and annotation validation, exposed through the dataset gate.
 - `verification/evidence/`: generated command records, separate from future RAG evaluation reports.
 - `docs/`: workflow, Definition of Done, evaluation contracts and decisions.
 - `data/raw/`: versioned evaluation policy corpus (`eval-policy-corpus` v1) with seller-scoped documents and `corpus.json` identities.

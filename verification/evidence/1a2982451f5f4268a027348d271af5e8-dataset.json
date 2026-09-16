@@ -1,0 +1,18 @@
+{
+  "task_id": "p1-dataset-checks",
+  "gate": "dataset",
+  "command": [
+    "/usr/bin/python3",
+    "scripts/harness.py",
+    "_run",
+    "dataset"
+  ],
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "timestamp": "2026-09-16T09:10:07.563030+00:00",
+  "snapshot_sha256": "87d6f6daa76f585adb2acbe81ba08b16f20bd2964f4692e2d3d5e54c84d062b9",
+  "exit_code": 0,
+  "status": "passed",
+  "stdout": "{\n  \"status\": \"passed\",\n  \"corpus_id\": \"eval-policy-corpus\",\n  \"corpus_version\": \"1\",\n  \"dataset_id\": \"eval-policy-questions\",\n  \"dataset_version\": \"1\",\n  \"collected\": 40,\n  \"executed\": 40,\n  \"skipped\": 0,\n  \"failed_checks\": 0,\n  \"distribution\": {\n    \"simple\": 16,\n    \"paraphrased\": 8,\n    \"multi_policy\": 6,\n    \"unanswerable\": 6,\n    \"ambiguous_adversarial\": 4\n  },\n  \"seller_count\": 2,\n  \"document_count\": 12,\n  \"errors\": []\n}\n",
+  "stderr": "test_cross_seller_or_missing_section_identity_fails (test_dataset_validation.DatasetValidationTests.test_cross_seller_or_missing_section_identity_fails) ... ok\ntest_empty_dataset_fails (test_dataset_validation.DatasetValidationTests.test_empty_dataset_fails) ... ok\ntest_repository_dataset_passes_with_all_cases_executed (test_dataset_validation.DatasetValidationTests.test_repository_dataset_passes_with_all_cases_executed) ... ok\ntest_unsupported_answer_point_fails (test_dataset_validation.DatasetValidationTests.test_unsupported_answer_point_fails) ... ok\ntest_version_and_distribution_mismatches_fail (test_dataset_validation.DatasetValidationTests.test_version_and_distribution_mismatches_fail) ... ok\ntest_wholly_skipped_dataset_fails (test_dataset_validation.DatasetValidationTests.test_wholly_skipped_dataset_fails) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.014s\n\nOK\n"
+}
