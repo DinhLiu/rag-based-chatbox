@@ -1,8 +1,10 @@
 # Evaluation contract (planned, not implemented)
 
-Authority: PROJECT_SPEC.md §§17–24, 29. No datasets, evaluators, scores or accepted baseline exist yet.
+Authority: PROJECT_SPEC.md §§17–24, 29. Evaluators, scores and an accepted baseline do not exist yet.
 
-Phase 1 will supply initial policies and approximately 30–50 fixed cases, with query, expected_sources, expected_answer_points where answerable, and answerable labels. Follow the suggested distribution in §22 (40% simple, 20% paraphrased, 15% multi-policy, 15% unanswerable, 10% ambiguous/adversarial). Add stable case IDs, seller identity and source/version identity to make runs reproducible. Check annotations against the actual policy evidence; schema validity alone does not prove annotation correctness.
+The versioned policy corpus is `eval-policy-corpus` version `1` under `data/raw/`. `data/raw/corpus.json` is the catalog. Each document is identified by `(seller_id, document_id, version)`. `document_id` may repeat across sellers; `seller_id` is required on every later read. `seller-aurora` is the primary evaluation seller. `seller-beacon` holds overlapping document IDs with different rules for isolation cases. Question files belong in `evals/datasets/` when that task is implemented.
+
+Phase 1 still needs approximately 30–50 fixed cases, with query, expected_sources, expected_answer_points where answerable, and answerable labels. Follow the suggested distribution in §22 (40% simple, 20% paraphrased, 15% multi-policy, 15% unanswerable, 10% ambiguous/adversarial). Add stable case IDs, seller identity and source/version identity to make runs reproducible. Check annotations against the actual policy evidence; schema validity alone does not prove annotation correctness.
 
 Measure retrieval Recall@5 and MRR@10. Generation evaluation covers faithfulness, answer relevance, citation correctness and completeness, including important policy conditions and accurate document name/section/page references. Evaluate abstention precision/recall and False Answer Rate, covering missing, low-relevance, incomplete, conflicting and out-of-scope evidence. Confident unsupported answers are high-severity failures. Include answerable cases to detect excessive refusal.
 

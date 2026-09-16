@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source_of_truth": "PROJECT_SPEC.md",
-  "dependency_note": "Dependencies are execution prerequisites, not new product scope. Optional Phase 6 optimization and Phase 8 analytics do not block core deployment. Current authorization stops after Phase 0. Optional parent links group bounded tasks under phases; children inherit phase entry dependencies. Add discovered work as new child tasks without expanding product scope.",
+  "dependency_note": "Dependencies are execution prerequisites, not new product scope. Optional Phase 6 optimization and Phase 8 analytics do not block core deployment. Phase 1 evaluation-corpus work is authorized; later phases still require a new implementation request. Optional parent links group bounded tasks under phases; children inherit phase entry dependencies. Add discovered work as new child tasks without expanding product scope.",
   "features": [
     {
       "id": "phase-0",
@@ -31,7 +31,7 @@
       "id": "phase-1",
       "name": "Evaluation Dataset",
       "description": "PROJECT_SPEC.md \u00a728 Phase 1: Evaluation Dataset.",
-      "status": "not_started",
+      "status": "in_progress",
       "scope": "baseline",
       "spec_sections": [
         "17",
@@ -376,7 +376,7 @@
       "parent": "phase-1",
       "name": "Initial policy corpus",
       "description": "Bounded task within Evaluation Dataset.",
-      "status": "not_started",
+      "status": "verified",
       "scope": "baseline",
       "spec_sections": [
         "17",
@@ -391,7 +391,9 @@
         "harness"
       ],
       "blocker": null,
-      "evidence": []
+      "evidence": [
+        "verification/evidence/3a25d8308ab1447b9003e94034379eab-harness.json"
+      ]
     },
     {
       "id": "p1-annotations",

@@ -2,7 +2,7 @@
 
 ## Current State — Last Updated: 2026-09-16
 
-Current Objective: Phase 0 development harness complete. Phase 0 and its follow-up child tasks are verified against recorded harness evidence; Phases 1–9 and their child tasks remain not_started. No application or RAG baseline implemented.
+Current Objective: p1-policies verified. Phase 0 remains verified. phase-1 is in_progress; p1-annotations and p1-dataset-checks are not started. No evaluation questions, dataset runner, or RAG baseline implemented.
 
 ### What changed
 - Read PROJECT_SPEC.md completely before editing and retained it unchanged.
@@ -25,10 +25,10 @@ Current Objective: Phase 0 development harness complete. Phase 0 and its follow-
 - Empty or wholly skipped harness test suites now fail explicitly; regression tests cover both.
 
 ### Blockers
-No blockers to the harness deliverable. Product verification remains unavailable until real datasets, fixtures, application runners and acceptance policies exist. No evaluation results or baseline metrics have been invented.
+No blocker for p1-policies. Dataset, retrieval, generation and other application gates remain unimplemented. No evaluation questions or scores have been invented.
 
 ### Next Session
-Read session-handoff.md. Stop here for this request. A subsequent authorized development session starts with Phase 1 evaluation dataset work.
+Read session-handoff.md. Stop after p1-policies. When authorized, start p1-annotations against `data/raw/corpus.json`.
 
 ## Follow-up — 2026-09-16: bounded tasks and exit codes
 
@@ -75,3 +75,13 @@ Read session-handoff.md. Stop here for this request. A subsequent authorized dev
 - python3 scripts/harness.py verify-task phase-0: exit 0; verification/evidence/aa70101f26554bcf898f0c6f5a7b6af6-harness.json.
 - python3 scripts/harness.py verify all: exit 3, harness passed (verification/evidence/92377d5806dc4258bb9f58ffedad3ee1-harness.json); all nine application gates unavailable as expected. No product evaluation success claimed.
 - Next: stop after authorized priority repairs. When application work is authorized, inspect p1-policies; consider scoped snapshots/evidence and transitions during Phase 1–2. No blocker for this repair.
+
+## Follow-up — 2026-09-16: p1-policies
+
+- Authorized Phase 1 application work for p1-policies only. Opened phase-1 as in_progress, then implemented and verified the initial policy corpus.
+- Added `eval-policy-corpus` version 1 under `data/raw/`: catalog `corpus.json` plus 9 Aurora and 3 Beacon markdown policies. Identities are `(seller_id, document_id, version)`; `document_id` repeats across sellers; `seller_id` is required on later reads. Intentional gaps (late returns, discounted items, water damage, international shipping, late-delivery compensation) and Beacon's conflicting numbers are left for later annotation/isolation work.
+- Did not create evaluation questions, `evals/datasets/`, or a dataset runner. Did not start p1-annotations or p1-dataset-checks. Harness-only verification does not certify corpus or annotation quality.
+- Updated EVALUATION.md, ARCHITECTURE.md, README.md, DEVELOPMENT.md authorization wording, and feature_list.json dependency_note.
+- Startup: first `./init.sh` in the sandbox failed when timeout tests could not SIGKILL child processes (PermissionError). Rerun outside the sandbox: `./init.sh` exit 0; evidence `verification/evidence/075e7cbaa4534f79b1724cc1f8855ce4-harness.json`.
+- `python3 scripts/harness.py verify-task p1-policies`: exit 0; 47 harness tests passed; evidence `verification/evidence/3a25d8308ab1447b9003e94034379eab-harness.json`. Task status verified. Dataset and other application gates were not run and remain unimplemented.
+- Next eligible task: p1-annotations. Phase 1 stays in_progress until remaining children and the dataset gate are done. A roadmap entry is not authorization to start p1-annotations.

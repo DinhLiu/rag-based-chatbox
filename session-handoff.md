@@ -3,19 +3,19 @@
 Last Updated: 2026-09-16
 
 ## Current Objective
-Completed priority harness repairs: cascade invalidation, valid candidate-state persistence and per-gate timeouts. Stop before application work.
+Verified p1-policies: versioned initial seller policy documents with stable source and seller identities. Stop before evaluation questions or dataset validation.
 
 ## Current State
-Phase 0 and p0-reverification-timeouts are verified; all application phases/tasks remain not_started. No active leaf. Existing historical evidence files were preserved.
+phase-1 is in_progress. p1-policies is verified. p1-annotations is the next eligible leaf and remains not_started. p1-dataset-checks remains blocked on p1-annotations. No evaluation cases, dataset runner, or RAG pipeline exist.
 
 ## Changed Files
-scripts/harness.py; tests/harness/test_recovery_and_timeouts.py; docs/DEVELOPMENT.md; docs/decisions/0002-reverification-recovery.md; feature_list.json; progress.md; session-handoff.md; generated verification/evidence records. Existing unrelated uncommitted files were preserved.
+data/raw/corpus.json; data/raw/seller-aurora/*.md; data/raw/seller-beacon/*.md; docs/EVALUATION.md; ARCHITECTURE.md; README.md; docs/DEVELOPMENT.md; feature_list.json; progress.md; session-handoff.md; verification/evidence/3a25d8308ab1447b9003e94034379eab-harness.json. Also generated verification/evidence/075e7cbaa4534f79b1724cc1f8855ce4-harness.json (startup) and verification/evidence/f32a774b0b6f434e882125b866e3abcb-harness.json (sandboxed init failure).
 
 ## Behavior
-Failed rechecks set the target implemented, cascade affected dependents to blocked, reopen verified parents and validate the candidate before saving. Resume/reverify downstream work explicitly after upstream recovery. Historical reports stay on disk. Gate deadlines produce failed evidence and exit 1; unimplemented gates remain unavailable 3. Timeout bounds the direct gate process; future subprocess-spawning runners must manage child cleanup.
+Corpus id `eval-policy-corpus` version `1`. Primary seller `seller-aurora` (return 14 days, warranty 12 months manufacturing defects, domestic shipping). Isolation counterpart `seller-beacon` (return 7 days, warranty 6 months including accidental water damage, different shipping fees). Catalog paths are relative to `data/raw/`.
 
 ## Verification
-47 tests pass. Task evidence: verification/evidence/a4ed6f86f98b4b1eb7920edb2dff817b-harness.json. Phase evidence: verification/evidence/aa70101f26554bcf898f0c6f5a7b6af6-harness.json. verify all returns 3 (harness passes, nine application gates unavailable). Tests exercise real CLI recovery and real timeout, not product behavior.
+`python3 scripts/harness.py verify-task p1-policies` exit 0. Required gate: harness only. Evidence: verification/evidence/3a25d8308ab1447b9003e94034379eab-harness.json. 47 tests passed. This does not certify corpus quality; the dataset gate is still unimplemented and was not treated as passed.
 
 ## Blockers and Next Step
-No blocker for the completed repair. Priorities 4–10 remain deferred; see ADR 0002. Await authorized work; for Phase 1 inspect python3 scripts/harness.py task p1-policies and open phase-1 first. Do not treat roadmap entries as implementation authorization.
+No blocker for p1-policies. Do not start p1-annotations unless newly authorized. When authorized: `python3 scripts/harness.py task p1-annotations`, keep phase-1 in_progress, and add 30–50 versioned questions with answerability labels and expected sources against this corpus.

@@ -3,7 +3,7 @@
 ## Start and resume
 Read AGENTS.md → authoritative spec → `python3 scripts/harness.py status` → session-handoff.md → latest progress.md entry. Use `python3 scripts/harness.py task <id>` for the selected task; the full JSON tracker is needed only when editing or auditing state. Inspect `git status --short`; run `./init.sh` from a fresh checkout. No install, environment file, credentials or services are needed for the harness. A failing startup must be investigated before unrelated work.
 
-Select one authorized leaf task whose own dependencies and parent phase entry dependencies are `verified`. Open its phase as `in_progress`, set the task `in_progress`, and update the handoff with its ID and bounded objective. Load only its spec sections, architecture and evaluation contract next. The current harness-only request ends at Phase 0; Phase 1 requires a subsequent implementation request.
+Select one authorized leaf task whose own dependencies and parent phase entry dependencies are `verified`. Open its phase as `in_progress`, set the task `in_progress`, and update the handoff with its ID and bounded objective. Load only its spec sections, architecture and evaluation contract next. Application work starts at Phase 1 (`p1-policies`); later phases still need an explicit implementation request.
 
 ## State contract
 `feature_list.json` is the canonical machine-readable tracker. Keep IDs stable and acceptance criteria traceable to the spec. States:

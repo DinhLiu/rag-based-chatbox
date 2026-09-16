@@ -1,6 +1,6 @@
 # RAG-Based Customer Policy Chatbot
 
-Development harness only. No application, RAG baseline, evaluation dataset or technology stack has been implemented or selected.
+Development harness plus a versioned evaluation policy corpus under `data/raw/`. No RAG pipeline, evaluation questions, application runners or technology stack has been implemented or selected.
 
 Start with [AGENTS.md](AGENTS.md), read the authoritative [PROJECT_SPEC.md](PROJECT_SPEC.md), then run:
 
