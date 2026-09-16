@@ -1,6 +1,6 @@
 # RAG-Based Customer Policy Chatbot
 
-Development harness plus a versioned evaluation policy corpus under `data/raw/`, versioned evaluation questions under `evals/datasets/`, a dataset validator, and seller-scoped document parsing under `src/ingestion.py`. Chunking, indexing, retrieval, generation, and remaining evaluation runners are not implemented.
+Development harness plus a versioned evaluation policy corpus under `data/raw/`, versioned evaluation questions under `evals/datasets/`, a dataset validator, seller-scoped document parsing, and configurable fixed/recursive chunking. Indexing, retrieval, generation, and remaining evaluation runners are not implemented.
 
 Start with [AGENTS.md](AGENTS.md), read the authoritative [PROJECT_SPEC.md](PROJECT_SPEC.md), then run:
 

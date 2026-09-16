@@ -1,4 +1,4 @@
-"""Unit checks for seller-scoped parsing. No chunking or retrieval."""
+"""Unit checks for seller-scoped parsing."""
 import importlib.util
 from pathlib import Path
 import unittest

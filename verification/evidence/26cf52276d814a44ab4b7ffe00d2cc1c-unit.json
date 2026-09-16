@@ -1,0 +1,18 @@
+{
+  "task_id": "p2-chunking",
+  "gate": "unit",
+  "command": [
+    "/usr/bin/python3",
+    "scripts/harness.py",
+    "_run",
+    "unit"
+  ],
+  "timeout_seconds": 60,
+  "timed_out": false,
+  "timestamp": "2026-09-16T09:55:15.931232+00:00",
+  "snapshot_sha256": "0ecfe2cbed9bf32a994f4dc17262244094d64ddf6941efb26e66b86af6cfb6e9",
+  "exit_code": 0,
+  "status": "passed",
+  "stdout": "{\n  \"gate\": \"unit\",\n  \"collected\": 8,\n  \"executed\": 8,\n  \"skipped\": 0,\n  \"failed\": 0,\n  \"status\": \"passed\"\n}\n",
+  "stderr": "test_fixed_chunks_preserve_metadata_positions_and_overlap (test_chunking_unit.ChunkingUnitTests.test_fixed_chunks_preserve_metadata_positions_and_overlap) ... ok\ntest_page_chunks_preserve_page_references (test_chunking_unit.ChunkingUnitTests.test_page_chunks_preserve_page_references) ... ok\ntest_recursive_chunks_use_boundaries_and_keep_sections_separate (test_chunking_unit.ChunkingUnitTests.test_recursive_chunks_use_boundaries_and_keep_sections_separate) ... ok\ntest_rejects_invalid_document_and_configuration (test_chunking_unit.ChunkingUnitTests.test_rejects_invalid_document_and_configuration) ... ok\ntest_markdown_txt_and_direct_text_preserve_metadata_and_sections (test_ingestion_unit.IngestionUnitTests.test_markdown_txt_and_direct_text_preserve_metadata_and_sections) ... ok\ntest_pdf_extracts_pages_including_flate_and_show_operators (test_ingestion_unit.IngestionUnitTests.test_pdf_extracts_pages_including_flate_and_show_operators) ... ok\ntest_rejects_cross_seller_or_unsafe_paths (test_ingestion_unit.IngestionUnitTests.test_rejects_cross_seller_or_unsafe_paths) ... ok\ntest_rejects_missing_seller_empty_text_and_unsupported_format (test_ingestion_unit.IngestionUnitTests.test_rejects_missing_seller_empty_text_and_unsupported_format) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.001s\n\nOK\n"
+}

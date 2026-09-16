@@ -1,4 +1,4 @@
-"""Isolation checks: seller_id scopes every parse and corpus read."""
+"""Isolation checks: seller_id scopes parsing, corpus reads, and chunks."""
 import importlib.util
 from pathlib import Path
 import unittest
@@ -7,6 +7,9 @@ REPO = Path(__file__).resolve().parents[2]
 spec = importlib.util.spec_from_file_location('ingestion', REPO / 'src/ingestion.py')
 ingestion = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(ingestion)
+chunking_spec = importlib.util.spec_from_file_location('chunking', REPO / 'src/chunking.py')
+chunking = importlib.util.module_from_spec(chunking_spec)
+chunking_spec.loader.exec_module(chunking)
 
 
 class IngestionIsolationTests(unittest.TestCase):
@@ -46,6 +49,21 @@ class IngestionIsolationTests(unittest.TestCase):
             text='Beacon-like wording must still belong to Aurora.')
         self.assertEqual(parsed['seller_id'], 'seller-aurora')
         self.assertNotEqual(parsed['seller_id'], 'seller-beacon')
+
+    def test_overlapping_document_ids_keep_seller_identity_in_every_chunk(self):
+        by_seller = {}
+        for seller_id in ('seller-aurora', 'seller-beacon'):
+            document = next(doc for doc in ingestion.ingest_seller_corpus(seller_id, root=REPO)
+                            if doc['document_id'] == 'return_policy')
+            by_seller[seller_id] = chunking.chunk_document(document, chunk_size=120, overlap=10)
+        self.assertTrue(all(item['seller_id'] == 'seller-aurora'
+                            for item in by_seller['seller-aurora']))
+        self.assertTrue(all(item['seller_id'] == 'seller-beacon'
+                            for item in by_seller['seller-beacon']))
+        self.assertFalse(any('15% restocking fee' in item['text']
+                             for item in by_seller['seller-aurora']))
+        self.assertTrue(any('15% restocking fee' in item['text']
+                            for item in by_seller['seller-beacon']))
 
 
 if __name__ == '__main__':

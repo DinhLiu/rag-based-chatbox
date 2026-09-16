@@ -1,0 +1,18 @@
+{
+  "task_id": null,
+  "gate": "regression",
+  "command": [
+    "/usr/bin/python3",
+    "scripts/harness.py",
+    "_run",
+    "regression"
+  ],
+  "timeout_seconds": 900,
+  "timed_out": false,
+  "timestamp": "2026-09-16T09:55:35.936513+00:00",
+  "snapshot_sha256": "0ecfe2cbed9bf32a994f4dc17262244094d64ddf6941efb26e66b86af6cfb6e9",
+  "exit_code": 3,
+  "status": "unavailable",
+  "stdout": "UNAVAILABLE: regression has no implemented application runner/fixtures. No checks passed.\n",
+  "stderr": ""
+}

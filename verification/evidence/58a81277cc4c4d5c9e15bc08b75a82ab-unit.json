@@ -1,0 +1,18 @@
+{
+  "task_id": null,
+  "gate": "unit",
+  "command": [
+    "/usr/bin/python3",
+    "scripts/harness.py",
+    "_run",
+    "unit"
+  ],
+  "timeout_seconds": 60,
+  "timed_out": false,
+  "timestamp": "2026-09-16T09:51:44.218086+00:00",
+  "snapshot_sha256": "2ae5412c912641d00a72600b3517fa04741404b69b0f583a6be038f0464fd699",
+  "exit_code": 0,
+  "status": "passed",
+  "stdout": "{\n  \"gate\": \"unit\",\n  \"collected\": 7,\n  \"executed\": 7,\n  \"skipped\": 0,\n  \"failed\": 0,\n  \"status\": \"passed\"\n}\n",
+  "stderr": "test_fixed_chunks_preserve_metadata_positions_and_overlap (test_chunking_unit.ChunkingUnitTests.test_fixed_chunks_preserve_metadata_positions_and_overlap) ... ok\ntest_recursive_chunks_use_boundaries_and_keep_sections_separate (test_chunking_unit.ChunkingUnitTests.test_recursive_chunks_use_boundaries_and_keep_sections_separate) ... ok\ntest_rejects_invalid_document_and_configuration (test_chunking_unit.ChunkingUnitTests.test_rejects_invalid_document_and_configuration) ... ok\ntest_markdown_txt_and_direct_text_preserve_metadata_and_sections (test_ingestion_unit.IngestionUnitTests.test_markdown_txt_and_direct_text_preserve_metadata_and_sections) ... ok\ntest_pdf_extracts_pages_including_flate_and_show_operators (test_ingestion_unit.IngestionUnitTests.test_pdf_extracts_pages_including_flate_and_show_operators) ... ok\ntest_rejects_cross_seller_or_unsafe_paths (test_ingestion_unit.IngestionUnitTests.test_rejects_cross_seller_or_unsafe_paths) ... ok\ntest_rejects_missing_seller_empty_text_and_unsupported_format (test_ingestion_unit.IngestionUnitTests.test_rejects_missing_seller_empty_text_and_unsupported_format) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.002s\n\nOK\n"
+}

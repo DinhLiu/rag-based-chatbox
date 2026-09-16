@@ -491,7 +491,7 @@
       "parent": "phase-2",
       "name": "Baseline chunking",
       "description": "Bounded task within Baseline Retrieval.",
-      "status": "not_started",
+      "status": "verified",
       "scope": "baseline",
       "spec_sections": [
         "6",
@@ -513,7 +513,12 @@
         "isolation"
       ],
       "blocker": null,
-      "evidence": []
+      "evidence": [
+        "verification/evidence/2864b97f66b9419cbfcc2a2e2af25522-harness.json",
+        "verification/evidence/26cf52276d814a44ab4b7ffe00d2cc1c-unit.json",
+        "verification/evidence/9c69fb1e945c44d7ac10e355d6003be6-integration.json",
+        "verification/evidence/ce0c2b8036644655b69441e70c528052-isolation.json"
+      ]
     },
     {
       "id": "p2-indexing",

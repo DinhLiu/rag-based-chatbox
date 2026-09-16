@@ -1,4 +1,4 @@
-"""Integration checks for seller-scoped corpus and file ingestion."""
+"""Integration checks for seller-scoped ingestion and chunking."""
 import importlib.util
 from pathlib import Path
 import sys
@@ -12,6 +12,9 @@ REPO = Path(__file__).resolve().parents[2]
 spec = importlib.util.spec_from_file_location('ingestion', REPO / 'src/ingestion.py')
 ingestion = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(ingestion)
+chunking_spec = importlib.util.spec_from_file_location('chunking', REPO / 'src/chunking.py')
+chunking = importlib.util.module_from_spec(chunking_spec)
+chunking_spec.loader.exec_module(chunking)
 
 
 class IngestionIntegrationTests(unittest.TestCase):
@@ -59,6 +62,22 @@ class IngestionIntegrationTests(unittest.TestCase):
             ingestion.ingest_document(
                 'seller-aurora', 'missing', source_format='markdown',
                 path='seller-aurora/missing.md', root=REPO / 'data/raw')
+
+    def test_ingested_sections_become_positioned_chunks(self):
+        document = next(doc for doc in ingestion.ingest_seller_corpus('seller-aurora', root=REPO)
+                        if doc['document_id'] == 'return_policy')
+        for strategy in ('fixed', 'recursive'):
+            with self.subTest(strategy=strategy):
+                chunks = chunking.chunk_document(
+                    document, strategy=strategy, chunk_size=180, overlap=20)
+                self.assertGreater(len(chunks), 1)
+                self.assertEqual([item['chunk_position'] for item in chunks], list(range(len(chunks))))
+                self.assertIn('Section 2', {item['section'] for item in chunks})
+                for item in chunks:
+                    self.assertEqual(item['seller_id'], 'seller-aurora')
+                    self.assertEqual(item['document_id'], 'return_policy')
+                    self.assertEqual(item['version'], '1')
+                    self.assertEqual(item['text'], document['text'][item['start']:item['end']])
 
 
 if __name__ == '__main__':
