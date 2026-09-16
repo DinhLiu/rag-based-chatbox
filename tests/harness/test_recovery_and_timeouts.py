@@ -101,7 +101,8 @@ class RecoveryTests(unittest.TestCase):
             'def execute(gate):\n    if gate == "unit":\n        print("fixture unit pass")\n        return 0'))
         self.edit('phase-0', required_gates=['harness', 'unit'])
         self.verified_chain()
-        runner.write_text(original)
+        runner.write_text(original.replace('def execute(gate):',
+            'def execute(gate):\n    if gate == "unit":\n        print("UNAVAILABLE: fixture unit")\n        return 3'))
         self.cli('verify-task', 'phase-0', expected=3)
         self.cli('check')
         tasks = {f['id']: f for f in h.read_json(self.root / 'feature_list.json')['features']}

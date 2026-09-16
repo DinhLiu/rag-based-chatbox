@@ -88,7 +88,8 @@ class ControlPlaneTests(unittest.TestCase):
             self.assertTrue(h.check(self.root), changes)
 
     def test_application_gates_are_unavailable(self):
-        for gate in (gate for gate in h.GATES[1:] if gate != 'dataset'):
+        implemented = {'dataset', 'unit', 'integration', 'isolation'}
+        for gate in (gate for gate in h.GATES[1:] if gate not in implemented):
             with self.subTest(gate=gate), contextlib.redirect_stdout(io.StringIO()) as output:
                 self.assertEqual(h.execute(gate), 3)
                 self.assertIn('UNAVAILABLE', output.getvalue())
@@ -96,6 +97,24 @@ class ControlPlaneTests(unittest.TestCase):
     def test_dataset_gate_is_available(self):
         with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
             self.assertEqual(h.execute('dataset'), 0)
+
+    def test_ingestion_implementation_gates_are_available(self):
+        for gate in ('unit', 'integration', 'isolation'):
+            with self.subTest(gate=gate), contextlib.redirect_stdout(io.StringIO()), \
+                 contextlib.redirect_stderr(io.StringIO()):
+                self.assertEqual(h.execute(gate), 0)
+
+    def test_application_suites_reject_empty_and_skipped(self):
+        class Skipped(unittest.TestCase):
+            @unittest.skip('fixture only')
+            def test_skip(self):
+                pass
+        for gate in ('unit', 'integration', 'isolation'):
+            for suite in (unittest.TestSuite(), unittest.defaultTestLoader.loadTestsFromTestCase(Skipped)):
+                with self.subTest(gate=gate, empty=suite.countTestCases() == 0), \
+                     patch.object(h.unittest.defaultTestLoader, 'discover', return_value=suite), \
+                     contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                    self.assertEqual(h.execute(gate), 1)
 
     def test_snapshot_tracks_source_not_session_notes(self):
         before = h.snapshot(self.root)

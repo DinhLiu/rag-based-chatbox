@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source_of_truth": "PROJECT_SPEC.md",
-  "dependency_note": "Dependencies are execution prerequisites, not new product scope. Optional Phase 6 optimization and Phase 8 analytics do not block core deployment. Phase 1 evaluation-corpus work is authorized; later phases still require a new implementation request. Optional parent links group bounded tasks under phases; children inherit phase entry dependencies. Add discovered work as new child tasks without expanding product scope.",
+  "dependency_note": "Dependencies are execution prerequisites, not new product scope. Optional Phase 6 optimization and Phase 8 analytics do not block core deployment. Phase 2 ingestion work is authorized; later Phase 2 children and later phases still require a new implementation request. Optional parent links group bounded tasks under phases; children inherit phase entry dependencies. Add discovered work as new child tasks without expanding product scope.",
   "features": [
     {
       "id": "phase-0",
@@ -31,7 +31,7 @@
       "id": "phase-1",
       "name": "Evaluation Dataset",
       "description": "PROJECT_SPEC.md \u00a728 Phase 1: Evaluation Dataset.",
-      "status": "in_progress",
+      "status": "verified",
       "scope": "baseline",
       "spec_sections": [
         "17",
@@ -51,13 +51,16 @@
         "dataset"
       ],
       "blocker": null,
-      "evidence": []
+      "evidence": [
+        "verification/evidence/c70dd85b63a543e6808358b55762ed41-harness.json",
+        "verification/evidence/75549ed3bb3045dc93a605c9b6e97726-dataset.json"
+      ]
     },
     {
       "id": "phase-2",
       "name": "Baseline Retrieval",
       "description": "PROJECT_SPEC.md \u00a728 Phase 2: Baseline Retrieval.",
-      "status": "not_started",
+      "status": "in_progress",
       "scope": "baseline",
       "spec_sections": [
         "6",
@@ -455,7 +458,7 @@
       "parent": "phase-2",
       "name": "Seller-scoped ingestion and parsing",
       "description": "Bounded task within Baseline Retrieval.",
-      "status": "not_started",
+      "status": "verified",
       "scope": "baseline",
       "spec_sections": [
         "6",
@@ -476,7 +479,12 @@
         "isolation"
       ],
       "blocker": null,
-      "evidence": []
+      "evidence": [
+        "verification/evidence/f10288cc8ebd436992f6364cb29d4c32-harness.json",
+        "verification/evidence/6d31543c9fe04242a052d02e38a795ac-unit.json",
+        "verification/evidence/723fd090463b432c904b6cb25f338a1a-integration.json",
+        "verification/evidence/adfeffa4766d42579d29b229bca17c08-isolation.json"
+      ]
     },
     {
       "id": "p2-chunking",

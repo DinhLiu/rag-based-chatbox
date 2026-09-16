@@ -3,16 +3,16 @@
 Last Updated: 2026-09-16
 
 ## Current Objective
-`p1-dataset-checks` is verified. Stop before Phase 1 closure or downstream work.
+`p2-ingestion` is verified. Stop before `p2-chunking` or other downstream work.
 
 ## Current State
-`phase-1` remains in progress. All three children (`p1-policies`, `p1-annotations`, and `p1-dataset-checks`) are verified. No leaf task is active and no downstream task is authorized.
+`phase-1` is verified. `phase-2` is in_progress. `p2-ingestion` is verified. No leaf task is active. Later Phase 2 children remain unauthorized.
 
 ## Changed Files
-Added `scripts/validate_dataset.py`, `tests/dataset/test_dataset_validation.py`, and dataset-gate wiring in `scripts/harness.py`; updated the harness availability test, README, architecture, development, evaluation, task state, progress, and this handoff. Verification records are under `verification/evidence/`.
+Added `src/ingestion.py` and seller-scoped unit/integration/isolation checks; wired those gates in `scripts/harness.py`; updated harness availability/recovery tests, README, architecture, development, evaluation, task state, progress, and this handoff. Verification records are under `verification/evidence/`.
 
 ## Verification
-`python3 scripts/harness.py verify-task p1-dataset-checks` exited 0. Harness evidence `verification/evidence/018ea1603f8f4af394c8604a79892bed-harness.json`: 48 tests passed. Dataset evidence `verification/evidence/1a2982451f5f4268a027348d271af5e8-dataset.json`: 6 mutation tests passed; 40/40 cases executed, 0 skipped, 0 failed checks, across 12 documents and 2 sellers with distribution 16/8/6/6/4.
+`python3 scripts/harness.py verify-task p2-ingestion` exited 0. Harness evidence `verification/evidence/f10288cc8ebd436992f6364cb29d4c32-harness.json`: 50 tests passed. Unit `verification/evidence/6d31543c9fe04242a052d02e38a795ac-unit.json`: 4/4. Integration `verification/evidence/723fd090463b432c904b6cb25f338a1a-integration.json`: 3/3. Isolation `verification/evidence/adfeffa4766d42579d29b229bca17c08-isolation.json`: 3/3. `python3 scripts/harness.py verify all` exited 3; retrieval, generation, abstention, regression, and system remain unavailable and were not counted as passed.
 
 ## Blockers and Next Step
-No blocker. Next eligible action: set `phase-1` to implemented and run `python3 scripts/harness.py verify-task phase-1`. Do not start Phase 2 without separate authorization and verified Phase 1.
+No blocker. Next eligible task is `p2-chunking`. Do not start it without a new authorization. Phase 2 cannot close until remaining children and the retrieval gate exist.

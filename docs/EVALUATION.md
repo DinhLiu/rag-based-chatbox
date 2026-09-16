@@ -8,7 +8,7 @@ The versioned question set is `eval-policy-questions` version `1` at `evals/data
 
 Measure retrieval Recall@5 and MRR@10. Generation evaluation covers faithfulness, answer relevance, citation correctness and completeness, including important policy conditions and accurate document name/section/page references. Evaluate abstention precision/recall and False Answer Rate, covering missing, low-relevance, incomplete, conflicting and out-of-scope evidence. Confident unsupported answers are high-severity failures. Include answerable cases to detect excessive refusal.
 
-Isolation cases must exercise ingestion/document access/indexing/retrieval across at least two sellers, with misleadingly similar policies; tenant scoping is mandatory even before Phase 5. Lifecycle regression cases must verify deleted/replaced chunks no longer influence results after re-indexing. Trace coverage to spec §§5–13. Preserve previously passing cases unless the specification changes.
+Isolation cases must exercise ingestion/document access/indexing/retrieval across at least two sellers, with misleadingly similar policies; tenant scoping is mandatory even before Phase 5. Ingestion isolation checks currently cover seller-scoped parse and corpus reads; indexing/retrieval isolation remains a later Phase 2 task. Lifecycle regression cases must verify deleted/replaced chunks no longer influence results after re-indexing. Trace coverage to spec §§5–13. Preserve previously passing cases unless the specification changes.
 
 Machine-readable application reports must include:
 - Run ID/time, command, source revision/content identity, dataset and corpus versions/hashes, configuration (chunking, model, prompts, top-K, thresholds and seed where supported).

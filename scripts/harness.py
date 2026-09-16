@@ -241,6 +241,37 @@ def run_gate(gate, task_id=None, root=ROOT):
     return result.returncode, relative
 
 
+APPLICATION_SUITES = {
+    'unit': ROOT / 'tests/unit',
+    'integration': ROOT / 'tests/integration',
+    'isolation': ROOT / 'tests/isolation',
+}
+
+
+def run_unittest_tree(gate, directory, extra_compile=()):
+    files = sorted(Path(directory).glob('test_*.py'))
+    if not files:
+        print(f'FAIL: no {gate} tests collected')
+        return 1
+    for path in [*extra_compile, *files]:
+        compile(path.read_text(), str(path), 'exec')
+    suite = unittest.defaultTestLoader.discover(str(directory), pattern='test_*.py')
+    collected = suite.countTestCases()
+    if collected == 0:
+        print(f'FAIL: no {gate} tests collected')
+        return 1
+    result = unittest.TextTestRunner(verbosity=2).run(suite)
+    skipped = len(result.skipped)
+    failed = len(result.failures) + len(result.errors)
+    executed = result.testsRun - skipped
+    passed = result.wasSuccessful() and skipped != result.testsRun
+    if skipped == result.testsRun:
+        print(f'FAIL: all {gate} tests skipped')
+    print(json.dumps(dict(gate=gate, collected=collected, executed=executed, skipped=skipped,
+                          failed=failed, status='passed' if passed else 'failed'), indent=2))
+    return 0 if passed else 1
+
+
 def execute(gate):
     if gate == 'dataset':
         paths = [ROOT / 'scripts/validate_dataset.py',
@@ -266,6 +297,9 @@ def execute(gate):
         if validation.stderr:
             print(validation.stderr, file=sys.stderr, end='')
         return validation.returncode
+    if gate in APPLICATION_SUITES:
+        extra = sorted((ROOT / 'src').glob('*.py')) if gate == 'unit' else ()
+        return run_unittest_tree(gate, APPLICATION_SUITES[gate], extra)
     if gate != 'harness':
         print(f'UNAVAILABLE: {gate} has no implemented application runner/fixtures. No checks passed.')
         return UNAVAILABLE

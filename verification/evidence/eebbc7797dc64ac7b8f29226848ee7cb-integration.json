@@ -1,0 +1,18 @@
+{
+  "task_id": null,
+  "gate": "integration",
+  "command": [
+    "/usr/bin/python3",
+    "scripts/harness.py",
+    "_run",
+    "integration"
+  ],
+  "timeout_seconds": 300,
+  "timed_out": false,
+  "timestamp": "2026-09-16T09:29:21.819414+00:00",
+  "snapshot_sha256": "587786e29bac705f95bc94ad852657bf7a0f5eb9417c6160c41b7394f0b01265",
+  "exit_code": 0,
+  "status": "passed",
+  "stdout": "{\n  \"gate\": \"integration\",\n  \"collected\": 3,\n  \"executed\": 3,\n  \"skipped\": 0,\n  \"failed\": 0,\n  \"status\": \"passed\"\n}\n",
+  "stderr": "test_ingests_txt_and_pdf_files_from_seller_directories (test_ingestion_integration.IngestionIntegrationTests.test_ingests_txt_and_pdf_files_from_seller_directories) ... ok\ntest_ingests_versioned_markdown_corpus_for_each_seller (test_ingestion_integration.IngestionIntegrationTests.test_ingests_versioned_markdown_corpus_for_each_seller) ... ok\ntest_unknown_seller_and_missing_file_fail (test_ingestion_integration.IngestionIntegrationTests.test_unknown_seller_and_missing_file_fail) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.001s\n\nOK\n"
+}
