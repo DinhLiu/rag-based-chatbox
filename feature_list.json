@@ -60,7 +60,7 @@
       "id": "phase-2",
       "name": "Baseline Retrieval",
       "description": "PROJECT_SPEC.md \u00a728 Phase 2: Baseline Retrieval.",
-      "status": "in_progress",
+      "status": "verified",
       "scope": "baseline",
       "spec_sections": [
         "6",
@@ -87,7 +87,14 @@
         "isolation"
       ],
       "blocker": null,
-      "evidence": []
+      "evidence": [
+        "verification/evidence/ef2eb8d66cdf4bc287b45febb7347f41-harness.json",
+        "verification/evidence/6b9b71392ae841c4a34a956756a0e109-unit.json",
+        "verification/evidence/a62d767b04fc498481daff91e789fec8-integration.json",
+        "verification/evidence/6605a6050c584594862005d124f537d9-dataset.json",
+        "verification/evidence/3f78e0d617e04aadb9a312260fdc0d14-retrieval.json",
+        "verification/evidence/b6429df87fb24aaa820f284c962e2b2d-isolation.json"
+      ]
     },
     {
       "id": "phase-3",
