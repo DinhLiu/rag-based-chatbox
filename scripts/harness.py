@@ -20,7 +20,8 @@ UNAVAILABLE = 3
 STATES = {'not_started', 'in_progress', 'implemented', 'verified', 'blocked'}
 REQUIRED = ('AGENTS.md', 'PROJECT_SPEC.md', 'ARCHITECTURE.md', 'README.md',
             'feature_list.json', 'progress.md', 'session-handoff.md', 'init.sh',
-            'docs/DEVELOPMENT.md', 'docs/DEFINITION_OF_DONE.md', 'docs/EVALUATION.md')
+            'requirements.txt', 'docs/DEVELOPMENT.md', 'docs/DEFINITION_OF_DONE.md',
+            'docs/EVALUATION.md')
 
 
 def read_json(path):
@@ -88,7 +89,7 @@ def status_view(features):
             lines += ['', title + ':', *('  ' + entry for entry in entries)]
     if current['status'] != 'blocked' and rows != [current] and all(f['status'] == 'verified' for f in rows):
         lines += ['', f"All children verified; set {current['id']} implemented and run verify-task {current['id']}."]
-    lines += ['', 'Inspect one record with: python3 scripts/harness.py task <id>',
+    lines += ['', 'Inspect one record with: .venv/bin/python scripts/harness.py task <id>',
               'A roadmap entry is not authorization to start implementation.']
     return '\n'.join(lines)
 

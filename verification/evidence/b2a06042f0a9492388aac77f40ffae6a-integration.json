@@ -1,0 +1,18 @@
+{
+  "task_id": "phase-2",
+  "gate": "integration",
+  "command": [
+    "/home/liu/Code/Projects/rag-based-chatbox/.venv/bin/python",
+    "scripts/harness.py",
+    "_run",
+    "integration"
+  ],
+  "timeout_seconds": 300,
+  "timed_out": false,
+  "timestamp": "2026-09-17T07:26:46.902494+00:00",
+  "snapshot_sha256": "fa606c156dae36c53c0ed8da61c2577bd471fef3848545db2b438bd273a41b42",
+  "exit_code": 0,
+  "status": "passed",
+  "stdout": "{\n  \"gate\": \"integration\",\n  \"collected\": 6,\n  \"executed\": 6,\n  \"skipped\": 0,\n  \"failed\": 0,\n  \"status\": \"passed\"\n}\n",
+  "stderr": "test_corpus_pipeline_retrieves_dense_top_k_evidence (test_ingestion_integration.IngestionIntegrationTests.test_corpus_pipeline_retrieves_dense_top_k_evidence) ... ok\ntest_ingested_corpus_chunks_are_embedded_and_persisted_with_metadata (test_ingestion_integration.IngestionIntegrationTests.test_ingested_corpus_chunks_are_embedded_and_persisted_with_metadata) ... ok\ntest_ingested_sections_become_positioned_chunks (test_ingestion_integration.IngestionIntegrationTests.test_ingested_sections_become_positioned_chunks) ... ok\ntest_ingests_txt_and_pdf_files_from_seller_directories (test_ingestion_integration.IngestionIntegrationTests.test_ingests_txt_and_pdf_files_from_seller_directories) ... ok\ntest_ingests_versioned_markdown_corpus_for_each_seller (test_ingestion_integration.IngestionIntegrationTests.test_ingests_versioned_markdown_corpus_for_each_seller) ... ok\ntest_unknown_seller_and_missing_file_fail (test_ingestion_integration.IngestionIntegrationTests.test_unknown_seller_and_missing_file_fail) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.027s\n\nOK\n"
+}

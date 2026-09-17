@@ -88,12 +88,12 @@
       ],
       "blocker": null,
       "evidence": [
-        "verification/evidence/ef2eb8d66cdf4bc287b45febb7347f41-harness.json",
-        "verification/evidence/6b9b71392ae841c4a34a956756a0e109-unit.json",
-        "verification/evidence/a62d767b04fc498481daff91e789fec8-integration.json",
-        "verification/evidence/6605a6050c584594862005d124f537d9-dataset.json",
-        "verification/evidence/3f78e0d617e04aadb9a312260fdc0d14-retrieval.json",
-        "verification/evidence/b6429df87fb24aaa820f284c962e2b2d-isolation.json"
+        "verification/evidence/705da0cccb5a40f4aa2fabad9e273670-harness.json",
+        "verification/evidence/c382ddeb74244dc18bd74bbc7095ca01-unit.json",
+        "verification/evidence/8e5f334526f440b6b84aff1312c10067-integration.json",
+        "verification/evidence/435abe8283ca4383bb8a4a1e2af63b83-dataset.json",
+        "verification/evidence/853ca7667a58487db1f64a63e88a0616-retrieval.json",
+        "verification/evidence/6a2be1943a854f77b5ef4c6cc047e780-isolation.json"
       ]
     },
     {
@@ -628,6 +628,43 @@
         "verification/evidence/c0b4ef00167c4cf886e48695961256f3-dataset.json",
         "verification/evidence/8d9862ce51a24d34b77e8555a2f83c0a-retrieval.json",
         "verification/evidence/155e78231fd84dd4815fb5746f677a8e-isolation.json"
+      ]
+    },
+    {
+      "id": "p2-local-venv",
+      "parent": "phase-2",
+      "name": "Repository-local Python environment",
+      "description": "Bounded foundation task to reproduce and revalidate Baseline Retrieval in a repository-local virtual environment.",
+      "status": "verified",
+      "scope": "foundation",
+      "spec_sections": [
+        "23\u201326",
+        "28 Phase 2"
+      ],
+      "dependencies": [
+        "p2-retrieval-evaluation"
+      ],
+      "acceptance_criteria": [
+        "Bootstrap a git-ignored .venv with the repository-supported Python version and a reproducible application dependency input.",
+        "Run every Phase 2 gate with the .venv interpreter and compare retrieval metrics, counts, errors and seller leakage with the preserved dense baseline.",
+        "Document local-environment setup, test and evaluation commands without changing Phase 2 behavior or architecture."
+      ],
+      "required_gates": [
+        "harness",
+        "unit",
+        "integration",
+        "dataset",
+        "retrieval",
+        "isolation"
+      ],
+      "blocker": null,
+      "evidence": [
+        "verification/evidence/8869dab76125450f84d30e8ebfe9eec2-harness.json",
+        "verification/evidence/e1f4a5d711fe4fe7990c6310291b3741-unit.json",
+        "verification/evidence/ccfb852bba054b0180a5e6a4006b1cad-integration.json",
+        "verification/evidence/2677f74bed83489f8abf243aa8e412d8-dataset.json",
+        "verification/evidence/1c182ec847fe43039b583a715067bedc-retrieval.json",
+        "verification/evidence/52a1eaec46e34602a0d42aa09eeed93b-isolation.json"
       ]
     },
     {

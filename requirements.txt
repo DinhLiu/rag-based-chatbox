@@ -1,0 +1,2 @@
+# Phase 2 application/runtime dependencies: none beyond the Python standard library.
+# Keep this file as the reproducible pip input for the repository-local .venv.

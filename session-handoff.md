@@ -3,16 +3,16 @@
 Last Updated: 2026-09-17
 
 ## Current Objective
-`p2-retrieval-evaluation` is verified. Stop before Phase 2 closure or downstream work.
+The repository-local Python environment migration and Phase 2 revalidation are complete. Stop before Phase 3.
 
 ## Current State
-All Phase 2 children are verified. `phase-2` remains in progress and requires its explicit closure verification. No leaf task is active; Phase 3 remains unauthorized.
+`p2-local-venv` and `phase-2` are verified. `./init.sh` creates/updates the git-ignored `.venv` from `requirements.txt` and all documented harness, test and evaluation commands use `.venv/bin/python`. Python 3.10+ is supported; revalidation ran on Python 3.14.4. The application dependency input contains no third-party packages because Phase 2 uses only the standard library.
 
 ## Changed Files
-Added `scripts/evaluate_retrieval.py`, `tests/retrieval/test_retrieval_evaluation.py`, retrieval gate wiring/controls, and `evals/reports/retrieval-baseline-v1.json`. Updated README, architecture, evaluation/development guidance, task state, progress, and this handoff.
+Updated `init.sh`, `requirements.txt`, `AGENTS.md`, `README.md`, `docs/DEVELOPMENT.md`, `docs/EVALUATION.md`, `scripts/harness.py`, `feature_list.json`, `progress.md`, and this handoff. Added fresh evidence records under `verification/evidence/`. The pinned retrieval baseline and RAG implementation were not changed.
 
 ## Verification
-`python3 scripts/harness.py verify-task p2-retrieval-evaluation` exited 0. Evidence: harness `verification/evidence/4d290ed9b1854f8f80d649ff3fbf1650-harness.json`; dataset `verification/evidence/c0b4ef00167c4cf886e48695961256f3-dataset.json`; retrieval `verification/evidence/8d9862ce51a24d34b77e8555a2f83c0a-retrieval.json`; isolation `verification/evidence/155e78231fd84dd4815fb5746f677a8e-isolation.json`. Baseline Recall@5 is `0.594017094017094`; MRR@10 is `0.4974358974358974`; 40/40 cases executed with zero errors or seller leakage. `verify all` exited 3 because generation, abstention, regression, and system remain unavailable; they were not counted as passed.
+`.venv/bin/python scripts/harness.py verify-task p2-local-venv` and `.venv/bin/python scripts/harness.py verify-task phase-2` both exited 0. The final Phase 2 evidence paths are recorded in `feature_list.json`; every record uses `/home/liu/Code/Projects/rag-based-chatbox/.venv/bin/python`. Recall@5 stayed `0.594017094017094`, MRR@10 stayed `0.4974358974358974`, 40/40 cases executed with zero errors or seller leakage, and unit 13/13, integration 6/6, isolation 7/7 passed.
 
 ## Blockers and Next Step
-No blocker. Next eligible action is Phase 2 closure: set `phase-2` implemented and run `python3 scripts/harness.py verify-task phase-2` only with new authorization. Do not start `p3-generation` before Phase 2 is verified.
+No blocker or downgrade. Phase 3 remains unauthorized; do not start it without a new request.

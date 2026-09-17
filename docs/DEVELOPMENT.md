@@ -1,7 +1,7 @@
 # Development workflow
 
 ## Start and resume
-Read AGENTS.md → authoritative spec → `python3 scripts/harness.py status` → session-handoff.md → latest progress.md entry. Use `python3 scripts/harness.py task <id>` for the selected task; the full JSON tracker is needed only when editing or auditing state. Inspect `git status --short`; run `./init.sh` from a fresh checkout. No install, environment file, credentials or services are needed for the harness. A failing startup must be investigated before unrelated work.
+Read AGENTS.md → authoritative spec → run `./init.sh` to create/update `.venv` from `requirements.txt` → `.venv/bin/python scripts/harness.py status` → session-handoff.md → latest progress.md entry. Use `.venv/bin/python scripts/harness.py task <id>` for the selected task; the full JSON tracker is needed only when editing or auditing state. Inspect `git status --short`. Python 3.10+ is supported and enforced by bootstrap; Phase 2 has no third-party application dependencies, credentials or services. A failing startup must be investigated before unrelated work.
 
 Select one authorized leaf task whose own dependencies and parent phase entry dependencies are `verified`. Open its phase as `in_progress`, set the task `in_progress`, and update the handoff with its ID and bounded objective. Load only its spec sections, architecture and evaluation contract next. Application work starts at Phase 1 (`p1-policies`); later phases still need an explicit implementation request.
 
@@ -39,21 +39,21 @@ Feature implementation checks cover the behavior that exists at that point. Comp
 ## Commands
 ```sh
 ./init.sh
-python3 scripts/harness.py status
-python3 scripts/harness.py task p1-policies
-python3 scripts/harness.py check
-python3 scripts/harness.py verify harness
-python3 scripts/harness.py verify unit
-python3 scripts/harness.py verify integration
-python3 scripts/harness.py verify dataset
-python3 scripts/harness.py verify retrieval
-python3 scripts/harness.py verify generation
-python3 scripts/harness.py verify abstention
-python3 scripts/harness.py verify isolation
-python3 scripts/harness.py verify regression
-python3 scripts/harness.py verify system
-python3 scripts/harness.py verify all
-python3 scripts/harness.py verify-task phase-0
+.venv/bin/python scripts/harness.py status
+.venv/bin/python scripts/harness.py task p1-policies
+.venv/bin/python scripts/harness.py check
+.venv/bin/python scripts/harness.py verify harness
+.venv/bin/python scripts/harness.py verify unit
+.venv/bin/python scripts/harness.py verify integration
+.venv/bin/python scripts/harness.py verify dataset
+.venv/bin/python scripts/harness.py verify retrieval
+.venv/bin/python scripts/harness.py verify generation
+.venv/bin/python scripts/harness.py verify abstention
+.venv/bin/python scripts/harness.py verify isolation
+.venv/bin/python scripts/harness.py verify regression
+.venv/bin/python scripts/harness.py verify system
+.venv/bin/python scripts/harness.py verify all
+.venv/bin/python scripts/harness.py verify-task phase-0
 ```
 
 Exit 0 = checks actually passed; 1 = failed checks/invalid state; 2 = CLI usage error (including unknown commands, gates or task IDs); 3 = unavailable checks or bootstrap prerequisites. Dataset, unit, integration, retrieval, and isolation gates are implemented; generation, abstention, regression, and system remain unavailable. Aggregation preserves failure first, then usage error, then unavailable; it returns 0 only if every gate passed. `all` runs harness, unit, integration, dataset, retrieval, generation, abstention, isolation, regression, system and preserves failure. `verify-task` requires implemented/verified state and verified dependencies, runs every required gate, and promotes only after all pass. A failed/unavailable/timed-out recheck downgrades the target to implemented and clears its successful evidence links. Cascade invalidation moves affected in_progress/implemented/verified dependents (including inherited phase prerequisites) to blocked with a revalidation reason and clears their active evidence references. Verified parents with unfinished children reopen as implemented, or become blocked if their own prerequisites are no longer verified. This repeats until dependency and parent invariants hold. Historical evidence files are never removed. Candidate state is validated before replacement; an invalid candidate returns 1 without saving the tracker. `verify-task` preserves exit 3 when checks are unavailable, rather than flattening it into failure.

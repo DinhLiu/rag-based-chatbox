@@ -1,0 +1,18 @@
+{
+  "task_id": "p2-local-venv",
+  "gate": "isolation",
+  "command": [
+    "/home/liu/Code/Projects/rag-based-chatbox/.venv/bin/python",
+    "scripts/harness.py",
+    "_run",
+    "isolation"
+  ],
+  "timeout_seconds": 300,
+  "timed_out": false,
+  "timestamp": "2026-09-17T07:26:03.102821+00:00",
+  "snapshot_sha256": "fa606c156dae36c53c0ed8da61c2577bd471fef3848545db2b438bd273a41b42",
+  "exit_code": 0,
+  "status": "passed",
+  "stdout": "{\n  \"gate\": \"isolation\",\n  \"collected\": 7,\n  \"executed\": 7,\n  \"skipped\": 0,\n  \"failed\": 0,\n  \"status\": \"passed\"\n}\n",
+  "stderr": "test_dense_retrieval_never_crosses_sellers_in_a_shared_index (test_ingestion_isolation.IngestionIsolationTests.test_dense_retrieval_never_crosses_sellers_in_a_shared_index) ... ok\ntest_direct_text_cannot_omit_or_swap_seller_identity (test_ingestion_isolation.IngestionIsolationTests.test_direct_text_cannot_omit_or_swap_seller_identity) ... ok\ntest_index_rejects_a_mixed_seller_batch_without_partial_writes (test_ingestion_isolation.IngestionIsolationTests.test_index_rejects_a_mixed_seller_batch_without_partial_writes) ... ok\ntest_overlapping_document_ids_keep_seller_identity_in_every_chunk (test_ingestion_isolation.IngestionIsolationTests.test_overlapping_document_ids_keep_seller_identity_in_every_chunk) ... ok\ntest_overlapping_document_ids_remain_seller_distinct (test_ingestion_isolation.IngestionIsolationTests.test_overlapping_document_ids_remain_seller_distinct) ... ok\ntest_seller_load_cannot_return_another_sellers_documents (test_ingestion_isolation.IngestionIsolationTests.test_seller_load_cannot_return_another_sellers_documents) ... ok\ntest_shared_index_reads_only_the_selected_seller (test_ingestion_isolation.IngestionIsolationTests.test_shared_index_reads_only_the_selected_seller) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.028s\n\nOK\n"
+}

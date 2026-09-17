@@ -2,8 +2,8 @@
 
 ## Startup Workflow
 1. Read [PROJECT_SPEC.md](PROJECT_SPEC.md) completely on first entry or when it changes. It is authoritative; harness docs do not redefine product scope.
-2. Run `python3 scripts/harness.py status`; read [session-handoff.md](session-handoff.md) and the latest entry in [progress.md](progress.md). Use `python3 scripts/harness.py task <id>` for selected work. [feature_list.json](feature_list.json) is canonical; do not load the entire tracker unless editing or auditing it.
-3. Run `git status --short` and `./init.sh`. Preserve existing user changes. Setup checks only the harness; it does not prove application readiness.
+2. Run `./init.sh` to create/update the repository-local `.venv`, then run `.venv/bin/python scripts/harness.py status`; read [session-handoff.md](session-handoff.md) and the latest entry in [progress.md](progress.md). Use `.venv/bin/python scripts/harness.py task <id>` for selected work. [feature_list.json](feature_list.json) is canonical; do not load the entire tracker unless editing or auditing it.
+3. Run `git status --short`. Preserve existing user changes. Setup checks only the harness; it does not prove application readiness.
 4. Read [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) and [docs/DEFINITION_OF_DONE.md](docs/DEFINITION_OF_DONE.md); load architecture and evaluation details only for the selected task.
 
 ## Stay in scope
@@ -16,8 +16,8 @@
 
 ## Verification Commands / Definition of Done
 - `./init.sh`: repeatable environment and harness validation, including harness tests and an in-memory Python compile check.
-- `python3 scripts/harness.py verify all`: full application gates; unavailable checks exit 3; usage errors exit 2; failed checks exit 1.
-- `python3 scripts/harness.py verify-task phase-0`: run the task's gates and record evidence before promotion to `verified` (substitute a child task ID for task work; phases require all children verified first).
+- `.venv/bin/python scripts/harness.py verify all`: full application gates; unavailable checks exit 3; usage errors exit 2; failed checks exit 1.
+- `.venv/bin/python scripts/harness.py verify-task phase-0`: run the task's gates and record evidence before promotion to `verified` (substitute a child task ID for task work; phases require all children verified first).
 - Follow [repository Definition of Done](docs/DEFINITION_OF_DONE.md). `implemented` is not `verified`; manual inspection or a successful harness check cannot substitute for product tests/evaluations.
 
 ## End of Session
