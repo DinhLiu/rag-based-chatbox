@@ -119,6 +119,32 @@ def list_indexed_chunks(connection, seller_id):
     } for chunk_id, text, metadata, embedding, model, dimensions in rows]
 
 
+def retrieve_chunks(connection, seller_id, query, *, top_k=5):
+    """Return the selected seller's top-K chunks by cosine similarity."""
+    seller_id = _required(seller_id, 'seller_id')
+    query = _required(query, 'query')
+    if not isinstance(top_k, int) or isinstance(top_k, bool) or top_k < 1:
+        raise IndexingError('top_k must be a positive integer')
+    candidates = list_indexed_chunks(connection, seller_id)
+    if not candidates:
+        return []
+    configurations = {(item['embedding_model'], item['embedding_dimensions'])
+                      for item in candidates}
+    if len(configurations) != 1 or next(iter(configurations))[0] != EMBEDDING_MODEL:
+        raise IndexingError('seller index must use one supported embedding configuration')
+    _, dimensions = next(iter(configurations))
+    query_embedding = embed_text(query, dimensions=dimensions)
+    ranked = []
+    for item in candidates:
+        evidence = {key: value for key, value in item.items()
+                    if key not in {'embedding', 'embedding_model', 'embedding_dimensions'}}
+        evidence['score'] = sum(left * right
+                                for left, right in zip(query_embedding, item['embedding']))
+        ranked.append(evidence)
+    ranked.sort(key=lambda item: (-item['score'], item['chunk_id']))
+    return ranked[:top_k]
+
+
 def _chunk_id(chunk):
     identity = {key: chunk.get(key) for key in
                 ('seller_id', 'document_id', 'version', 'chunk_position', 'start', 'end', 'text')}

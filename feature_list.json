@@ -559,7 +559,7 @@
       "parent": "phase-2",
       "name": "Dense retrieval",
       "description": "Bounded task within Baseline Retrieval.",
-      "status": "not_started",
+      "status": "verified",
       "scope": "baseline",
       "spec_sections": [
         "6",
@@ -581,7 +581,12 @@
         "isolation"
       ],
       "blocker": null,
-      "evidence": []
+      "evidence": [
+        "verification/evidence/8f6b51588d1e45b68014d13105e218aa-harness.json",
+        "verification/evidence/31f2a79cef8244589f936ac6a1d23380-unit.json",
+        "verification/evidence/b5719994267d4d3f8c7a0fd3b30ca57a-integration.json",
+        "verification/evidence/be7512fcfdff42b6af838eb211e79f50-isolation.json"
+      ]
     },
     {
       "id": "p2-retrieval-evaluation",

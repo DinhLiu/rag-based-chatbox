@@ -99,6 +99,20 @@ class IngestionIntegrationTests(unittest.TestCase):
         self.assertEqual(return_chunk['version'], '1')
         self.assertEqual(return_chunk['text'], documents[0]['text'][return_chunk['start']:return_chunk['end']])
 
+    def test_corpus_pipeline_retrieves_dense_top_k_evidence(self):
+        documents = ingestion.ingest_seller_corpus('seller-aurora', root=REPO)
+        chunks = [chunk for document in documents
+                  for chunk in chunking.chunk_document(document, chunk_size=180, overlap=20)]
+        connection = indexing.open_index()
+        indexing.index_chunks(connection, 'seller-aurora', chunks)
+        results = indexing.retrieve_chunks(
+            connection, 'seller-aurora',
+            'Products may be returned within 14 days of delivery.', top_k=5)
+        self.assertEqual(len(results), 5)
+        self.assertEqual(results[0]['document_id'], 'return_policy')
+        self.assertEqual(results[0]['section'], 'Section 2')
+        self.assertTrue(all(item['seller_id'] == 'seller-aurora' for item in results))
+
 
 if __name__ == '__main__':
     unittest.main()

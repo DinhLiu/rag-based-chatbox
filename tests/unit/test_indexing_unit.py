@@ -52,6 +52,31 @@ class IndexingUnitTests(unittest.TestCase):
         with self.assertRaises(indexing.IndexingError):
             indexing.index_chunks(connection, 'seller-aurora', [self.chunk(chunk_position=-1)])
 
+    def test_dense_retrieval_returns_ranked_top_k_evidence(self):
+        connection = indexing.open_index()
+        chunks = [
+            self.chunk(text='Returns and refunds are available.', chunk_position=0),
+            self.chunk(text='Warranty covers manufacturing defects.', chunk_position=1),
+            self.chunk(text='Shipping takes three business days.', chunk_position=2),
+        ]
+        indexing.index_chunks(connection, 'seller-aurora', chunks)
+        results = indexing.retrieve_chunks(
+            connection, 'seller-aurora', 'returns refunds available', top_k=2)
+        self.assertEqual(len(results), 2)
+        self.assertEqual(results[0]['chunk_position'], 0)
+        self.assertGreaterEqual(results[0]['score'], results[1]['score'])
+        self.assertNotIn('embedding', results[0])
+
+    def test_retrieval_validates_inputs_and_allows_an_empty_seller_index(self):
+        connection = indexing.open_index()
+        self.assertEqual(indexing.retrieve_chunks(
+            connection, 'seller-missing', 'return policy'), [])
+        for seller_id, query, top_k in [('', 'policy', 1), ('seller', '', 1),
+                                         ('seller', 'policy', 0), ('seller', 'policy', True)]:
+            with self.subTest(seller_id=seller_id, query=query, top_k=top_k), \
+                    self.assertRaises(indexing.IndexingError):
+                indexing.retrieve_chunks(connection, seller_id, query, top_k=top_k)
+
 
 if __name__ == '__main__':
     unittest.main()

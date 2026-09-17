@@ -1,8 +1,8 @@
 # Architecture boundary
 
-Status: seller-scoped parsing, configurable fixed/recursive chunking, deterministic feature-hashing embeddings, and SQLite vector storage are implemented in Python 3 standard library. Retrieval, generation, and external provider choices remain unimplemented. PROJECT_SPEC.md §§6–15, 27–29 are authoritative.
+Status: seller-scoped parsing, configurable fixed/recursive chunking, deterministic feature-hashing embeddings, SQLite vector storage, and dense top-K retrieval are implemented in Python 3 standard library. Generation and external provider choices remain unimplemented. PROJECT_SPEC.md §§6–15, 27–29 are authoritative.
 
-Seller-scoped ingestion: upload/direct text → parse/clean → configurable fixed or recursive chunks → deterministic unit-normalized feature-hashing embeddings → SQLite vector store. Current code stops after indexing: stored records retain chunk text, complete source metadata, embedding model/dimensions, and seller-scoped stable chunk IDs. The indexing API rejects mixed-seller batches before writing and exposes only seller-filtered inspection. Isolation applies to every parse, corpus read, chunk, and index operation. The PDF extractor covers Latin text operators and FlateDecode streams, not CMaps, form XObjects or OCR.
+Seller-scoped ingestion and retrieval: upload/direct text → parse/clean → configurable fixed or recursive chunks → deterministic unit-normalized feature-hashing embeddings → SQLite vector store → cosine-ranked top-K chunks. Stored records retain chunk text, complete source metadata, embedding model/dimensions, and seller-scoped stable chunk IDs. The indexing API rejects mixed-seller batches before writing; inspection and retrieval require a seller filter. Isolation applies to every parse, corpus read, chunk, index, and retrieval operation. The PDF extractor covers Latin text operators and FlateDecode streams, not CMaps, form XObjects or OCR.
 
 Seller-scoped answering: query → dense top-K retrieval → evidence validation → generation → grounding validation → answer with citations, or safe abstention. Isolation applies to every document/index/retrieval operation from the baseline onward. Updates and deletions must eliminate stale influence after re-indexing completes.
 
@@ -14,8 +14,8 @@ The fixed dataset and evaluation runners form a separate measurement boundary: r
 - `scripts/validate_dataset.py`, `tests/dataset/`: dependency-free Phase 1 corpus and annotation validation, exposed through the dataset gate.
 - `src/ingestion.py`: seller-scoped parse/clean for PDF, Markdown, TXT and direct text.
 - `src/chunking.py`: dependency-free fixed and separator-aware recursive chunking with configurable size and overlap.
-- `src/indexing.py`: dependency-free deterministic embeddings and seller-scoped SQLite chunk storage; it does not perform similarity search.
-- `tests/unit/`, `tests/integration/`, `tests/isolation/`: ingestion, chunking, embedding and indexing implementation checks; later tasks extend these suites. They do not retrieve.
+- `src/indexing.py`: dependency-free deterministic embeddings, seller-scoped SQLite chunk storage, and cosine-ranked dense top-K retrieval.
+- `tests/unit/`, `tests/integration/`, `tests/isolation/`: ingestion-through-retrieval implementation checks; later tasks extend these suites.
 - `verification/evidence/`: generated command records, separate from future RAG evaluation reports.
 - `docs/`: workflow, Definition of Done, evaluation contracts and decisions.
 - `data/raw/`: versioned evaluation policy corpus (`eval-policy-corpus` v1) with seller-scoped documents and `corpus.json` identities.

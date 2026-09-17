@@ -95,6 +95,22 @@ class IngestionIsolationTests(unittest.TestCase):
         self.assertEqual(indexing.list_indexed_chunks(connection, 'seller-aurora'), [])
         self.assertEqual(indexing.list_indexed_chunks(connection, 'seller-beacon'), [])
 
+    def test_dense_retrieval_never_crosses_sellers_in_a_shared_index(self):
+        connection = indexing.open_index()
+        for seller_id in ('seller-aurora', 'seller-beacon'):
+            documents = ingestion.ingest_seller_corpus(seller_id, root=REPO)
+            chunks = [chunk for document in documents
+                      for chunk in chunking.chunk_document(document, chunk_size=180, overlap=20)]
+            indexing.index_chunks(connection, seller_id, chunks)
+        aurora = indexing.retrieve_chunks(
+            connection, 'seller-aurora', '15% restocking fee', top_k=5)
+        beacon = indexing.retrieve_chunks(
+            connection, 'seller-beacon', '15% restocking fee', top_k=5)
+        self.assertTrue(all(item['seller_id'] == 'seller-aurora' for item in aurora))
+        self.assertFalse(any('15% restocking fee' in item['text'] for item in aurora))
+        self.assertTrue(all(item['seller_id'] == 'seller-beacon' for item in beacon))
+        self.assertIn('15% restocking fee', beacon[0]['text'])
+
 
 if __name__ == '__main__':
     unittest.main()
