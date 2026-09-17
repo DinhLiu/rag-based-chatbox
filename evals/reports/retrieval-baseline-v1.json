@@ -1,0 +1,5223 @@
+{
+  "report_schema_version": 1,
+  "report_id": "dense-baseline-e16d0b5073d277ab",
+  "run_id": "e16d0b5073d277ab",
+  "measured_at": "2026-09-17T02:36:25.349206+00:00",
+  "command": [
+    "python3",
+    "scripts/evaluate_retrieval.py"
+  ],
+  "status": "passed",
+  "baseline_role": "initial_dense_baseline",
+  "acceptance_policy": {
+    "name": "complete_measurement_v1",
+    "criteria": [
+      "all cases executed",
+      "no skipped cases",
+      "no evaluation errors",
+      "no cross-seller evidence",
+      "Recall@5 and MRR@10 recorded"
+    ],
+    "numeric_quality_floor": null,
+    "note": "The first baseline records quality; future changes compare against it."
+  },
+  "dataset": {
+    "id": "eval-policy-questions",
+    "version": "1",
+    "sha256": "53e3cefbb9790706787d8842df389f053431e9dcb343bdf3c551b37306d8cb44"
+  },
+  "corpus": {
+    "id": "eval-policy-corpus",
+    "version": "1",
+    "sha256": "b7192d4039a0da5cf9972e8065862040dfd8095cbf8ed9fb2c860c6f5b640ead"
+  },
+  "source_sha256": "a44384cd2c59bcdda877a51bdfc0b1accd08048516369837efa4ecd9f6fc767b",
+  "configuration": {
+    "chunking": {
+      "strategy": "recursive",
+      "chunk_size": 1000,
+      "overlap": 100
+    },
+    "embedding": {
+      "model": "feature-hashing-v1",
+      "dimensions": 256
+    },
+    "retrieval": {
+      "method": "dense_cosine",
+      "top_k": 10,
+      "recall_k": 5,
+      "mrr_k": 10
+    },
+    "seed": null
+  },
+  "counts": {
+    "collected": 40,
+    "executed": 40,
+    "skipped": 0,
+    "failed": 0,
+    "indexed_chunks": 62
+  },
+  "grading": {
+    "method": "exact seller_id/document_id/version/section identity",
+    "version": "retrieval-evidence-identity-v1",
+    "recall_at_5": "mean fraction of expected identities present in the first 5 results",
+    "mrr_at_10": "mean reciprocal rank of the first expected identity in the first 10 results",
+    "empty_expected_evidence": "executed and reported, excluded from both metric denominators"
+  },
+  "metrics": {
+    "recall_at_5": 0.594017094017094,
+    "mrr_at_10": 0.4974358974358974,
+    "graded_case_count": 39,
+    "ungraded_case_count": 1,
+    "seller_leakage_count": 0,
+    "error_rate": 0.0,
+    "retrieval_latency_ms": {
+      "mean": 4.30964957499782,
+      "p50": 4.5952890000080515
+    },
+    "end_to_end_latency_ms": null,
+    "llm_latency_ms": null,
+    "token_usage": null,
+    "cost_per_query": null
+  },
+  "failures": [],
+  "cases": [
+    {
+      "case_id": "aurora-simple-01",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.29793978576556196
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "0b37b21d12f1e2c7d8afbf37dc1e14edcefb12b4ac2b9a48079d3b80cf21541f",
+          "score": 0.282842712474619
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.25537695922762454
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b74ae830843c6a385777e7a2754e6e7d35c9f832cb278cd1f5e5af206578dd35",
+          "score": 0.23145502494313785
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b5a1a943d62bf69535abae7f9d0be4a3d5d9d3d6be7671f457144f86a39fc6c1",
+          "score": 0.22271770159368695
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "5a438f781ac3d801d05eb77c0ed263f66bbfec8fe15db8158bb2a2495f37b9ec",
+          "score": 0.21650635094610968
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "14168fe590e9a27752b77de1935838eb94f096f6b49cfe06b0e3cd84efdde81e",
+          "score": 0.2154101092138323
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "2911730aece5516338985a9eefc9399f0cf93613d04bfcd7d6256398b08c9d4f",
+          "score": 0.21128856368212912
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "29699a18d5ab08b970c7db735a37311d3b8510552794cdf34b696d2eafb850c1",
+          "score": 0.20833333333333331
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "9c23d7a8506f5343228ea416334222ce5455adec8413ac8cecce405e19aadcf1",
+          "score": 0.1976423537605237
+        }
+      ],
+      "matched_at_5": [],
+      "recall_at_5": 0.0,
+      "reciprocal_rank_at_10": 0.0,
+      "retrieval_latency_ms": 5.73372400003791,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-simple-02",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "bbc7507fee59873461adf408f9b5b56a65ad6ee70f6003d52d888261b0d3c6b3",
+          "score": 0.42624134206067066
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "29699a18d5ab08b970c7db735a37311d3b8510552794cdf34b696d2eafb850c1",
+          "score": 0.3535533905932738
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.3210289415620512
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "8bf8e58d5e98e7d34ba186d7c4e2c73ce1a83067f9185bafc9bf707c6932eea9",
+          "score": 0.2668802563418119
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "14168fe590e9a27752b77de1935838eb94f096f6b49cfe06b0e3cd84efdde81e",
+          "score": 0.2611164839335468
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "542a237d67b1df875727b4b363c77e56ee56eecac3d6f2e629ddd4d8b7822eae",
+          "score": 0.23735633163877062
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.2253744679276044
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "0b37b21d12f1e2c7d8afbf37dc1e14edcefb12b4ac2b9a48079d3b80cf21541f",
+          "score": 0.2
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c801ce5d6b51275e9c9d13abcb11a693446df7d0c18a0cf0d4e1e972d3150bd4",
+          "score": 0.16188097705954402
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.1605144707810256
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 4.764055000123335,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-simple-03",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b5a1a943d62bf69535abae7f9d0be4a3d5d9d3d6be7671f457144f86a39fc6c1",
+          "score": 0.538748023761179
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "a522d2f3ce4d5a4b0ec4e94c9288e30617c29b0173d8264ffcc835fd9bc8a65b",
+          "score": 0.4728662437434604
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.4504426164614508
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "929b53724919f1972009173492caae71105ddcb8d3ca0540d77174ff40a99084",
+          "score": 0.42257712736425834
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c801ce5d6b51275e9c9d13abcb11a693446df7d0c18a0cf0d4e1e972d3150bd4",
+          "score": 0.3374631855732573
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "6a98943b779aa370cf69ce4d4943a76741f21cdacc6fc52339d3a5cb0e97901d",
+          "score": 0.3307907078519827
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "14168fe590e9a27752b77de1935838eb94f096f6b49cfe06b0e3cd84efdde81e",
+          "score": 0.3256694736394648
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.3217447260438935
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c0974369b589f7a0a40e81d25d36c0b52ca7b7c4735b3785c99c4d28ddff68d5",
+          "score": 0.32071349029490925
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "8bf8e58d5e98e7d34ba186d7c4e2c73ce1a83067f9185bafc9bf707c6932eea9",
+          "score": 0.29957234475763905
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 0.5,
+      "retrieval_latency_ms": 4.594327000177145,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-simple-04",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "e9fe3ab76e47051379965eae2dd3217e80f7bdc615653ac7aad66e7b0693be4f",
+          "score": 0.28867513459481287
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.26940795304016235
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "e8c444051fd1367fdc52a5d56acb75c358a76c05f6eec9d582a6e787b72a31a4",
+          "score": 0.24659848095803594
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c801ce5d6b51275e9c9d13abcb11a693446df7d0c18a0cf0d4e1e972d3150bd4",
+          "score": 0.24282146558931603
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "8405d4fe96a54623160c56f41dcdb8098fb23d3bd66b07f6caf43839524bf7f3",
+          "score": 0.23094010767585027
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "14168fe590e9a27752b77de1935838eb94f096f6b49cfe06b0e3cd84efdde81e",
+          "score": 0.2175970699446223
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "fc637ae1c1e0d26f1196df119f1a59c2ead8b9200bf465a104c9347351e940bc",
+          "score": 0.2041241452319315
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "0b37b21d12f1e2c7d8afbf37dc1e14edcefb12b4ac2b9a48079d3b80cf21541f",
+          "score": 0.2
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.18814417367671946
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.1805787796286538
+        }
+      ],
+      "matched_at_5": [],
+      "recall_at_5": 0.0,
+      "reciprocal_rank_at_10": 0.0,
+      "retrieval_latency_ms": 4.570451999825309,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-simple-05",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "338310d020a8f3722a0cd528ecad095d76fcccadc5f1ed85aaa191079f156f75",
+          "score": 0.273009453115974
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.27153769332085226
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "14168fe590e9a27752b77de1935838eb94f096f6b49cfe06b0e3cd84efdde81e",
+          "score": 0.2631806779839076
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c801ce5d6b51275e9c9d13abcb11a693446df7d0c18a0cf0d4e1e972d3150bd4",
+          "score": 0.2569780843750233
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.2555506259999759
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "9c23d7a8506f5343228ea416334222ce5455adec8413ac8cecce405e19aadcf1",
+          "score": 0.253546276418555
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.22750787759664504
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.21333544036043334
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "3fcb7e3e51bd729139d985943b6993ad7f915f46b09fca586809662f7520aa7c",
+          "score": 0.2087667001917663
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b74ae830843c6a385777e7a2754e6e7d35c9f832cb278cd1f5e5af206578dd35",
+          "score": 0.20619652471058064
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 0.25,
+      "retrieval_latency_ms": 4.609505000189529,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-simple-06",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "338310d020a8f3722a0cd528ecad095d76fcccadc5f1ed85aaa191079f156f75",
+          "score": 0.4949015419574726
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.14874102932718242
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c801ce5d6b51275e9c9d13abcb11a693446df7d0c18a0cf0d4e1e972d3150bd4",
+          "score": 0.12285902336679023
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "929b53724919f1972009173492caae71105ddcb8d3ca0540d77174ff40a99084",
+          "score": 0.1
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "fc637ae1c1e0d26f1196df119f1a59c2ead8b9200bf465a104c9347351e940bc",
+          "score": 0.08606629658238704
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "f76b52a9fff4a65ff782234f364a0a8c5df043f9e5ed2d5038d745503e890596",
+          "score": 0.0659380473395787
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "b59d59ae22708cd95c5d303a6176b908d9e3bc85e797d36d31d16fbf4599e64d",
+          "score": 0.06454972243679029
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "35cb9b0bfb2c7ff05e78728cc792d1433de8984804870b29422806e5a8150cfa",
+          "score": 0.0632455532033676
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.056796183424706485
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "af6388f616f3769c68b1ed1f5ef562b41db711ddf8c5aecc91b1f4d07376af30",
+          "score": 0.05345224838248488
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 4.531227999905241,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-simple-07",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.3135736227945324
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b5a1a943d62bf69535abae7f9d0be4a3d5d9d3d6be7671f457144f86a39fc6c1",
+          "score": 0.2519763153394848
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b74ae830843c6a385777e7a2754e6e7d35c9f832cb278cd1f5e5af206578dd35",
+          "score": 0.2182178902359924
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "929b53724919f1972009173492caae71105ddcb8d3ca0540d77174ff40a99084",
+          "score": 0.21081851067789192
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "9c23d7a8506f5343228ea416334222ce5455adec8413ac8cecce405e19aadcf1",
+          "score": 0.18633899812498245
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6",
+          "chunk_id": "ab6c9bd70978e72020cd84615050f8998ea90ee2b846097a679dd3111f5d4728",
+          "score": 0.18314741859825204
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.1605144707810256
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "7954ab28e05ac67380e97d864f41a2ca59f3e81416ed7932030833a6e1b16a77",
+          "score": 0.14002800840280097
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "e9fe3ab76e47051379965eae2dd3217e80f7bdc615653ac7aad66e7b0693be4f",
+          "score": 0.12830005981991682
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.1203858530857692
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 0.3333333333333333,
+      "retrieval_latency_ms": 4.558619999897928,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-simple-08",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.42667088072086673
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "338310d020a8f3722a0cd528ecad095d76fcccadc5f1ed85aaa191079f156f75",
+          "score": 0.18200630207731602
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "be616ef7b6674a07e348762ad4605ada69e7ae6ccc2697fa6f8345c1b48b7533",
+          "score": 0.15724272550828775
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6",
+          "chunk_id": "ab6c9bd70978e72020cd84615050f8998ea90ee2b846097a679dd3111f5d4728",
+          "score": 0.15575223949534953
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "5a438f781ac3d801d05eb77c0ed263f66bbfec8fe15db8158bb2a2495f37b9ec",
+          "score": 0.1543033499620919
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "b59d59ae22708cd95c5d303a6176b908d9e3bc85e797d36d31d16fbf4599e64d",
+          "score": 0.1543033499620919
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "e9fe3ab76e47051379965eae2dd3217e80f7bdc615653ac7aad66e7b0693be4f",
+          "score": 0.14547859349066158
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "14168fe590e9a27752b77de1935838eb94f096f6b49cfe06b0e3cd84efdde81e",
+          "score": 0.1315903389919538
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "af6388f616f3769c68b1ed1f5ef562b41db711ddf8c5aecc91b1f4d07376af30",
+          "score": 0.12777531299998796
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "9c23d7a8506f5343228ea416334222ce5455adec8413ac8cecce405e19aadcf1",
+          "score": 0.1267731382092775
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 4.554340999675333,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-simple-09",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": null,
+          "chunk_id": "b6e42c3c6f16d6dfde9915e9722c1e23cba7b62cf8e0f86ff8453b9679ad4d21",
+          "score": 0.408248290463863
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "0e0b3878073e2c75004a1a282427f29df76cd5cddc5e65615b02b6605d06b5f5",
+          "score": 0.39223227027636803
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "af6388f616f3769c68b1ed1f5ef562b41db711ddf8c5aecc91b1f4d07376af30",
+          "score": 0.35856858280031806
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "30162591952984c80eea881f8a1c980ca3e223e31d433964e543dac890bef5c3",
+          "score": 0.3162277660168379
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "f76b52a9fff4a65ff782234f364a0a8c5df043f9e5ed2d5038d745503e890596",
+          "score": 0.29488391230979427
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "2e902ace8a65c44bce4d6deca60becdf1e49051b220c312bd264c55f643b81ca",
+          "score": 0.294174202707276
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "bfb48c333d9b00b43b5c91a42a428038e3050abfaa1db11e691371d41dd0768a",
+          "score": 0.294174202707276
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "f9546068f5167423a5280dc15c985f68f62ec2f3236af3cace4388c375c4a8ec",
+          "score": 0.294174202707276
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "fe66b06ef0bc9cce6e77acbcfc4de47f2ba22bcb8228ae1f046a63836ed4719a",
+          "score": 0.294174202707276
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "fc637ae1c1e0d26f1196df119f1a59c2ead8b9200bf465a104c9347351e940bc",
+          "score": 0.28867513459481287
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 0.25,
+      "retrieval_latency_ms": 4.577225000048202,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-simple-10",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "8405d4fe96a54623160c56f41dcdb8098fb23d3bd66b07f6caf43839524bf7f3",
+          "score": 0.5570484990582331
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.3266793038882825
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.3249182166443294
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.3057883148625753
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "fc637ae1c1e0d26f1196df119f1a59c2ead8b9200bf465a104c9347351e940bc",
+          "score": 0.2872134789517764
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "929b53724919f1972009173492caae71105ddcb8d3ca0540d77174ff40a99084",
+          "score": 0.2860387767736777
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6",
+          "chunk_id": "ab6c9bd70978e72020cd84615050f8998ea90ee2b846097a679dd3111f5d4728",
+          "score": 0.24849460996877468
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c0974369b589f7a0a40e81d25d36c0b52ca7b7c4735b3785c99c4d28ddff68d5",
+          "score": 0.21105794120443455
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "b91ad43adc5ed5a4b95d57bc4a2fbfea073ccac4bb9ae1711b8d27656379f09f",
+          "score": 0.16116459280507606
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "af6388f616f3769c68b1ed1f5ef562b41db711ddf8c5aecc91b1f4d07376af30",
+          "score": 0.15289415743128765
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 4.644090000056167,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-simple-11",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.6810052246069987
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "929b53724919f1972009173492caae71105ddcb8d3ca0540d77174ff40a99084",
+          "score": 0.4844813951249544
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "8405d4fe96a54623160c56f41dcdb8098fb23d3bd66b07f6caf43839524bf7f3",
+          "score": 0.4082482904638629
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6",
+          "chunk_id": "ab6c9bd70978e72020cd84615050f8998ea90ee2b846097a679dd3111f5d4728",
+          "score": 0.33995005182504245
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "8bf8e58d5e98e7d34ba186d7c4e2c73ce1a83067f9185bafc9bf707c6932eea9",
+          "score": 0.2830692585361489
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c0974369b589f7a0a40e81d25d36c0b52ca7b7c4735b3785c99c4d28ddff68d5",
+          "score": 0.282842712474619
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "a522d2f3ce4d5a4b0ec4e94c9288e30617c29b0173d8264ffcc835fd9bc8a65b",
+          "score": 0.26064301757134345
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.25537695922762454
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "542a237d67b1df875727b4b363c77e56ee56eecac3d6f2e629ddd4d8b7822eae",
+          "score": 0.2517544074890067
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.2390457218668787
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 0.5,
+      "retrieval_latency_ms": 4.580429999805347,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-simple-12",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "e8c444051fd1367fdc52a5d56acb75c358a76c05f6eec9d582a6e787b72a31a4",
+          "score": 0.57186276940104
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c0974369b589f7a0a40e81d25d36c0b52ca7b7c4735b3785c99c4d28ddff68d5",
+          "score": 0.37947331922020555
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.37416573867739417
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "2911730aece5516338985a9eefc9399f0cf93613d04bfcd7d6256398b08c9d4f",
+          "score": 0.264575131106459
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6",
+          "chunk_id": "ab6c9bd70978e72020cd84615050f8998ea90ee2b846097a679dd3111f5d4728",
+          "score": 0.2606233456578416
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "338310d020a8f3722a0cd528ecad095d76fcccadc5f1ed85aaa191079f156f75",
+          "score": 0.22841609628806428
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.22718473369882594
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "7954ab28e05ac67380e97d864f41a2ca59f3e81416ed7932030833a6e1b16a77",
+          "score": 0.22140372138502382
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "8405d4fe96a54623160c56f41dcdb8098fb23d3bd66b07f6caf43839524bf7f3",
+          "score": 0.2190890230020664
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "af6388f616f3769c68b1ed1f5ef562b41db711ddf8c5aecc91b1f4d07376af30",
+          "score": 0.2138089935299395
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 4.524807000052533,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-simple-13",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "2911730aece5516338985a9eefc9399f0cf93613d04bfcd7d6256398b08c9d4f",
+          "score": 0.34156502553198664
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "8405d4fe96a54623160c56f41dcdb8098fb23d3bd66b07f6caf43839524bf7f3",
+          "score": 0.282842712474619
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "542a237d67b1df875727b4b363c77e56ee56eecac3d6f2e629ddd4d8b7822eae",
+          "score": 0.24225079155575463
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "070b8eb9c955509f80b2cbef0a835ff6bfe682585f532930c4a909005529ae76",
+          "score": 0.14907119849998599
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "8bf8e58d5e98e7d34ba186d7c4e2c73ce1a83067f9185bafc9bf707c6932eea9",
+          "score": 0.1307440900921227
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": null,
+          "chunk_id": "b6e42c3c6f16d6dfde9915e9722c1e23cba7b62cf8e0f86ff8453b9679ad4d21",
+          "score": 0.11785113019775795
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "14168fe590e9a27752b77de1935838eb94f096f6b49cfe06b0e3cd84efdde81e",
+          "score": 0.10660035817780524
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.0982946374365981
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.0982946374365981
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "29699a18d5ab08b970c7db735a37311d3b8510552794cdf34b696d2eafb850c1",
+          "score": 0.09622504486493764
+        }
+      ],
+      "matched_at_5": [],
+      "recall_at_5": 0.0,
+      "reciprocal_rank_at_10": 0.0,
+      "retrieval_latency_ms": 4.510510000272916,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-simple-14",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.65991201759609
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "fc637ae1c1e0d26f1196df119f1a59c2ead8b9200bf465a104c9347351e940bc",
+          "score": 0.33333333333333337
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.20701966780270625
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c801ce5d6b51275e9c9d13abcb11a693446df7d0c18a0cf0d4e1e972d3150bd4",
+          "score": 0.19826289642953604
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "bc58bd0c064fa67960192763b17e161c30b7f524f130acb936cf8bd1556ee345",
+          "score": 0.19611613513818404
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b74ae830843c6a385777e7a2754e6e7d35c9f832cb278cd1f5e5af206578dd35",
+          "score": 0.17817416127494962
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.15361907452851373
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "2911730aece5516338985a9eefc9399f0cf93613d04bfcd7d6256398b08c9d4f",
+          "score": 0.14638501094227999
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "74000a653c849692dca328cd7f0619d0303b4ffa21a7f989d0ca4cf7d09c2689",
+          "score": 0.13525044520011484
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "e8c444051fd1367fdc52a5d56acb75c358a76c05f6eec9d582a6e787b72a31a4",
+          "score": 0.1342312110428049
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 4.55329000033089,
+      "failure_reason": null
+    },
+    {
+      "case_id": "beacon-simple-15",
+      "seller_id": "seller-beacon",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "207723de312b3bd29bb631bac686850b167e1853a337287f9d8ad2da857a990a",
+          "score": 0.3256694736394648
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "36f824b51dbfdef7af2e198cd06f322973ad6b571a2a6ce8875285a3a96d9d8f",
+          "score": 0.2849014411490949
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "bb2d99a3c67d605bd8916300189d277935b6e360231ec3db09f67446504263ea",
+          "score": 0.2667325346846322
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "7d946ea1f5b9dcca5f41eb49b42b3301648c677ee93509e3638cf488e9f976de",
+          "score": 0.23354968324845687
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "892f1470a690f4f62d4f8d2f4dddc573a85a8175eb20081708af66617556886a",
+          "score": 0.23354968324845687
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "c17f3016ea1b8ee6b8c079c3eaba81c408be8c0ac6c4ed40a9edfc2c7e756b3e",
+          "score": 0.23354968324845687
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "be244e811e9ffef5297db0adc9d693520d56912c27e3f266b79dbe21b67b5dd6",
+          "score": 0.2279211529192759
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "4c8e1df988b6cab5a284dc4ae45e2f819e176ad9a28d316bfd7d4b1a35eeee99",
+          "score": 0.19069251784911848
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "7cab4cac9df6217b5131751e7ec1fc6739d17821a132dd52f50509071ed0b114",
+          "score": 0.18993429409939655
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "7288c393e5ae76e858e3c9717a27c55724dee9960d41f5a560128b46b98bee18",
+          "score": 0.15075567228888181
+        }
+      ],
+      "matched_at_5": [],
+      "recall_at_5": 0.0,
+      "reciprocal_rank_at_10": 0.0,
+      "retrieval_latency_ms": 1.3130030001775594,
+      "failure_reason": null
+    },
+    {
+      "case_id": "beacon-simple-16",
+      "seller_id": "seller-beacon",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 1"
+        },
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "bb2d99a3c67d605bd8916300189d277935b6e360231ec3db09f67446504263ea",
+          "score": 0.3611575592573077
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "be244e811e9ffef5297db0adc9d693520d56912c27e3f266b79dbe21b67b5dd6",
+          "score": 0.1543033499620919
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "21758591aa90477c0b4a42184c49164995d37ec582a5ca722cd571bdcc7c0081",
+          "score": 0.1516196087157807
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "4c8e1df988b6cab5a284dc4ae45e2f819e176ad9a28d316bfd7d4b1a35eeee99",
+          "score": 0.12909944487358058
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "7d946ea1f5b9dcca5f41eb49b42b3301648c677ee93509e3638cf488e9f976de",
+          "score": 0.10540925533894598
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "892f1470a690f4f62d4f8d2f4dddc573a85a8175eb20081708af66617556886a",
+          "score": 0.10540925533894598
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "c17f3016ea1b8ee6b8c079c3eaba81c408be8c0ac6c4ed40a9edfc2c7e756b3e",
+          "score": 0.10540925533894598
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "7cab4cac9df6217b5131751e7ec1fc6739d17821a132dd52f50509071ed0b114",
+          "score": 0.10286889997472794
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "36f824b51dbfdef7af2e198cd06f322973ad6b571a2a6ce8875285a3a96d9d8f",
+          "score": 0.07715167498104596
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "9437fc8b26059162b02cce4de581d29cc9888590328948d7f35be689e26b30f7",
+          "score": 0.07580980435789035
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "recall_at_5": 0.5,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 1.2694309998551034,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-paraphrased-01",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 2"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.24866794886408364
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "8405d4fe96a54623160c56f41dcdb8098fb23d3bd66b07f6caf43839524bf7f3",
+          "score": 0.2385139175999775
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6",
+          "chunk_id": "ab6c9bd70978e72020cd84615050f8998ea90ee2b846097a679dd3111f5d4728",
+          "score": 0.21279807063957257
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.18650096164806274
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.17457431218879388
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "929b53724919f1972009173492caae71105ddcb8d3ca0540d77174ff40a99084",
+          "score": 0.1632993161855452
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c0974369b589f7a0a40e81d25d36c0b52ca7b7c4735b3785c99c4d28ddff68d5",
+          "score": 0.15491933384829665
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "b91ad43adc5ed5a4b95d57bc4a2fbfea073ccac4bb9ae1711b8d27656379f09f",
+          "score": 0.13801311186847084
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "9c23d7a8506f5343228ea416334222ce5455adec8413ac8cecce405e19aadcf1",
+          "score": 0.11547005383792514
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "f76b52a9fff4a65ff782234f364a0a8c5df043f9e5ed2d5038d745503e890596",
+          "score": 0.10767638041163309
+        }
+      ],
+      "matched_at_5": [],
+      "recall_at_5": 0.0,
+      "reciprocal_rank_at_10": 0.0,
+      "retrieval_latency_ms": 4.642636999960814,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-paraphrased-02",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b5a1a943d62bf69535abae7f9d0be4a3d5d9d3d6be7671f457144f86a39fc6c1",
+          "score": 0.4714045207910317
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "a522d2f3ce4d5a4b0ec4e94c9288e30617c29b0173d8264ffcc835fd9bc8a65b",
+          "score": 0.43346072343150543
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b74ae830843c6a385777e7a2754e6e7d35c9f832cb278cd1f5e5af206578dd35",
+          "score": 0.3499271061118826
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "6a98943b779aa370cf69ce4d4943a76741f21cdacc6fc52339d3a5cb0e97901d",
+          "score": 0.3307907078519827
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "929b53724919f1972009173492caae71105ddcb8d3ca0540d77174ff40a99084",
+          "score": 0.28171808490950556
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.2573957808351148
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.24000768036865966
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c801ce5d6b51275e9c9d13abcb11a693446df7d0c18a0cf0d4e1e972d3150bd4",
+          "score": 0.23362835924302428
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.2252213082307254
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "bc58bd0c064fa67960192763b17e161c30b7f524f130acb936cf8bd1556ee345",
+          "score": 0.21398024625545647
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 0.5,
+      "retrieval_latency_ms": 4.579158000069583,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-paraphrased-03",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 1"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b74ae830843c6a385777e7a2754e6e7d35c9f832cb278cd1f5e5af206578dd35",
+          "score": 0.19094065395649334
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "2911730aece5516338985a9eefc9399f0cf93613d04bfcd7d6256398b08c9d4f",
+          "score": 0.1494035761667992
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "2e902ace8a65c44bce4d6deca60becdf1e49051b220c312bd264c55f643b81ca",
+          "score": 0.1386750490563073
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "338310d020a8f3722a0cd528ecad095d76fcccadc5f1ed85aaa191079f156f75",
+          "score": 0.12038585308576918
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "30162591952984c80eea881f8a1c980ca3e223e31d433964e543dac890bef5c3",
+          "score": 0.11180339887498948
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "be616ef7b6674a07e348762ad4605ada69e7ae6ccc2697fa6f8345c1b48b7533",
+          "score": 0.10400628679223047
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "0b37b21d12f1e2c7d8afbf37dc1e14edcefb12b4ac2b9a48079d3b80cf21541f",
+          "score": 0.1
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "e9fe3ab76e47051379965eae2dd3217e80f7bdc615653ac7aad66e7b0693be4f",
+          "score": 0.09622504486493763
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.09407208683835973
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "148d578ea70ef080e9e7cb12426cbd258239a86e430be7f912b71c3b3157ce67",
+          "score": 0.07537783614444091
+        }
+      ],
+      "matched_at_5": [],
+      "recall_at_5": 0.0,
+      "reciprocal_rank_at_10": 0.0,
+      "retrieval_latency_ms": 4.641103999801999,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-paraphrased-04",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.47913247997608915
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.26278072311320266
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "14168fe590e9a27752b77de1935838eb94f096f6b49cfe06b0e3cd84efdde81e",
+          "score": 0.2533201985524494
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "8405d4fe96a54623160c56f41dcdb8098fb23d3bd66b07f6caf43839524bf7f3",
+          "score": 0.2520504151250417
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.21780342093451605
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c801ce5d6b51275e9c9d13abcb11a693446df7d0c18a0cf0d4e1e972d3150bd4",
+          "score": 0.21201428134419545
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "74000a653c849692dca328cd7f0619d0303b4ffa21a7f989d0ca4cf7d09c2689",
+          "score": 0.18748505440195307
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "af6388f616f3769c68b1ed1f5ef562b41db711ddf8c5aecc91b1f4d07376af30",
+          "score": 0.16398401233815754
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b74ae830843c6a385777e7a2754e6e7d35c9f832cb278cd1f5e5af206578dd35",
+          "score": 0.15877683720748895
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "6a98943b779aa370cf69ce4d4943a76741f21cdacc6fc52339d3a5cb0e97901d",
+          "score": 0.150093837982278
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 4.632658999980777,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-paraphrased-05",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "8405d4fe96a54623160c56f41dcdb8098fb23d3bd66b07f6caf43839524bf7f3",
+          "score": 0.3464101615137754
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "929b53724919f1972009173492caae71105ddcb8d3ca0540d77174ff40a99084",
+          "score": 0.2898754521821014
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c0974369b589f7a0a40e81d25d36c0b52ca7b7c4735b3785c99c4d28ddff68d5",
+          "score": 0.275
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.2708681694429807
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c801ce5d6b51275e9c9d13abcb11a693446df7d0c18a0cf0d4e1e972d3150bd4",
+          "score": 0.2671036121482476
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.253546276418555
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "542a237d67b1df875727b4b363c77e56ee56eecac3d6f2e629ddd4d8b7822eae",
+          "score": 0.23735633163877065
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.22450662753346862
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.2116621953863094
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6",
+          "chunk_id": "ab6c9bd70978e72020cd84615050f8998ea90ee2b846097a679dd3111f5d4728",
+          "score": 0.20604084592303354
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 4.551655999875948,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-paraphrased-06",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "f76b52a9fff4a65ff782234f364a0a8c5df043f9e5ed2d5038d745503e890596",
+          "score": 0.2637521893583148
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.19034674690672024
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "8405d4fe96a54623160c56f41dcdb8098fb23d3bd66b07f6caf43839524bf7f3",
+          "score": 0.18257418583505533
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.1522773975253762
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "8bf8e58d5e98e7d34ba186d7c4e2c73ce1a83067f9185bafc9bf707c6932eea9",
+          "score": 0.15191090506255
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "929b53724919f1972009173492caae71105ddcb8d3ca0540d77174ff40a99084",
+          "score": 0.13333333333333333
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6",
+          "chunk_id": "ab6c9bd70978e72020cd84615050f8998ea90ee2b846097a679dd3111f5d4728",
+          "score": 0.1303116728289208
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "35cb9b0bfb2c7ff05e78728cc792d1433de8984804870b29422806e5a8150cfa",
+          "score": 0.1264911064067352
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "542a237d67b1df875727b4b363c77e56ee56eecac3d6f2e629ddd4d8b7822eae",
+          "score": 0.11258799375612022
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "bbc7507fee59873461adf408f9b5b56a65ad6ee70f6003d52d888261b0d3c6b3",
+          "score": 0.11028219331407116
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 4.5952890000080515,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-paraphrased-07",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.2837521769195829
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.2788866755113585
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "9c23d7a8506f5343228ea416334222ce5455adec8413ac8cecce405e19aadcf1",
+          "score": 0.26352313834736496
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6",
+          "chunk_id": "ab6c9bd70978e72020cd84615050f8998ea90ee2b846097a679dd3111f5d4728",
+          "score": 0.22663336788336166
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.2217300350792465
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "8405d4fe96a54623160c56f41dcdb8098fb23d3bd66b07f6caf43839524bf7f3",
+          "score": 0.21773242158072692
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.21166687833365083
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "e9fe3ab76e47051379965eae2dd3217e80f7bdc615653ac7aad66e7b0693be4f",
+          "score": 0.1814436846506058
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "929b53724919f1972009173492caae71105ddcb8d3ca0540d77174ff40a99084",
+          "score": 0.17391639824998367
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "338310d020a8f3722a0cd528ecad095d76fcccadc5f1ed85aaa191079f156f75",
+          "score": 0.17025130615174972
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "recall_at_5": 0.5,
+      "reciprocal_rank_at_10": 0.2,
+      "retrieval_latency_ms": 4.662906000248768,
+      "failure_reason": null
+    },
+    {
+      "case_id": "beacon-paraphrased-08",
+      "seller_id": "seller-beacon",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 2"
+        },
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 4"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "7cab4cac9df6217b5131751e7ec1fc6739d17821a132dd52f50509071ed0b114",
+          "score": 0.3086066999241838
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "9437fc8b26059162b02cce4de581d29cc9888590328948d7f35be689e26b30f7",
+          "score": 0.26533431525261625
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "207723de312b3bd29bb631bac686850b167e1853a337287f9d8ad2da857a990a",
+          "score": 0.18898223650461363
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "4c8e1df988b6cab5a284dc4ae45e2f819e176ad9a28d316bfd7d4b1a35eeee99",
+          "score": 0.16137430609197573
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "bb2d99a3c67d605bd8916300189d277935b6e360231ec3db09f67446504263ea",
+          "score": 0.12038585308576923
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "21758591aa90477c0b4a42184c49164995d37ec582a5ca722cd571bdcc7c0081",
+          "score": 0.11371470653683552
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "7d946ea1f5b9dcca5f41eb49b42b3301648c677ee93509e3638cf488e9f976de",
+          "score": 0.10540925533894598
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "892f1470a690f4f62d4f8d2f4dddc573a85a8175eb20081708af66617556886a",
+          "score": 0.10540925533894598
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "7288c393e5ae76e858e3c9717a27c55724dee9960d41f5a560128b46b98bee18",
+          "score": 0.10206207261596577
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "36f824b51dbfdef7af2e198cd06f322973ad6b571a2a6ce8875285a3a96d9d8f",
+          "score": 0.07715167498104596
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "recall_at_5": 0.5,
+      "reciprocal_rank_at_10": 0.5,
+      "retrieval_latency_ms": 1.4037829996595974,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-multi-01",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 2"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.5905863785521986
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "9c23d7a8506f5343228ea416334222ce5455adec8413ac8cecce405e19aadcf1",
+          "score": 0.5484827557301444
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "14168fe590e9a27752b77de1935838eb94f096f6b49cfe06b0e3cd84efdde81e",
+          "score": 0.5168865612218189
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.43516891051214635
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "5a438f781ac3d801d05eb77c0ed263f66bbfec8fe15db8158bb2a2495f37b9ec",
+          "score": 0.3689323936863109
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "929b53724919f1972009173492caae71105ddcb8d3ca0540d77174ff40a99084",
+          "score": 0.35381518506868126
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c801ce5d6b51275e9c9d13abcb11a693446df7d0c18a0cf0d4e1e972d3150bd4",
+          "score": 0.35109890380286335
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "74000a653c849692dca328cd7f0619d0303b4ffa21a7f989d0ca4cf7d09c2689",
+          "score": 0.3421595691073206
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "29699a18d5ab08b970c7db735a37311d3b8510552794cdf34b696d2eafb850c1",
+          "score": 0.3347193406976015
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "8405d4fe96a54623160c56f41dcdb8098fb23d3bd66b07f6caf43839524bf7f3",
+          "score": 0.32795663669996905
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "version": "1",
+          "section": "Section 2"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 0.3333333333333333,
+      "retrieval_latency_ms": 4.6302340001602715,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-multi-02",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 5"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b5a1a943d62bf69535abae7f9d0be4a3d5d9d3d6be7671f457144f86a39fc6c1",
+          "score": 0.3600411499115478
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "be616ef7b6674a07e348762ad4605ada69e7ae6ccc2697fa6f8345c1b48b7533",
+          "score": 0.22645540682891918
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c0974369b589f7a0a40e81d25d36c0b52ca7b7c4735b3785c99c4d28ddff68d5",
+          "score": 0.20412414523193154
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "542a237d67b1df875727b4b363c77e56ee56eecac3d6f2e629ddd4d8b7822eae",
+          "score": 0.1938006332446037
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.19202384316064217
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "3fcb7e3e51bd729139d985943b6993ad7f915f46b09fca586809662f7520aa7c",
+          "score": 0.18791150700070727
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "0b37b21d12f1e2c7d8afbf37dc1e14edcefb12b4ac2b9a48079d3b80cf21541f",
+          "score": 0.16329931618554525
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "e9fe3ab76e47051379965eae2dd3217e80f7bdc615653ac7aad66e7b0693be4f",
+          "score": 0.15713484026367724
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "338310d020a8f3722a0cd528ecad095d76fcccadc5f1ed85aaa191079f156f75",
+          "score": 0.14744195615489714
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "9c23d7a8506f5343228ea416334222ce5455adec8413ac8cecce405e19aadcf1",
+          "score": 0.13693063937629155
+        }
+      ],
+      "matched_at_5": [],
+      "recall_at_5": 0.0,
+      "reciprocal_rank_at_10": 0.0,
+      "retrieval_latency_ms": 4.5587800000248535,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-multi-03",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 2"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.4086031347641993
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "8405d4fe96a54623160c56f41dcdb8098fb23d3bd66b07f6caf43839524bf7f3",
+          "score": 0.3919183588453084
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6",
+          "chunk_id": "ab6c9bd70978e72020cd84615050f8998ea90ee2b846097a679dd3111f5d4728",
+          "score": 0.3302371932014698
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.3107594384269423
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "929b53724919f1972009173492caae71105ddcb8d3ca0540d77174ff40a99084",
+          "score": 0.2534210374499762
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c0974369b589f7a0a40e81d25d36c0b52ca7b7c4735b3785c99c4d28ddff68d5",
+          "score": 0.24041630560342614
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "35cb9b0bfb2c7ff05e78728cc792d1433de8984804870b29422806e5a8150cfa",
+          "score": 0.1979898987322333
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "9c23d7a8506f5343228ea416334222ce5455adec8413ac8cecce405e19aadcf1",
+          "score": 0.18973665961010275
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "b91ad43adc5ed5a4b95d57bc4a2fbfea073ccac4bb9ae1711b8d27656379f09f",
+          "score": 0.1889822365046136
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.1778001778002667
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "version": "1",
+          "section": "Section 2"
+        }
+      ],
+      "recall_at_5": 0.3333333333333333,
+      "reciprocal_rank_at_10": 0.2,
+      "retrieval_latency_ms": 4.6947749997343635,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-multi-04",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 1"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "29699a18d5ab08b970c7db735a37311d3b8510552794cdf34b696d2eafb850c1",
+          "score": 0.49029033784546017
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "74000a653c849692dca328cd7f0619d0303b4ffa21a7f989d0ca4cf7d09c2689",
+          "score": 0.4287947242821822
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "9c23d7a8506f5343228ea416334222ce5455adec8413ac8cecce405e19aadcf1",
+          "score": 0.40311288741492746
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "14168fe590e9a27752b77de1935838eb94f096f6b49cfe06b0e3cd84efdde81e",
+          "score": 0.38624363966821407
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "5a438f781ac3d801d05eb77c0ed263f66bbfec8fe15db8158bb2a2495f37b9ec",
+          "score": 0.33968311024337877
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "bc58bd0c064fa67960192763b17e161c30b7f524f130acb936cf8bd1556ee345",
+          "score": 0.31088091417902924
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "3fcb7e3e51bd729139d985943b6993ad7f915f46b09fca586809662f7520aa7c",
+          "score": 0.30638575271289925
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c0974369b589f7a0a40e81d25d36c0b52ca7b7c4735b3785c99c4d28ddff68d5",
+          "score": 0.30508510792387605
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.30050125348238005
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.2869999276570522
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "recall_at_5": 0.5,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 4.68886399994517,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-multi-05",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 4"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 1"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 4"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "be616ef7b6674a07e348762ad4605ada69e7ae6ccc2697fa6f8345c1b48b7533",
+          "score": 0.20965696734438366
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "542a237d67b1df875727b4b363c77e56ee56eecac3d6f2e629ddd4d8b7822eae",
+          "score": 0.17942452160650263
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "0b37b21d12f1e2c7d8afbf37dc1e14edcefb12b4ac2b9a48079d3b80cf21541f",
+          "score": 0.15118578920369088
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "338310d020a8f3722a0cd528ecad095d76fcccadc5f1ed85aaa191079f156f75",
+          "score": 0.136504726557987
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "2e902ace8a65c44bce4d6deca60becdf1e49051b220c312bd264c55f643b81ca",
+          "score": 0.10482848367219183
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "2911730aece5516338985a9eefc9399f0cf93613d04bfcd7d6256398b08c9d4f",
+          "score": 0.09035079029052512
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "e9fe3ab76e47051379965eae2dd3217e80f7bdc615653ac7aad66e7b0693be4f",
+          "score": 0.07273929674533079
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "148d578ea70ef080e9e7cb12426cbd258239a86e430be7f912b71c3b3157ce67",
+          "score": 0.05698028822981897
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "8bf8e58d5e98e7d34ba186d7c4e2c73ce1a83067f9185bafc9bf707c6932eea9",
+          "score": 1.3877787807814457e-17
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "070b8eb9c955509f80b2cbef0a835ff6bfe682585f532930c4a909005529ae76",
+          "score": 0.0
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "version": "1",
+          "section": "Section 4"
+        }
+      ],
+      "recall_at_5": 0.3333333333333333,
+      "reciprocal_rank_at_10": 0.5,
+      "retrieval_latency_ms": 4.5570170000246435,
+      "failure_reason": null
+    },
+    {
+      "case_id": "beacon-multi-06",
+      "seller_id": "seller-beacon",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3"
+        },
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "7cab4cac9df6217b5131751e7ec1fc6739d17821a132dd52f50509071ed0b114",
+          "score": 0.41147559989891175
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "4c8e1df988b6cab5a284dc4ae45e2f819e176ad9a28d316bfd7d4b1a35eeee99",
+          "score": 0.225924028528766
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "7d946ea1f5b9dcca5f41eb49b42b3301648c677ee93509e3638cf488e9f976de",
+          "score": 0.21081851067789195
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "892f1470a690f4f62d4f8d2f4dddc573a85a8175eb20081708af66617556886a",
+          "score": 0.21081851067789195
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "bb2d99a3c67d605bd8916300189d277935b6e360231ec3db09f67446504263ea",
+          "score": 0.21067524290009615
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "c17f3016ea1b8ee6b8c079c3eaba81c408be8c0ac6c4ed40a9edfc2c7e756b3e",
+          "score": 0.15811388300841897
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "36f824b51dbfdef7af2e198cd06f322973ad6b571a2a6ce8875285a3a96d9d8f",
+          "score": 0.1543033499620919
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-beacon",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "207723de312b3bd29bb631bac686850b167e1853a337287f9d8ad2da857a990a",
+          "score": 0.12598815766974242
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "be244e811e9ffef5297db0adc9d693520d56912c27e3f266b79dbe21b67b5dd6",
+          "score": 0.11572751247156893
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "9437fc8b26059162b02cce4de581d29cc9888590328948d7f35be689e26b30f7",
+          "score": 0.11371470653683552
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "return_policy",
+          "version": "1",
+          "section": "Section 3"
+        },
+        {
+          "seller_id": "seller-beacon",
+          "document_id": "shipping_policy",
+          "version": "1",
+          "section": "Section 3"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 1.3188640000407759,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-unanswerable-01",
+      "seller_id": "seller-aurora",
+      "answerable": false,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.1805787796286538
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.1504823163572115
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "be616ef7b6674a07e348762ad4605ada69e7ae6ccc2697fa6f8345c1b48b7533",
+          "score": 0.1386750490563073
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b5a1a943d62bf69535abae7f9d0be4a3d5d9d3d6be7671f457144f86a39fc6c1",
+          "score": 0.1259881576697424
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b74ae830843c6a385777e7a2754e6e7d35c9f832cb278cd1f5e5af206578dd35",
+          "score": 0.1091089451179962
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "6a98943b779aa370cf69ce4d4943a76741f21cdacc6fc52339d3a5cb0e97901d",
+          "score": 0.10314212462587934
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "3fcb7e3e51bd729139d985943b6993ad7f915f46b09fca586809662f7520aa7c",
+          "score": 0.09205746178983235
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c0974369b589f7a0a40e81d25d36c0b52ca7b7c4735b3785c99c4d28ddff68d5",
+          "score": 0.075
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.0705540651287698
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "542a237d67b1df875727b4b363c77e56ee56eecac3d6f2e629ddd4d8b7822eae",
+          "score": 0.059339082909692656
+        }
+      ],
+      "matched_at_5": [],
+      "recall_at_5": 0.0,
+      "reciprocal_rank_at_10": 0.0,
+      "retrieval_latency_ms": 4.6756389997426595,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-unanswerable-02",
+      "seller_id": "seller-aurora",
+      "answerable": false,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "338310d020a8f3722a0cd528ecad095d76fcccadc5f1ed85aaa191079f156f75",
+          "score": 0.3768673314407158
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "7954ab28e05ac67380e97d864f41a2ca59f3e81416ed7932030833a6e1b16a77",
+          "score": 0.37573457465108967
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "148d578ea70ef080e9e7cb12426cbd258239a86e430be7f912b71c3b3157ce67",
+          "score": 0.20225995873897262
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6",
+          "chunk_id": "ab6c9bd70978e72020cd84615050f8998ea90ee2b846097a679dd3111f5d4728",
+          "score": 0.12285902336679025
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "929b53724919f1972009173492caae71105ddcb8d3ca0540d77174ff40a99084",
+          "score": 0.09428090415820634
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "f76b52a9fff4a65ff782234f364a0a8c5df043f9e5ed2d5038d745503e890596",
+          "score": 0.09325048082403138
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.07559289460184544
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "af6388f616f3769c68b1ed1f5ef562b41db711ddf8c5aecc91b1f4d07376af30",
+          "score": 0.07559289460184544
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b31126c903e8f6b29a8b0111dff667700761325d59ef84ca109d285cc780fb13",
+          "score": 0.07161148740394328
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "be616ef7b6674a07e348762ad4605ada69e7ae6ccc2697fa6f8345c1b48b7533",
+          "score": 0.06201736729460423
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 0.3333333333333333,
+      "retrieval_latency_ms": 4.6653489998789155,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-unanswerable-03",
+      "seller_id": "seller-aurora",
+      "answerable": false,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "2911730aece5516338985a9eefc9399f0cf93613d04bfcd7d6256398b08c9d4f",
+          "score": 0.2988071523335984
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "5a438f781ac3d801d05eb77c0ed263f66bbfec8fe15db8158bb2a2495f37b9ec",
+          "score": 0.2551551815399144
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "74000a653c849692dca328cd7f0619d0303b4ffa21a7f989d0ca4cf7d09c2689",
+          "score": 0.22086305214969307
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "be616ef7b6674a07e348762ad4605ada69e7ae6ccc2697fa6f8345c1b48b7533",
+          "score": 0.20801257358446093
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "0b37b21d12f1e2c7d8afbf37dc1e14edcefb12b4ac2b9a48079d3b80cf21541f",
+          "score": 0.2
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "3fcb7e3e51bd729139d985943b6993ad7f915f46b09fca586809662f7520aa7c",
+          "score": 0.1841149235796647
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "9c23d7a8506f5343228ea416334222ce5455adec8413ac8cecce405e19aadcf1",
+          "score": 0.16770509831248423
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b31126c903e8f6b29a8b0111dff667700761325d59ef84ca109d285cc780fb13",
+          "score": 0.16012815380508713
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c0974369b589f7a0a40e81d25d36c0b52ca7b7c4735b3785c99c4d28ddff68d5",
+          "score": 0.15
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "bfb48c333d9b00b43b5c91a42a428038e3050abfaa1db11e691371d41dd0768a",
+          "score": 0.1386750490563073
+        }
+      ],
+      "matched_at_5": [],
+      "recall_at_5": 0.0,
+      "reciprocal_rank_at_10": 0.0,
+      "retrieval_latency_ms": 4.591591999997036,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-unanswerable-04",
+      "seller_id": "seller-aurora",
+      "answerable": false,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "9c23d7a8506f5343228ea416334222ce5455adec8413ac8cecce405e19aadcf1",
+          "score": 0.23717082451262844
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "be616ef7b6674a07e348762ad4605ada69e7ae6ccc2697fa6f8345c1b48b7533",
+          "score": 0.19611613513818402
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "bbc7507fee59873461adf408f9b5b56a65ad6ee70f6003d52d888261b0d3c6b3",
+          "score": 0.1643989873053573
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "5a438f781ac3d801d05eb77c0ed263f66bbfec8fe15db8158bb2a2495f37b9ec",
+          "score": 0.14433756729740643
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "0b37b21d12f1e2c7d8afbf37dc1e14edcefb12b4ac2b9a48079d3b80cf21541f",
+          "score": 0.1414213562373095
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "35cb9b0bfb2c7ff05e78728cc792d1433de8984804870b29422806e5a8150cfa",
+          "score": 0.1414213562373095
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c801ce5d6b51275e9c9d13abcb11a693446df7d0c18a0cf0d4e1e972d3150bd4",
+          "score": 0.137360563948689
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "2911730aece5516338985a9eefc9399f0cf93613d04bfcd7d6256398b08c9d4f",
+          "score": 0.1267731382092775
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "14168fe590e9a27752b77de1935838eb94f096f6b49cfe06b0e3cd84efdde81e",
+          "score": 0.12309149097933274
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.11952286093343935
+        }
+      ],
+      "matched_at_5": [],
+      "recall_at_5": 0.0,
+      "reciprocal_rank_at_10": 0.0,
+      "retrieval_latency_ms": 4.610687000422331,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-unanswerable-05",
+      "seller_id": "seller-aurora",
+      "answerable": false,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 4"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "3fcb7e3e51bd729139d985943b6993ad7f915f46b09fca586809662f7520aa7c",
+          "score": 0.3053200599093529
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "e8c444051fd1367fdc52a5d56acb75c358a76c05f6eec9d582a6e787b72a31a4",
+          "score": 0.24784079854830485
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.2177862025921883
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.2038588765750502
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "30162591952984c80eea881f8a1c980ca3e223e31d433964e543dac890bef5c3",
+          "score": 0.20225995873897262
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "2911730aece5516338985a9eefc9399f0cf93613d04bfcd7d6256398b08c9d4f",
+          "score": 0.18018749253911182
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.1624591083221647
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": null,
+          "chunk_id": "e61cc1359982a1ba4d35bf4c42f0f36873d7a64641fc73addc1b393b35207e30",
+          "score": 0.16116459280507606
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c0974369b589f7a0a40e81d25d36c0b52ca7b7c4735b3785c99c4d28ddff68d5",
+          "score": 0.15075567228888181
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.1418190069493499
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "version": "1",
+          "section": "Section 4"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 4.623842999990302,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-unanswerable-06",
+      "seller_id": "seller-aurora",
+      "answerable": false,
+      "expected_evidence": [],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "7954ab28e05ac67380e97d864f41a2ca59f3e81416ed7932030833a6e1b16a77",
+          "score": 0.19802950859533483
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "148d578ea70ef080e9e7cb12426cbd258239a86e430be7f912b71c3b3157ce67",
+          "score": 0.1599005372667078
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "e9fe3ab76e47051379965eae2dd3217e80f7bdc615653ac7aad66e7b0693be4f",
+          "score": 0.13608276348795434
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.12768847961381227
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "be616ef7b6674a07e348762ad4605ada69e7ae6ccc2697fa6f8345c1b48b7533",
+          "score": 0.09805806756909201
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "3fcb7e3e51bd729139d985943b6993ad7f915f46b09fca586809662f7520aa7c",
+          "score": 0.0976416832356179
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 6",
+          "chunk_id": "ab6c9bd70978e72020cd84615050f8998ea90ee2b846097a679dd3111f5d4728",
+          "score": 0.09712858623572641
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "338310d020a8f3722a0cd528ecad095d76fcccadc5f1ed85aaa191079f156f75",
+          "score": 0.08512565307587484
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "29699a18d5ab08b970c7db735a37311d3b8510552794cdf34b696d2eafb850c1",
+          "score": 0.08333333333333333
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "customer_care",
+          "document_name": "Customer Care Procedures",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "f76b52a9fff4a65ff782234f364a0a8c5df043f9e5ed2d5038d745503e890596",
+          "score": 0.07372097807744857
+        }
+      ],
+      "matched_at_5": [],
+      "recall_at_5": null,
+      "reciprocal_rank_at_10": null,
+      "retrieval_latency_ms": 4.651763999845571,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-adversarial-01",
+      "seller_id": "seller-aurora",
+      "answerable": false,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "148d578ea70ef080e9e7cb12426cbd258239a86e430be7f912b71c3b3157ce67",
+          "score": 0.4090909090909091
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "7954ab28e05ac67380e97d864f41a2ca59f3e81416ed7932030833a6e1b16a77",
+          "score": 0.2533201985524494
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "e9fe3ab76e47051379965eae2dd3217e80f7bdc615653ac7aad66e7b0693be4f",
+          "score": 0.17407765595569785
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "b59d59ae22708cd95c5d303a6176b908d9e3bc85e797d36d31d16fbf4599e64d",
+          "score": 0.12309149097933275
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c801ce5d6b51275e9c9d13abcb11a693446df7d0c18a0cf0d4e1e972d3150bd4",
+          "score": 0.11714148253148454
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.11345520555947992
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "338310d020a8f3722a0cd528ecad095d76fcccadc5f1ed85aaa191079f156f75",
+          "score": 0.10889310129609416
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.10830607221477646
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "e8c444051fd1367fdc52a5d56acb75c358a76c05f6eec9d582a6e787b72a31a4",
+          "score": 0.09913631941932194
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b74ae830843c6a385777e7a2754e6e7d35c9f832cb278cd1f5e5af206578dd35",
+          "score": 0.09869275424396536
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "recall_at_5": 1.0,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 4.59253400003945,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-adversarial-02",
+      "seller_id": "seller-aurora",
+      "answerable": false,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 4"
+        },
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 5"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "74000a653c849692dca328cd7f0619d0303b4ffa21a7f989d0ca4cf7d09c2689",
+          "score": 0.33296357910601343
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.2836380138986998
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c0974369b589f7a0a40e81d25d36c0b52ca7b7c4735b3785c99c4d28ddff68d5",
+          "score": 0.18090680674665818
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "542a237d67b1df875727b4b363c77e56ee56eecac3d6f2e629ddd4d8b7822eae",
+          "score": 0.1789140667411283
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.1624591083221647
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c801ce5d6b51275e9c9d13abcb11a693446df7d0c18a0cf0d4e1e972d3150bd4",
+          "score": 0.14642685316435566
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.14519080172812554
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "8bf8e58d5e98e7d34ba186d7c4e2c73ce1a83067f9185bafc9bf707c6932eea9",
+          "score": 0.14484136487558028
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "document_name": "Return Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b31126c903e8f6b29a8b0111dff667700761325d59ef84ca109d285cc780fb13",
+          "score": 0.14484136487558028
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "bc58bd0c064fa67960192763b17e161c30b7f524f130acb936cf8bd1556ee345",
+          "score": 0.14484136487558028
+        }
+      ],
+      "matched_at_5": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "return_policy",
+          "version": "1",
+          "section": "Section 4"
+        }
+      ],
+      "recall_at_5": 0.5,
+      "reciprocal_rank_at_10": 1.0,
+      "retrieval_latency_ms": 4.60877299974527,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-adversarial-03",
+      "seller_id": "seller-aurora",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 1"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.26940795304016235
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "60f759ee0cd0a2bab43a54d8eb93cfd2e1a5860b28af48407d0a7c69445cae51",
+          "score": 0.2351802170958993
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 5",
+          "chunk_id": "148d578ea70ef080e9e7cb12426cbd258239a86e430be7f912b71c3b3157ce67",
+          "score": 0.22613350843332272
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "e9fe3ab76e47051379965eae2dd3217e80f7bdc615653ac7aad66e7b0693be4f",
+          "score": 0.19245008972987526
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.1690308509457033
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "e8c444051fd1367fdc52a5d56acb75c358a76c05f6eec9d582a6e787b72a31a4",
+          "score": 0.1643989873053573
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "shipping_policy",
+          "document_name": "Shipping Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "b74ae830843c6a385777e7a2754e6e7d35c9f832cb278cd1f5e5af206578dd35",
+          "score": 0.1636634176769943
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 3",
+          "chunk_id": "fc637ae1c1e0d26f1196df119f1a59c2ead8b9200bf465a104c9347351e940bc",
+          "score": 0.13608276348795434
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.1203858530857692
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "8405d4fe96a54623160c56f41dcdb8098fb23d3bd66b07f6caf43839524bf7f3",
+          "score": 0.11547005383792514
+        }
+      ],
+      "matched_at_5": [],
+      "recall_at_5": 0.0,
+      "reciprocal_rank_at_10": 0.0,
+      "retrieval_latency_ms": 4.6286110000437475,
+      "failure_reason": null
+    },
+    {
+      "case_id": "aurora-adversarial-04",
+      "seller_id": "seller-aurora",
+      "answerable": false,
+      "expected_evidence": [
+        {
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 4"
+        }
+      ],
+      "retrieved_evidence": [
+        {
+          "rank": 1,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "6546b81f826bbb142af97074310b1f87f1f31609dcf21f7304b91d4a48ad36fe",
+          "score": 0.46625240412015684
+        },
+        {
+          "rank": 2,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "f161a08587c28b7b6f73ea87de15bc39a7eeb5141544358263332c228fb290cd",
+          "score": 0.3709911166081346
+        },
+        {
+          "rank": 3,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "8405d4fe96a54623160c56f41dcdb8098fb23d3bd66b07f6caf43839524bf7f3",
+          "score": 0.35777087639996624
+        },
+        {
+          "rank": 4,
+          "seller_id": "seller-aurora",
+          "document_id": "cancellation_policy",
+          "document_name": "Order Cancellation Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "929b53724919f1972009173492caae71105ddcb8d3ca0540d77174ff40a99084",
+          "score": 0.35381518506868126
+        },
+        {
+          "rank": 5,
+          "seller_id": "seller-aurora",
+          "document_id": "faq",
+          "document_name": "Frequently Asked Questions",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "6c9c7c4bfda443b37a161eaccfee710c71c9a63c9e336997a9bb7121fb052aa1",
+          "score": 0.341918429688115
+        },
+        {
+          "rank": 6,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "14168fe590e9a27752b77de1935838eb94f096f6b49cfe06b0e3cd84efdde81e",
+          "score": 0.337099931231621
+        },
+        {
+          "rank": 7,
+          "seller_id": "seller-aurora",
+          "document_id": "warranty_policy",
+          "document_name": "Warranty Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c801ce5d6b51275e9c9d13abcb11a693446df7d0c18a0cf0d4e1e972d3150bd4",
+          "score": 0.3260204106740874
+        },
+        {
+          "rank": 8,
+          "seller_id": "seller-aurora",
+          "document_id": "insurance_policy",
+          "document_name": "Package Protection Policy",
+          "version": "1",
+          "section": "Section 2",
+          "chunk_id": "c0974369b589f7a0a40e81d25d36c0b52ca7b7c4735b3785c99c4d28ddff68d5",
+          "score": 0.2840187787218772
+        },
+        {
+          "rank": 9,
+          "seller_id": "seller-aurora",
+          "document_id": "exchange_policy",
+          "document_name": "Exchange Policy",
+          "version": "1",
+          "section": "Section 1",
+          "chunk_id": "29699a18d5ab08b970c7db735a37311d3b8510552794cdf34b696d2eafb850c1",
+          "score": 0.27386127875258304
+        },
+        {
+          "rank": 10,
+          "seller_id": "seller-aurora",
+          "document_id": "payment_policy",
+          "document_name": "Payment Policy",
+          "version": "1",
+          "section": "Section 4",
+          "chunk_id": "30c477d9c0a3efa3e89b6af66292b9835e32e3181d6682429608912323ec793b",
+          "score": 0.2618614682831908
+        }
+      ],
+      "matched_at_5": [],
+      "recall_at_5": 0.0,
+      "reciprocal_rank_at_10": 0.0,
+      "retrieval_latency_ms": 4.6904270002414705,
+      "failure_reason": null
+    }
+  ],
+  "baseline_comparison": {
+    "reference_report_id": null,
+    "metric_deltas": null,
+    "regressions": null,
+    "note": "Initial baseline; no earlier comparable report exists."
+  }
+}

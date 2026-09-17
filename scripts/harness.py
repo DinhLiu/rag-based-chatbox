@@ -297,6 +297,31 @@ def execute(gate):
         if validation.stderr:
             print(validation.stderr, file=sys.stderr, end='')
         return validation.returncode
+    if gate == 'retrieval':
+        paths = [ROOT / 'scripts/evaluate_retrieval.py',
+                 *sorted((ROOT / 'tests/retrieval').glob('test_*.py'))]
+        if len(paths) == 1:
+            print('FAIL: no retrieval tests collected')
+            return 1
+        for path in paths:
+            compile(path.read_text(), str(path), 'exec')
+        suite = unittest.defaultTestLoader.discover(str(ROOT / 'tests/retrieval'), pattern='test_*.py')
+        if suite.countTestCases() == 0:
+            print('FAIL: no retrieval tests collected')
+            return 1
+        result = unittest.TextTestRunner(verbosity=2).run(suite)
+        if len(result.skipped) == result.testsRun:
+            print('FAIL: all retrieval tests skipped')
+            return 1
+        if not result.wasSuccessful():
+            return 1
+        evaluation = subprocess.run(
+            [sys.executable, 'scripts/evaluate_retrieval.py'], cwd=ROOT,
+            text=True, capture_output=True)
+        print(evaluation.stdout, end='')
+        if evaluation.stderr:
+            print(evaluation.stderr, file=sys.stderr, end='')
+        return evaluation.returncode
     if gate in APPLICATION_SUITES:
         extra = sorted((ROOT / 'src').glob('*.py')) if gate == 'unit' else ()
         return run_unittest_tree(gate, APPLICATION_SUITES[gate], extra)

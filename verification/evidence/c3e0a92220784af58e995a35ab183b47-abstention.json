@@ -1,0 +1,18 @@
+{
+  "task_id": null,
+  "gate": "abstention",
+  "command": [
+    "/usr/bin/python3",
+    "scripts/harness.py",
+    "_run",
+    "abstention"
+  ],
+  "timeout_seconds": 900,
+  "timed_out": false,
+  "timestamp": "2026-09-17T02:40:32.494371+00:00",
+  "snapshot_sha256": "feb082f2eb833a1c0db55dd02ce40591aaf56b2eeaec2754d022c9aa2f207566",
+  "exit_code": 3,
+  "status": "unavailable",
+  "stdout": "UNAVAILABLE: abstention has no implemented application runner/fixtures. No checks passed.\n",
+  "stderr": ""
+}

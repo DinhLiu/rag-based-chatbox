@@ -1,12 +1,12 @@
 # Architecture boundary
 
-Status: seller-scoped parsing, configurable fixed/recursive chunking, deterministic feature-hashing embeddings, SQLite vector storage, and dense top-K retrieval are implemented in Python 3 standard library. Generation and external provider choices remain unimplemented. PROJECT_SPEC.md §§6–15, 27–29 are authoritative.
+Status: seller-scoped parsing, configurable fixed/recursive chunking, deterministic feature-hashing embeddings, SQLite vector storage, dense top-K retrieval, and retrieval baseline evaluation are implemented in Python 3 standard library. Generation and external provider choices remain unimplemented. PROJECT_SPEC.md §§6–15, 17–18, 21–24, 27–29 are authoritative.
 
 Seller-scoped ingestion and retrieval: upload/direct text → parse/clean → configurable fixed or recursive chunks → deterministic unit-normalized feature-hashing embeddings → SQLite vector store → cosine-ranked top-K chunks. Stored records retain chunk text, complete source metadata, embedding model/dimensions, and seller-scoped stable chunk IDs. The indexing API rejects mixed-seller batches before writing; inspection and retrieval require a seller filter. Isolation applies to every parse, corpus read, chunk, index, and retrieval operation. The PDF extractor covers Latin text operators and FlateDecode streams, not CMaps, form XObjects or OCR.
 
 Seller-scoped answering: query → dense top-K retrieval → evidence validation → generation → grounding validation → answer with citations, or safe abstention. Isolation applies to every document/index/retrieval operation from the baseline onward. Updates and deletions must eliminate stale influence after re-indexing completes.
 
-The fixed dataset and evaluation runners form a separate measurement boundary: retrieval, generation/grounding, citation correctness, abstention, system metrics and regression comparisons. No optimization until the baseline is measurable. Advanced retrieval and initial non-goals remain governed by spec §§15–16, 23, 28, 30.
+The fixed dataset and evaluation runners form a separate measurement boundary. Retrieval evaluation now runs the complete corpus through ingestion, recursive chunking, feature-hashing embeddings, shared SQLite indexing, and seller-scoped dense top-10 retrieval. Exact seller/document/version/section identities grade Recall@5 and MRR@10; its pinned report is the comparison point for later retrieval changes. Generation/grounding, citation correctness, abstention, system metrics and regression comparisons remain future boundaries. Advanced retrieval and initial non-goals remain governed by spec §§15–16, 23, 28, 30.
 
 ## Repository map
 - Root: specification, agent routing, task state, progress and handoff.
@@ -15,6 +15,8 @@ The fixed dataset and evaluation runners form a separate measurement boundary: r
 - `src/ingestion.py`: seller-scoped parse/clean for PDF, Markdown, TXT and direct text.
 - `src/chunking.py`: dependency-free fixed and separator-aware recursive chunking with configurable size and overlap.
 - `src/indexing.py`: dependency-free deterministic embeddings, seller-scoped SQLite chunk storage, and cosine-ranked dense top-K retrieval.
+- `scripts/evaluate_retrieval.py`, `tests/retrieval/`: complete fixed-dataset retrieval evaluation and baseline reproducibility checks, exposed through the retrieval gate.
+- `evals/reports/retrieval-baseline-v1.json`: pinned initial dense baseline with per-case evidence and metrics.
 - `tests/unit/`, `tests/integration/`, `tests/isolation/`: ingestion-through-retrieval implementation checks; later tasks extend these suites.
 - `verification/evidence/`: generated command records, separate from future RAG evaluation reports.
 - `docs/`: workflow, Definition of Done, evaluation contracts and decisions.

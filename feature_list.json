@@ -593,7 +593,7 @@
       "parent": "phase-2",
       "name": "Measure retrieval baseline",
       "description": "Bounded task within Baseline Retrieval.",
-      "status": "not_started",
+      "status": "verified",
       "scope": "baseline",
       "spec_sections": [
         "6",
@@ -616,7 +616,12 @@
         "isolation"
       ],
       "blocker": null,
-      "evidence": []
+      "evidence": [
+        "verification/evidence/4d290ed9b1854f8f80d649ff3fbf1650-harness.json",
+        "verification/evidence/c0b4ef00167c4cf886e48695961256f3-dataset.json",
+        "verification/evidence/8d9862ce51a24d34b77e8555a2f83c0a-retrieval.json",
+        "verification/evidence/155e78231fd84dd4815fb5746f677a8e-isolation.json"
+      ]
     },
     {
       "id": "p3-generation",

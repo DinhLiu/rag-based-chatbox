@@ -88,7 +88,7 @@ class ControlPlaneTests(unittest.TestCase):
             self.assertTrue(h.check(self.root), changes)
 
     def test_application_gates_are_unavailable(self):
-        implemented = {'dataset', 'unit', 'integration', 'isolation'}
+        implemented = {'dataset', 'unit', 'integration', 'retrieval', 'isolation'}
         for gate in (gate for gate in h.GATES[1:] if gate not in implemented):
             with self.subTest(gate=gate), contextlib.redirect_stdout(io.StringIO()) as output:
                 self.assertEqual(h.execute(gate), 3)
@@ -103,6 +103,21 @@ class ControlPlaneTests(unittest.TestCase):
             with self.subTest(gate=gate), contextlib.redirect_stdout(io.StringIO()), \
                  contextlib.redirect_stderr(io.StringIO()):
                 self.assertEqual(h.execute(gate), 0)
+
+    def test_retrieval_gate_is_available(self):
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            self.assertEqual(h.execute('retrieval'), 0)
+
+    def test_retrieval_gate_rejects_empty_and_wholly_skipped_suites(self):
+        class Skipped(unittest.TestCase):
+            @unittest.skip('fixture only')
+            def test_skip(self):
+                pass
+        for suite in (unittest.TestSuite(), unittest.defaultTestLoader.loadTestsFromTestCase(Skipped)):
+            with self.subTest(empty=suite.countTestCases() == 0), \
+                 patch.object(h.unittest.defaultTestLoader, 'discover', return_value=suite), \
+                 contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                self.assertEqual(h.execute('retrieval'), 1)
 
     def test_application_suites_reject_empty_and_skipped(self):
         class Skipped(unittest.TestCase):
@@ -289,7 +304,7 @@ class ControlPlaneTests(unittest.TestCase):
 
     def test_cli_usage_and_unavailable_have_distinct_codes(self):
         for arguments, expected in (([], 2), (['verify','unknown'], 2),
-                                    (['verify-task','unknown'], 2), (['_run','retrieval'], 3)):
+                                    (['verify-task','unknown'], 2), (['_run','generation'], 3)):
             result = subprocess.run([sys.executable, str(REPO / 'scripts/harness.py'), *arguments],
                                     text=True, capture_output=True)
             self.assertEqual(result.returncode, expected, result.stderr + result.stdout)
