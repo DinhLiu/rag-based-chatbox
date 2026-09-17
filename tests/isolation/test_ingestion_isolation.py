@@ -10,6 +10,9 @@ spec.loader.exec_module(ingestion)
 chunking_spec = importlib.util.spec_from_file_location('chunking', REPO / 'src/chunking.py')
 chunking = importlib.util.module_from_spec(chunking_spec)
 chunking_spec.loader.exec_module(chunking)
+indexing_spec = importlib.util.spec_from_file_location('indexing', REPO / 'src/indexing.py')
+indexing = importlib.util.module_from_spec(indexing_spec)
+indexing_spec.loader.exec_module(indexing)
 
 
 class IngestionIsolationTests(unittest.TestCase):
@@ -64,6 +67,33 @@ class IngestionIsolationTests(unittest.TestCase):
                              for item in by_seller['seller-aurora']))
         self.assertTrue(any('15% restocking fee' in item['text']
                             for item in by_seller['seller-beacon']))
+
+    def test_shared_index_reads_only_the_selected_seller(self):
+        connection = indexing.open_index()
+        chunks = {}
+        for seller_id in ('seller-aurora', 'seller-beacon'):
+            document = next(doc for doc in ingestion.ingest_seller_corpus(seller_id, root=REPO)
+                            if doc['document_id'] == 'return_policy')
+            chunks[seller_id] = chunking.chunk_document(document, chunk_size=120, overlap=10)
+            indexing.index_chunks(connection, seller_id, chunks[seller_id])
+        aurora = indexing.list_indexed_chunks(connection, 'seller-aurora')
+        beacon = indexing.list_indexed_chunks(connection, 'seller-beacon')
+        self.assertEqual(len(aurora), len(chunks['seller-aurora']))
+        self.assertEqual(len(beacon), len(chunks['seller-beacon']))
+        self.assertTrue(all(item['seller_id'] == 'seller-aurora' for item in aurora))
+        self.assertTrue(all(item['seller_id'] == 'seller-beacon' for item in beacon))
+        self.assertFalse(any('15% restocking fee' in item['text'] for item in aurora))
+        self.assertTrue(any('15% restocking fee' in item['text'] for item in beacon))
+
+    def test_index_rejects_a_mixed_seller_batch_without_partial_writes(self):
+        connection = indexing.open_index()
+        aurora = {'seller_id': 'seller-aurora', 'document_id': 'return_policy',
+                  'chunk_position': 0, 'text': 'Returns in 14 days.'}
+        beacon = dict(aurora, seller_id='seller-beacon', text='Returns in 7 days.')
+        with self.assertRaises(indexing.IndexingError):
+            indexing.index_chunks(connection, 'seller-aurora', [aurora, beacon])
+        self.assertEqual(indexing.list_indexed_chunks(connection, 'seller-aurora'), [])
+        self.assertEqual(indexing.list_indexed_chunks(connection, 'seller-beacon'), [])
 
 
 if __name__ == '__main__':

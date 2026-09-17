@@ -1,0 +1,18 @@
+{
+  "task_id": null,
+  "gate": "integration",
+  "command": [
+    "/usr/bin/python3",
+    "scripts/harness.py",
+    "_run",
+    "integration"
+  ],
+  "timeout_seconds": 300,
+  "timed_out": false,
+  "timestamp": "2026-09-17T01:49:24.019680+00:00",
+  "snapshot_sha256": "4148d7633952fce89ebf1b8a16889470b9575e5cb6a4af794c500c55fb8e7faf",
+  "exit_code": 0,
+  "status": "passed",
+  "stdout": "{\n  \"gate\": \"integration\",\n  \"collected\": 5,\n  \"executed\": 5,\n  \"skipped\": 0,\n  \"failed\": 0,\n  \"status\": \"passed\"\n}\n",
+  "stderr": "test_ingested_corpus_chunks_are_embedded_and_persisted_with_metadata (test_ingestion_integration.IngestionIntegrationTests.test_ingested_corpus_chunks_are_embedded_and_persisted_with_metadata) ... ok\ntest_ingested_sections_become_positioned_chunks (test_ingestion_integration.IngestionIntegrationTests.test_ingested_sections_become_positioned_chunks) ... ok\ntest_ingests_txt_and_pdf_files_from_seller_directories (test_ingestion_integration.IngestionIntegrationTests.test_ingests_txt_and_pdf_files_from_seller_directories) ... ok\ntest_ingests_versioned_markdown_corpus_for_each_seller (test_ingestion_integration.IngestionIntegrationTests.test_ingests_versioned_markdown_corpus_for_each_seller) ... ok\ntest_unknown_seller_and_missing_file_fail (test_ingestion_integration.IngestionIntegrationTests.test_unknown_seller_and_missing_file_fail) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.015s\n\nOK\n"
+}

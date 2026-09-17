@@ -15,6 +15,9 @@ spec.loader.exec_module(ingestion)
 chunking_spec = importlib.util.spec_from_file_location('chunking', REPO / 'src/chunking.py')
 chunking = importlib.util.module_from_spec(chunking_spec)
 chunking_spec.loader.exec_module(chunking)
+indexing_spec = importlib.util.spec_from_file_location('indexing', REPO / 'src/indexing.py')
+indexing = importlib.util.module_from_spec(indexing_spec)
+indexing_spec.loader.exec_module(indexing)
 
 
 class IngestionIntegrationTests(unittest.TestCase):
@@ -78,6 +81,23 @@ class IngestionIntegrationTests(unittest.TestCase):
                     self.assertEqual(item['document_id'], 'return_policy')
                     self.assertEqual(item['version'], '1')
                     self.assertEqual(item['text'], document['text'][item['start']:item['end']])
+
+    def test_ingested_corpus_chunks_are_embedded_and_persisted_with_metadata(self):
+        documents = ingestion.ingest_seller_corpus('seller-aurora', root=REPO)
+        chunks = [chunk for document in documents
+                  for chunk in chunking.chunk_document(document, chunk_size=180, overlap=20)]
+        connection = indexing.open_index()
+        chunk_ids = indexing.index_chunks(connection, 'seller-aurora', chunks)
+        stored = indexing.list_indexed_chunks(connection, 'seller-aurora')
+        self.assertEqual(len(chunk_ids), len(chunks))
+        self.assertEqual(len(stored), len(chunks))
+        self.assertTrue(all(item['seller_id'] == 'seller-aurora' for item in stored))
+        self.assertTrue(all(item['embedding_model'] == indexing.EMBEDDING_MODEL for item in stored))
+        return_chunk = next(item for item in stored
+                            if item['document_id'] == 'return_policy' and item['section'] == 'Section 2')
+        self.assertEqual(return_chunk['document_name'], 'Return Policy')
+        self.assertEqual(return_chunk['version'], '1')
+        self.assertEqual(return_chunk['text'], documents[0]['text'][return_chunk['start']:return_chunk['end']])
 
 
 if __name__ == '__main__':

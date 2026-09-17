@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source_of_truth": "PROJECT_SPEC.md",
-  "dependency_note": "Dependencies are execution prerequisites, not new product scope. Optional Phase 6 optimization and Phase 8 analytics do not block core deployment. Phase 2 ingestion work is authorized; later Phase 2 children and later phases still require a new implementation request. Optional parent links group bounded tasks under phases; children inherit phase entry dependencies. Add discovered work as new child tasks without expanding product scope.",
+  "dependency_note": "Dependencies are execution prerequisites, not new product scope. Optional Phase 6 optimization and Phase 8 analytics do not block core deployment. Phase 2 indexing work is authorized; later Phase 2 children and later phases still require a new implementation request. Optional parent links group bounded tasks under phases; children inherit phase entry dependencies. Add discovered work as new child tasks without expanding product scope.",
   "features": [
     {
       "id": "phase-0",
@@ -525,7 +525,7 @@
       "parent": "phase-2",
       "name": "Embedding and indexing",
       "description": "Bounded task within Baseline Retrieval.",
-      "status": "not_started",
+      "status": "verified",
       "scope": "baseline",
       "spec_sections": [
         "6",
@@ -547,7 +547,12 @@
         "isolation"
       ],
       "blocker": null,
-      "evidence": []
+      "evidence": [
+        "verification/evidence/47fcb83f21474475ba6a77da77a68d9e-harness.json",
+        "verification/evidence/f17f11b3a0a24d68828866d6e00a08a5-unit.json",
+        "verification/evidence/db771e7e5d544f8c8f7a63cbb2cde795-integration.json",
+        "verification/evidence/accd3213269641f4bad464fe12c580ad-isolation.json"
+      ]
     },
     {
       "id": "p2-retrieval",
