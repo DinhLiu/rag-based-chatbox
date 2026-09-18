@@ -1,0 +1,51 @@
+{
+  "task_id": "p3-generation-evaluation",
+  "measured_at": "2026-09-18T08:49:59.747975+00:00",
+  "status": "blocked",
+  "decision": "docs/decisions/0005-phase-3-judge-retry-runtime.md",
+  "calibration_dataset": "evals/datasets/generation-judge-calibration-v1.json",
+  "calibration_dataset_sha256": "a230f67e5141a2bdf4fb911f82c5f8803576746d775553d47eed9a623a2353fc",
+  "source_sha256": "b1cded3ec1f3db15aef731370a0e9ee03f742f0166665be1b46a34a115e9f4d2",
+  "runtime": {
+    "ollama_version": "0.34.1",
+    "judge_model": "qwen2.5:7b-instruct-q4_K_M",
+    "resolved_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "size_bytes": 4683087332,
+    "quantization_level": "Q4_K_M"
+  },
+  "judge_prompt_version": "atomic-generation-judge-v1",
+  "judge_options": {
+    "temperature": 0,
+    "num_ctx": 8192,
+    "num_predict": 512
+  },
+  "example_count": 62,
+  "judge_call_count": 19,
+  "overall": {
+    "label_count": 479,
+    "agreement": 0.8830897703549061,
+    "cohens_kappa": 0.4690629824630858,
+    "unsupported_precision": 0.8333333333333334,
+    "unsupported_recall": 0.4838709677419355,
+    "false_unsupported_count": 3
+  },
+  "holdout": {
+    "example_count": 20,
+    "label_count": 150,
+    "agreement": 0.8866666666666667,
+    "cohens_kappa": 0.5201354911554386,
+    "unsupported_precision": 1.0,
+    "unsupported_recall": 0.7,
+    "false_unsupported_count": 0
+  },
+  "accepted_thresholds": {
+    "agreement": 0.9,
+    "cohens_kappa": 0.8,
+    "unsupported_precision": 0.95,
+    "unsupported_recall": 0.9,
+    "false_unsupported_count": 0
+  },
+  "baseline_executed": false,
+  "generator_model_available": false,
+  "reason": "The unchanged judge failed the ADR 0005 bounded retry. Stop before the full baseline and return to human review. The selected generator tag was also absent from the local Ollama model list."
+}

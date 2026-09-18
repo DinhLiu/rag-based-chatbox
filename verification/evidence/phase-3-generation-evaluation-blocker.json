@@ -1,0 +1,54 @@
+{
+  "task_id": "p3-generation-evaluation",
+  "status": "blocked",
+  "attempts": 3,
+  "final_report_id": "generation-baseline-a3db74bd764a285d",
+  "baseline_pinned": false,
+  "calibration": {
+    "example_count": 20,
+    "agreement": 1.0,
+    "cohens_kappa": 1.0
+  },
+  "counts": {
+    "collected_cases": 31,
+    "views_per_case": 2,
+    "expected_outputs": 62,
+    "executed_outputs": 62,
+    "skipped_outputs": 0,
+    "failed_outputs": 0
+  },
+  "gold": {
+    "faithful_cases": 18,
+    "relevant_cases": 31,
+    "citation_correct_cases": 18,
+    "available_answer_points": 48,
+    "covered_answer_points": 48,
+    "conditional_completeness": 1.0,
+    "unsupported_claim_count": 13
+  },
+  "retrieved": {
+    "faithful_cases": 18,
+    "relevant_cases": 30,
+    "citation_correct_cases": 18,
+    "available_answer_points": 49,
+    "covered_answer_points": 46,
+    "conditional_completeness": 0.9387755102040817,
+    "unsupported_claim_count": 16
+  },
+  "seller_leakage_count": 0,
+  "error_rate": 0.0,
+  "latency_ms": {
+    "generation_mean": 1444.1158321612215,
+    "generation_p95": 2663.4103470005357,
+    "judge_mean": 8176.68986574183,
+    "judge_p95": 11347.33017399958
+  },
+  "token_usage": {
+    "generation_prompt_tokens": 18270,
+    "generation_output_tokens": 2860,
+    "judge_prompt_tokens": 38951,
+    "judge_output_tokens": 3274
+  },
+  "cost_per_query_usd": 0.0,
+  "blocker": "The accepted hard-zero faithfulness and citation gates failed after three attempts. Review is required because the final evidence contains both semantic-judge false positives on supported real answers and genuine generator policy/citation failures."
+}

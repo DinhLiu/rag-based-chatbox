@@ -14,8 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 GATES = ('harness', 'unit', 'integration', 'dataset', 'retrieval', 'generation',
          'abstention', 'isolation', 'regression', 'system')
 GATE_TIMEOUTS = dict(harness=120, unit=60, integration=300, dataset=120,
-                     retrieval=600, generation=900, abstention=900,
-                     isolation=300, regression=900, system=900)
+                     retrieval=600, generation=2400, abstention=900,
+                     isolation=300, regression=2400, system=2400)
 UNAVAILABLE = 3
 STATES = {'not_started', 'in_progress', 'implemented', 'verified', 'blocked'}
 REQUIRED = ('AGENTS.md', 'PROJECT_SPEC.md', 'ARCHITECTURE.md', 'README.md',
@@ -247,6 +247,11 @@ APPLICATION_SUITES = {
     'integration': ROOT / 'tests/integration',
     'isolation': ROOT / 'tests/isolation',
 }
+EVALUATION_SUITES = {
+    'generation': ROOT / 'tests/generation',
+    'regression': ROOT / 'tests/regression',
+    'system': ROOT / 'tests/system',
+}
 
 
 def run_unittest_tree(gate, directory, extra_compile=()):
@@ -319,6 +324,32 @@ def execute(gate):
         evaluation = subprocess.run(
             [sys.executable, 'scripts/evaluate_retrieval.py'], cwd=ROOT,
             text=True, capture_output=True)
+        print(evaluation.stdout, end='')
+        if evaluation.stderr:
+            print(evaluation.stderr, file=sys.stderr, end='')
+        return evaluation.returncode
+    if gate in EVALUATION_SUITES:
+        script = ROOT / 'scripts/evaluate_generation.py'
+        paths = [script, *sorted(EVALUATION_SUITES[gate].glob('test_*.py'))]
+        if len(paths) == 1:
+            print(f'FAIL: no {gate} tests collected')
+            return 1
+        for path in paths:
+            compile(path.read_text(), str(path), 'exec')
+        suite = unittest.defaultTestLoader.discover(
+            str(EVALUATION_SUITES[gate]), pattern='test_*.py')
+        if suite.countTestCases() == 0:
+            print(f'FAIL: no {gate} tests collected')
+            return 1
+        result = unittest.TextTestRunner(verbosity=2).run(suite)
+        if len(result.skipped) == result.testsRun:
+            print(f'FAIL: all {gate} tests skipped')
+            return 1
+        if not result.wasSuccessful():
+            return 1
+        evaluation = subprocess.run(
+            [sys.executable, 'scripts/evaluate_generation.py', '--gate', gate],
+            cwd=ROOT, text=True, capture_output=True)
         print(evaluation.stdout, end='')
         if evaluation.stderr:
             print(evaluation.stderr, file=sys.stderr, end='')

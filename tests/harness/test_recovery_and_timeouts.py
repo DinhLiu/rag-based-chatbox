@@ -126,7 +126,7 @@ class RecoveryTests(unittest.TestCase):
 
     def test_timed_out_gate_cannot_promote_through_cli(self):
         runner = self.root / 'scripts/harness.py'
-        runner.write_text(runner.read_text().replace('generation=900', 'generation=0.2').replace(
+        runner.write_text(runner.read_text().replace('generation=2400', 'generation=0.2').replace(
             'def execute(gate):', 'def execute(gate):\n    if gate == "generation":\n'
             '        import time\n        print("fixture generation started", flush=True)\n'
             '        time.sleep(30)'))
@@ -165,6 +165,9 @@ class TimeoutTests(unittest.TestCase):
             self.assertGreater(seconds, 0)
         self.assertLess(h.GATE_TIMEOUTS['unit'], h.GATE_TIMEOUTS['integration'])
         self.assertLess(h.GATE_TIMEOUTS['integration'], h.GATE_TIMEOUTS['generation'])
+        self.assertEqual(h.GATE_TIMEOUTS['generation'], 2400)
+        self.assertEqual(h.GATE_TIMEOUTS['regression'], 2400)
+        self.assertEqual(h.GATE_TIMEOUTS['system'], 2400)
 
     def test_real_timeout_records_partial_output_and_failure(self):
         with tempfile.TemporaryDirectory() as directory:

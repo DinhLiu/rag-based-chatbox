@@ -135,10 +135,10 @@ class GateStagingTests(unittest.TestCase):
         generation = ' '.join(self.tasks['p3-generation']['acceptance_criteria'])
         citations = ' '.join(self.tasks['p3-citations']['acceptance_criteria'])
         evaluation = ' '.join(self.tasks['p3-generation-evaluation']['acceptance_criteria'])
-        for value in ('qwen2.5:1.5b-instruct', 'feature-hashing-v1', 'num_ctx: 8192',
+        for value in ('qwen2.5:7b-instruct-q4_K_M', 'feature-hashing-v1', 'num_ctx: 8192',
                       'num_predict: 384'):
             self.assertIn(value, decision)
-        self.assertIn('qwen2.5:1.5b-instruct', generation)
+        self.assertIn('qwen2.5:7b-instruct-q4_K_M', generation)
         self.assertIn('first five retrieved chunks', generation)
         self.assertIn('trusted seller-scoped retrieval metadata', citations)
         self.assertIn('annotated gold evidence separately', evaluation)

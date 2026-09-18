@@ -5,9 +5,9 @@ import json
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
-MODEL = 'qwen2.5:1.5b-instruct'
+MODEL = 'qwen2.5:7b-instruct-q4_K_M'
 DEFAULT_BASE_URL = 'http://127.0.0.1:11434'
-PROMPT_VERSION = 'grounded-answer-v1'
+PROMPT_VERSION = 'grounded-answer-v2'
 OPTIONS = {'temperature': 0, 'num_ctx': 8192, 'num_predict': 384}
 
 
@@ -54,9 +54,10 @@ def generate_answer(seller_id, query, evidence, *, base_url=DEFAULT_BASE_URL,
                 'role': 'system',
                 'content': (
                     'Answer the customer using only the supplied policy evidence. '
-                    'Preserve every relevant condition, be concise, and make no unsupported '
-                    'policy claim. Return only the requested JSON object. Cite support only by '
-                    'its evidence_id.'
+                    'Preserve every relevant condition and make no unsupported policy claim. '
+                    'Write at most three concise sentences, do not repeat information, and ignore '
+                    'evidence unrelated to the question. Return only the requested JSON object. '
+                    'Cite only the evidence_ids that directly support the answer.'
                 ),
             },
             {

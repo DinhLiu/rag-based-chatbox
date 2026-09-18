@@ -88,7 +88,8 @@ class ControlPlaneTests(unittest.TestCase):
             self.assertTrue(h.check(self.root), changes)
 
     def test_application_gates_are_unavailable(self):
-        implemented = {'dataset', 'unit', 'integration', 'retrieval', 'isolation'}
+        implemented = {'dataset', 'unit', 'integration', 'retrieval', 'generation',
+                       'isolation', 'regression', 'system'}
         for gate in (gate for gate in h.GATES[1:] if gate not in implemented):
             with self.subTest(gate=gate), contextlib.redirect_stdout(io.StringIO()) as output:
                 self.assertEqual(h.execute(gate), 3)
@@ -107,6 +108,13 @@ class ControlPlaneTests(unittest.TestCase):
     def test_retrieval_gate_is_available(self):
         with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
             self.assertEqual(h.execute('retrieval'), 0)
+
+    def test_phase_three_evaluation_gates_are_available(self):
+        completed = subprocess.CompletedProcess([], 0, stdout='{"status":"passed"}\n', stderr='')
+        for gate in ('generation', 'regression', 'system'):
+            with self.subTest(gate=gate), patch.object(h.subprocess, 'run', return_value=completed), \
+                 contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                self.assertEqual(h.execute(gate), 0)
 
     def test_retrieval_gate_rejects_empty_and_wholly_skipped_suites(self):
         class Skipped(unittest.TestCase):
@@ -304,7 +312,7 @@ class ControlPlaneTests(unittest.TestCase):
 
     def test_cli_usage_and_unavailable_have_distinct_codes(self):
         for arguments, expected in (([], 2), (['verify','unknown'], 2),
-                                    (['verify-task','unknown'], 2), (['_run','generation'], 3)):
+                                    (['verify-task','unknown'], 2), (['_run','abstention'], 3)):
             result = subprocess.run([sys.executable, str(REPO / 'scripts/harness.py'), *arguments],
                                     text=True, capture_output=True)
             self.assertEqual(result.returncode, expected, result.stderr + result.stdout)

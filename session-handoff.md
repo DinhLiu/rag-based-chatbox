@@ -3,16 +3,16 @@
 Last Updated: 2026-09-18
 
 ## Current Objective
-Await human selection of the Phase 3 generation grader technology and numeric quality thresholds before implementing `p3-generation-evaluation`.
+Keep the Phase 3 architecture on the single local Ollama tag `qwen2.5:7b-instruct-q4_K_M` while preserving the generation-evaluation calibration blocker.
 
 ## Current State
-Phase 2, `p3-generation`, and `p3-citations` are verified. `p3-generation-evaluation` is blocked pending a human decision, so Phase 3 remains in progress and unverified. Phase 4 is untouched.
+Phase 2, `p3-generation`, and `p3-citations` are verified. `p3-generation-evaluation` is blocked after the ADR 0005 bounded retry reproduced the prior calibration failure. Phase 3 remains in progress and unverified; Phase 4 is untouched.
 
 ## Changed Files
-Added `src/generation.py`, generation/citation unit-integration-isolation coverage, documentation updates and verification evidence. Citation metadata is resolved from trusted retrieval records. Marked only `p3-generation-evaluation` blocked with the unresolved decision.
+The carried Phase 3 evaluator, fixtures, tests, ADRs and 2400-second gate budgets remain in the working tree. The active generation constant, architecture/evaluation/development docs, ADR 0003, task criteria, blocker text and regression assertions now select `qwen2.5:7b-instruct-q4_K_M` for both generation and semantic grading. Historical `progress.md` entries still name the model used at those earlier points; they are not active configuration. No generation baseline is pinned.
 
 ## Verification
-Both implementation children passed `verify-task`. Latest citation evidence: harness `0cfb7ac1659c45f8833fed37b9b1bfba`, unit `5fdc008b9b4145eaa1cf6415f8d2b04b`, integration `d0c530c609e84cdd8ee20aeb02f415f5`, isolation `b3d11ce0ff5e4783b4e7280a98dfd346`. Retrieval regression `37d6470e10c547a4addd957052ce889c` exactly preserved the pinned metrics.
+Startup `./init.sh` passed with `verification/evidence/690db92019a44c8485549373e7d6aa6f-harness.json`; the final post-update run passed with `verification/evidence/084a8b673d8f443d96ff9ae0eb5268cd-harness.json`. Targeted unit/system/harness decision checks and `git diff --check` passed. Fresh `verify-task p3-generation` and `verify-task p3-citations` runs passed harness, unit, integration and isolation gates; their evidence starts with `9eca8ba6` and `7243c567`. The earlier real 62-example judge calibration still fails the accepted floors; no full generation, regression or system gate was run and no failed result was treated as passed.
 
 ## Blockers and Next Step
-Human review must choose and record the generation grader technology and numeric acceptance thresholds for faithfulness, relevance, completeness and citation correctness. Then clear the blocker, move `p3-generation-evaluation` to `in_progress`, and implement its real-service generation/regression/system runners. Do not start Phase 4.
+Human review must select a materially different semantic judge/grading approach or revise the accepted decision; ADR 0005 explicitly forbids continuing after this retry failure. Generation and judging now use the installed `qwen2.5:7b-instruct-q4_K_M` tag, so no separate generator model must be restored. Do not lower thresholds, discard cases, reuse failed evidence, close Phase 3 or start Phase 4.

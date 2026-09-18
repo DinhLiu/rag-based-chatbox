@@ -1,0 +1,36 @@
+{
+  "task_id": "p3-generation-evaluation",
+  "status": "blocked",
+  "attempts": 3,
+  "calibration_dataset": "evals/datasets/generation-judge-calibration-v1.json",
+  "judge_model": "qwen2.5:7b-instruct-q4_K_M",
+  "judge_prompt_version": "atomic-generation-judge-v1",
+  "example_count": 62,
+  "judge_call_count": 19,
+  "overall": {
+    "label_count": 479,
+    "agreement": 0.8830897703549061,
+    "cohens_kappa": 0.4690629824630858,
+    "unsupported_precision": 0.8333333333333334,
+    "unsupported_recall": 0.4838709677419355,
+    "false_unsupported_count": 3
+  },
+  "holdout": {
+    "example_count": 20,
+    "label_count": 150,
+    "agreement": 0.8866666666666667,
+    "cohens_kappa": 0.5201354911554386,
+    "unsupported_precision": 1.0,
+    "unsupported_recall": 0.7,
+    "false_unsupported_count": 0
+  },
+  "accepted_thresholds": {
+    "agreement": 0.9,
+    "cohens_kappa": 0.8,
+    "unsupported_precision": 0.95,
+    "unsupported_recall": 0.9,
+    "false_unsupported_count": 0
+  },
+  "baseline_executed": false,
+  "reason": "Calibration failed before the full baseline. Selecting another semantic judge and revisiting the runtime budget require human review."
+}

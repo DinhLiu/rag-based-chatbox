@@ -38,7 +38,7 @@ class GenerationUnitTests(unittest.TestCase):
             'evidence_id': 'E1', 'document_name': 'Policy 1', 'section': 'Section 1'}])
         self.assertEqual(captured['url'], 'http://127.0.0.1:11434/api/chat')
         payload = captured['payload']
-        self.assertEqual(payload['model'], 'qwen2.5:1.5b-instruct')
+        self.assertEqual(payload['model'], 'qwen2.5:7b-instruct-q4_K_M')
         self.assertFalse(payload['stream'])
         self.assertEqual(payload['options'], {
             'temperature': 0, 'num_ctx': 8192, 'num_predict': 384})

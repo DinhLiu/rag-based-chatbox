@@ -684,7 +684,7 @@
       "dependencies": [],
       "acceptance_criteria": [
         "Generate concise answers only from retrieved evidence, preserving policy conditions.",
-        "Use the local Ollama native /api/chat endpoint with qwen2.5:1.5b-instruct, stream=false, temperature=0, num_ctx=8192, num_predict=384 and schema-constrained JSON; supply the first five retrieved chunks as evidence IDs.",
+        "Use the local Ollama native /api/chat endpoint with qwen2.5:7b-instruct-q4_K_M, stream=false, temperature=0, num_ctx=8192, num_predict=384 and schema-constrained JSON; supply the first five retrieved chunks as evidence IDs.",
         "Keep the verified feature-hashing-v1 embedding and retrieval baseline unchanged; use standard-library HTTP/JSON without a cloud credential, Ollama SDK or speculative multi-provider abstraction."
       ],
       "required_gates": [
@@ -695,10 +695,10 @@
       ],
       "blocker": null,
       "evidence": [
-        "verification/evidence/4a9a3a6e87794079a38aec645087f4d9-harness.json",
-        "verification/evidence/e3a479586aa94c97814de1a00bc91d51-unit.json",
-        "verification/evidence/0d4f4ae95c9e4bf99776fe2b5075d7df-integration.json",
-        "verification/evidence/bb7558f4dde1495ea283f2b6a8bcbf52-isolation.json"
+        "verification/evidence/9eca8ba6799248d6b8afc210edf7f3ef-harness.json",
+        "verification/evidence/fe656ed1da65480195028ccdff3f8642-unit.json",
+        "verification/evidence/66f174c8cdaa418b8449033b792292ab-integration.json",
+        "verification/evidence/67ff43ce48f94cf189155b286294cc07-isolation.json"
       ]
     },
     {
@@ -730,10 +730,10 @@
       ],
       "blocker": null,
       "evidence": [
-        "verification/evidence/0cfb7ac1659c45f8833fed37b9b1bfba-harness.json",
-        "verification/evidence/5fdc008b9b4145eaa1cf6415f8d2b04b-unit.json",
-        "verification/evidence/d0c530c609e84cdd8ee20aeb02f415f5-integration.json",
-        "verification/evidence/b3d11ce0ff5e4783b4e7280a98dfd346-isolation.json"
+        "verification/evidence/7243c56779714154a4e9832409b6129f-harness.json",
+        "verification/evidence/f6430657ed754444903433b731fae5c5-unit.json",
+        "verification/evidence/6e60b641cbdd411d9e78a0bd57bd5015-integration.json",
+        "verification/evidence/62dcb82c67924d2594693e97ff630d29-isolation.json"
       ]
     },
     {
@@ -757,7 +757,11 @@
         "Measure faithfulness, relevance, completeness and citation correctness; record regression and system measurements.",
         "Implement and wire generation, regression and system evaluation runners after generation and citations exist; run the complete phase quality gates.",
         "Evaluate annotated gold evidence separately from end-to-end retrieved evidence and record the Ollama version, model tag/resolved artifact, prompt/schema version, generation options, durations and token counts.",
-        "Treat a missing Ollama service or selected model as unavailable rather than a mocked pass; record the grading technology and numerical quality thresholds before accepting the evaluator."
+        "Treat a missing Ollama service or selected model as unavailable rather than a mocked pass; record the grading technology and numerical quality thresholds before accepting the evaluator.",
+        "Use the accepted hybrid grader in ADR 0004: deterministic isolation/citation checks plus local qwen2.5:7b-instruct-q4_K_M semantic grading calibrated to at least 90% agreement and Cohen's kappa 0.80.",
+        "Enforce zero unsupported claims/errors/skips/leaks/invalid citations; gold thresholds are 31/31 faithful and citation-correct, at least 30/31 relevant and 64/71 complete; retrieved thresholds are 31/31 faithful and citation-correct, at least 27/31 relevant, 90% conditional completeness and 40/71 raw completeness.",
+        "Use separate atomic support/citation and availability/coverage judgments, calibrated on 62 fixed representative examples with a 20-example holdout; require zero false unsupported labels on supported examples, unsupported precision at least 95%, unsupported recall at least 90%, plus the accepted agreement and kappa floors.",
+        "Apply ADR 0005: retry local qwen2.5:7b-instruct-q4_K_M with 2400-second generation, regression and system gate budgets; preserve all calibration and generation-quality thresholds and record the resolved model artifact."
       ],
       "required_gates": [
         "harness",
@@ -770,7 +774,7 @@
         "regression",
         "system"
       ],
-      "blocker": "Human review required: select and record the generation grader technology and numeric faithfulness, relevance, completeness, and citation-correctness acceptance thresholds before evaluator implementation.",
+      "blocker": "ADR 0005 bounded retry failed the unchanged atomic judge calibration floors: overall agreement 0.8830897703549061, kappa 0.4690629824630858, unsupported precision 0.8333333333333334, unsupported recall 0.4838709677419355 and 3 false unsupported labels; holdout agreement 0.8866666666666667, kappa 0.5201354911554386 and unsupported recall 0.7 also failed. Stop before baseline and return to human review. Generation and judging now use the installed qwen2.5:7b-instruct-q4_K_M tag, so the former missing-generator prerequisite no longer applies.",
       "evidence": []
     },
     {
