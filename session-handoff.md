@@ -1,18 +1,18 @@
 # Session Handoff
 
-Last Updated: 2026-09-17
+Last Updated: 2026-09-18
 
 ## Current Objective
-The repository-local Python environment migration and Phase 2 revalidation are complete. Stop before Phase 3.
+Persist the user-selected Phase 3 local generation decisions in the harness without starting implementation.
 
 ## Current State
-`p2-local-venv` and `phase-2` are verified. `./init.sh` creates/updates the git-ignored `.venv` from `requirements.txt` and all documented harness, test and evaluation commands use `.venv/bin/python`. Python 3.10+ is supported; revalidation ran on Python 3.14.4. The application dependency input contains no third-party packages because Phase 2 uses only the standard library.
+Phase 2 remains verified and Phase 3 remains `not_started`. ADR 0003 selects local Ollama `qwen2.5:1.5b-instruct` for generation while preserving the verified `feature-hashing-v1` retrieval baseline. The planned native `/api/chat` contract uses top-five evidence IDs, schema-constrained JSON, `stream=false`, `temperature=0`, `num_ctx=8192` and `num_predict=384`; trusted code resolves citation metadata. No cloud credentials, provider SDK or multi-provider abstraction are planned.
 
 ## Changed Files
-Updated `init.sh`, `requirements.txt`, `AGENTS.md`, `README.md`, `docs/DEVELOPMENT.md`, `docs/EVALUATION.md`, `scripts/harness.py`, `feature_list.json`, `progress.md`, and this handoff. Added fresh evidence records under `verification/evidence/`. The pinned retrieval baseline and RAG implementation were not changed.
+Added `docs/decisions/0003-phase-3-local-generation.md`; updated Phase 3 task acceptance criteria, architecture, evaluation/development guidance, a harness persistence test, progress and this handoff. No RAG application implementation, dependency or task status was changed.
 
 ## Verification
-`.venv/bin/python scripts/harness.py verify-task p2-local-venv` and `.venv/bin/python scripts/harness.py verify-task phase-2` both exited 0. The final Phase 2 evidence paths are recorded in `feature_list.json`; every record uses `/home/liu/Code/Projects/rag-based-chatbox/.venv/bin/python`. Recall@5 stayed `0.594017094017094`, MRR@10 stayed `0.4974358974358974`, 40/40 cases executed with zero errors or seller leakage, and unit 13/13, integration 6/6, isolation 7/7 passed.
+Post-change `./init.sh` passed 53 harness tests with evidence `verification/evidence/f9c8d8b75ed74e47a4fc16bd49e21641-harness.json`. `.venv/bin/python scripts/harness.py check`, the direct 53-test harness suite and `git diff --check` also passed. `p3-generation` and `phase-3` remain `not_started`; product generation gates remain unavailable because implementation has not begun.
 
 ## Blockers and Next Step
-No blocker or downgrade. Phase 3 remains unauthorized; do not start it without a new request.
+Before `p3-generation-evaluation` can be accepted, select and record its grader technology and numerical generation-quality thresholds. Phase 3 implementation still requires explicit authorization; when authorized, open `phase-3`, start only `p3-generation`, and follow ADR 0003.

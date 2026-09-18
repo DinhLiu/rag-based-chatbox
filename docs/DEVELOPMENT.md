@@ -1,7 +1,7 @@
 # Development workflow
 
 ## Start and resume
-Read AGENTS.md → authoritative spec → run `./init.sh` to create/update `.venv` from `requirements.txt` → `.venv/bin/python scripts/harness.py status` → session-handoff.md → latest progress.md entry. Use `.venv/bin/python scripts/harness.py task <id>` for the selected task; the full JSON tracker is needed only when editing or auditing state. Inspect `git status --short`. Python 3.10+ is supported and enforced by bootstrap; Phase 2 has no third-party application dependencies, credentials or services. A failing startup must be investigated before unrelated work.
+Read AGENTS.md → authoritative spec → run `./init.sh` to create/update `.venv` from `requirements.txt` → `.venv/bin/python scripts/harness.py status` → session-handoff.md → latest progress.md entry. Use `.venv/bin/python scripts/harness.py task <id>` for the selected task; the full JSON tracker is needed only when editing or auditing state. Inspect `git status --short`. Python 3.10+ is supported and enforced by bootstrap; Phase 2 has no third-party application dependencies, credentials or services. The accepted but unimplemented Phase 3 baseline requires a local Ollama service and `qwen2.5:1.5b-instruct`; see `docs/decisions/0003-phase-3-local-generation.md`. A failing startup must be investigated before unrelated work.
 
 Select one authorized leaf task whose own dependencies and parent phase entry dependencies are `verified`. Open its phase as `in_progress`, set the task `in_progress`, and update the handoff with its ID and bounded objective. Load only its spec sections, architecture and evaluation contract next. Application work starts at Phase 1 (`p1-policies`); later phases still need an explicit implementation request.
 

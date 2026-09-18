@@ -683,7 +683,9 @@
       ],
       "dependencies": [],
       "acceptance_criteria": [
-        "Generate concise answers only from retrieved evidence, preserving policy conditions."
+        "Generate concise answers only from retrieved evidence, preserving policy conditions.",
+        "Use the local Ollama native /api/chat endpoint with qwen2.5:1.5b-instruct, stream=false, temperature=0, num_ctx=8192, num_predict=384 and schema-constrained JSON; supply the first five retrieved chunks as evidence IDs.",
+        "Keep the verified feature-hashing-v1 embedding and retrieval baseline unchanged; use standard-library HTTP/JSON without a cloud credential, Ollama SDK or speculative multi-provider abstraction."
       ],
       "required_gates": [
         "harness",
@@ -712,7 +714,8 @@
         "p3-generation"
       ],
       "acceptance_criteria": [
-        "Provide accurate document names and sections/pages where available for supporting claims."
+        "Provide accurate document names and sections/pages where available for supporting claims.",
+        "Accept only evidence IDs returned by the model and resolve citation document/section/page fields from trusted seller-scoped retrieval metadata; reject unknown or cross-seller evidence IDs."
       ],
       "required_gates": [
         "harness",
@@ -742,7 +745,9 @@
       ],
       "acceptance_criteria": [
         "Measure faithfulness, relevance, completeness and citation correctness; record regression and system measurements.",
-        "Implement and wire generation, regression and system evaluation runners after generation and citations exist; run the complete phase quality gates."
+        "Implement and wire generation, regression and system evaluation runners after generation and citations exist; run the complete phase quality gates.",
+        "Evaluate annotated gold evidence separately from end-to-end retrieved evidence and record the Ollama version, model tag/resolved artifact, prompt/schema version, generation options, durations and token counts.",
+        "Treat a missing Ollama service or selected model as unavailable rather than a mocked pass; record the grading technology and numerical quality thresholds before accepting the evaluator."
       ],
       "required_gates": [
         "harness",

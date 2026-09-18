@@ -130,6 +130,20 @@ class GateStagingTests(unittest.TestCase):
             self.assertEqual(self.tasks[task]['required_gates'],
                              ['harness','unit','integration','dataset','retrieval','generation','isolation','regression','system'])
 
+    def test_phase_three_local_generation_decision_is_persistent(self):
+        decision = (ROOT / 'docs/decisions/0003-phase-3-local-generation.md').read_text()
+        generation = ' '.join(self.tasks['p3-generation']['acceptance_criteria'])
+        citations = ' '.join(self.tasks['p3-citations']['acceptance_criteria'])
+        evaluation = ' '.join(self.tasks['p3-generation-evaluation']['acceptance_criteria'])
+        for value in ('qwen2.5:1.5b-instruct', 'feature-hashing-v1', 'num_ctx: 8192',
+                      'num_predict: 384'):
+            self.assertIn(value, decision)
+        self.assertIn('qwen2.5:1.5b-instruct', generation)
+        self.assertIn('first five retrieved chunks', generation)
+        self.assertIn('trusted seller-scoped retrieval metadata', citations)
+        self.assertIn('annotated gold evidence separately', evaluation)
+        self.assertIn('missing Ollama service', evaluation)
+
     def test_roadmap_can_bootstrap_its_verification_capabilities(self):
         # Simulate only scheduling, never promote repository tasks or fabricate evidence.
         # These owners match the tasks' documented runner implementation responsibilities.
