@@ -100,7 +100,7 @@
       "id": "phase-3",
       "name": "Baseline Generation",
       "description": "PROJECT_SPEC.md \u00a728 Phase 3: Baseline Generation.",
-      "status": "not_started",
+      "status": "in_progress",
       "scope": "baseline",
       "spec_sections": [
         "7\u201310",
@@ -672,7 +672,7 @@
       "parent": "phase-3",
       "name": "Evidence-grounded generation",
       "description": "Bounded task within Baseline Generation.",
-      "status": "not_started",
+      "status": "verified",
       "scope": "baseline",
       "spec_sections": [
         "7\u201310",
@@ -694,14 +694,19 @@
         "isolation"
       ],
       "blocker": null,
-      "evidence": []
+      "evidence": [
+        "verification/evidence/4a9a3a6e87794079a38aec645087f4d9-harness.json",
+        "verification/evidence/e3a479586aa94c97814de1a00bc91d51-unit.json",
+        "verification/evidence/0d4f4ae95c9e4bf99776fe2b5075d7df-integration.json",
+        "verification/evidence/bb7558f4dde1495ea283f2b6a8bcbf52-isolation.json"
+      ]
     },
     {
       "id": "p3-citations",
       "parent": "phase-3",
       "name": "Citation support",
       "description": "Bounded task within Baseline Generation.",
-      "status": "not_started",
+      "status": "verified",
       "scope": "baseline",
       "spec_sections": [
         "7\u201310",
@@ -724,14 +729,19 @@
         "isolation"
       ],
       "blocker": null,
-      "evidence": []
+      "evidence": [
+        "verification/evidence/0cfb7ac1659c45f8833fed37b9b1bfba-harness.json",
+        "verification/evidence/5fdc008b9b4145eaa1cf6415f8d2b04b-unit.json",
+        "verification/evidence/d0c530c609e84cdd8ee20aeb02f415f5-integration.json",
+        "verification/evidence/b3d11ce0ff5e4783b4e7280a98dfd346-isolation.json"
+      ]
     },
     {
       "id": "p3-generation-evaluation",
       "parent": "phase-3",
       "name": "Generation evaluation and regression",
       "description": "Bounded task within Baseline Generation.",
-      "status": "not_started",
+      "status": "blocked",
       "scope": "baseline",
       "spec_sections": [
         "7\u201310",
@@ -760,7 +770,7 @@
         "regression",
         "system"
       ],
-      "blocker": null,
+      "blocker": "Human review required: select and record the generation grader technology and numeric faithfulness, relevance, completeness, and citation-correctness acceptance thresholds before evaluator implementation.",
       "evidence": []
     },
     {

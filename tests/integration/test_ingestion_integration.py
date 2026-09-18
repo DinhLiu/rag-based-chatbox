@@ -1,5 +1,6 @@
 """Integration checks for seller-scoped ingestion and chunking."""
 import importlib.util
+import json
 from pathlib import Path
 import sys
 import tempfile
@@ -18,6 +19,9 @@ chunking_spec.loader.exec_module(chunking)
 indexing_spec = importlib.util.spec_from_file_location('indexing', REPO / 'src/indexing.py')
 indexing = importlib.util.module_from_spec(indexing_spec)
 indexing_spec.loader.exec_module(indexing)
+generation_spec = importlib.util.spec_from_file_location('generation', REPO / 'src/generation.py')
+generation = importlib.util.module_from_spec(generation_spec)
+generation_spec.loader.exec_module(generation)
 
 
 class IngestionIntegrationTests(unittest.TestCase):
@@ -112,6 +116,33 @@ class IngestionIntegrationTests(unittest.TestCase):
         self.assertEqual(results[0]['document_id'], 'return_policy')
         self.assertEqual(results[0]['section'], 'Section 2')
         self.assertTrue(all(item['seller_id'] == 'seller-aurora' for item in results))
+
+    def test_retrieved_evidence_drives_the_generation_request(self):
+        documents = ingestion.ingest_seller_corpus('seller-aurora', root=REPO)
+        chunks = [chunk for document in documents
+                  for chunk in chunking.chunk_document(document, chunk_size=180, overlap=20)]
+        connection = indexing.open_index()
+        indexing.index_chunks(connection, 'seller-aurora', chunks)
+        evidence = indexing.retrieve_chunks(
+            connection, 'seller-aurora',
+            'Products may be returned within 14 days of delivery.', top_k=5)
+        captured = {}
+
+        def transport(_url, payload, _timeout):
+            captured.update(payload)
+            return {'message': {'content': '{"answer":"Unused products may be returned '
+                                            'within 14 days of delivery.",'
+                                            '"evidence_ids":["E1"]}'}}
+
+        result = generation.generate_answer(
+            'seller-aurora', 'Can I return an unused product after seven days?', evidence,
+            transport=transport)
+        supplied = json.loads(captured['messages'][1]['content'])['evidence']
+        self.assertIn('14 days', supplied[0]['text'])
+        self.assertIn('14 days', result['answer'])
+        self.assertEqual(result['evidence_ids'], ['E1'])
+        self.assertEqual(result['citations'], [{
+            'evidence_id': 'E1', 'document_name': 'Return Policy', 'section': 'Section 2'}])
 
 
 if __name__ == '__main__':

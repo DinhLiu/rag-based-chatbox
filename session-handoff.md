@@ -3,16 +3,16 @@
 Last Updated: 2026-09-18
 
 ## Current Objective
-Persist the user-selected Phase 3 local generation decisions in the harness without starting implementation.
+Await human selection of the Phase 3 generation grader technology and numeric quality thresholds before implementing `p3-generation-evaluation`.
 
 ## Current State
-Phase 2 remains verified and Phase 3 remains `not_started`. ADR 0003 selects local Ollama `qwen2.5:1.5b-instruct` for generation while preserving the verified `feature-hashing-v1` retrieval baseline. The planned native `/api/chat` contract uses top-five evidence IDs, schema-constrained JSON, `stream=false`, `temperature=0`, `num_ctx=8192` and `num_predict=384`; trusted code resolves citation metadata. No cloud credentials, provider SDK or multi-provider abstraction are planned.
+Phase 2, `p3-generation`, and `p3-citations` are verified. `p3-generation-evaluation` is blocked pending a human decision, so Phase 3 remains in progress and unverified. Phase 4 is untouched.
 
 ## Changed Files
-Added `docs/decisions/0003-phase-3-local-generation.md`; updated Phase 3 task acceptance criteria, architecture, evaluation/development guidance, a harness persistence test, progress and this handoff. No RAG application implementation, dependency or task status was changed.
+Added `src/generation.py`, generation/citation unit-integration-isolation coverage, documentation updates and verification evidence. Citation metadata is resolved from trusted retrieval records. Marked only `p3-generation-evaluation` blocked with the unresolved decision.
 
 ## Verification
-Post-change `./init.sh` passed 53 harness tests with evidence `verification/evidence/f9c8d8b75ed74e47a4fc16bd49e21641-harness.json`. `.venv/bin/python scripts/harness.py check`, the direct 53-test harness suite and `git diff --check` also passed. `p3-generation` and `phase-3` remain `not_started`; product generation gates remain unavailable because implementation has not begun.
+Both implementation children passed `verify-task`. Latest citation evidence: harness `0cfb7ac1659c45f8833fed37b9b1bfba`, unit `5fdc008b9b4145eaa1cf6415f8d2b04b`, integration `d0c530c609e84cdd8ee20aeb02f415f5`, isolation `b3d11ce0ff5e4783b4e7280a98dfd346`. Retrieval regression `37d6470e10c547a4addd957052ce889c` exactly preserved the pinned metrics.
 
 ## Blockers and Next Step
-Before `p3-generation-evaluation` can be accepted, select and record its grader technology and numerical generation-quality thresholds. Phase 3 implementation still requires explicit authorization; when authorized, open `phase-3`, start only `p3-generation`, and follow ADR 0003.
+Human review must choose and record the generation grader technology and numeric acceptance thresholds for faithfulness, relevance, completeness and citation correctness. Then clear the blocker, move `p3-generation-evaluation` to `in_progress`, and implement its real-service generation/regression/system runners. Do not start Phase 4.

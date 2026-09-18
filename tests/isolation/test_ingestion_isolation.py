@@ -13,6 +13,9 @@ chunking_spec.loader.exec_module(chunking)
 indexing_spec = importlib.util.spec_from_file_location('indexing', REPO / 'src/indexing.py')
 indexing = importlib.util.module_from_spec(indexing_spec)
 indexing_spec.loader.exec_module(indexing)
+generation_spec = importlib.util.spec_from_file_location('generation', REPO / 'src/generation.py')
+generation = importlib.util.module_from_spec(generation_spec)
+generation_spec.loader.exec_module(generation)
 
 
 class IngestionIsolationTests(unittest.TestCase):
@@ -110,6 +113,25 @@ class IngestionIsolationTests(unittest.TestCase):
         self.assertFalse(any('15% restocking fee' in item['text'] for item in aurora))
         self.assertTrue(all(item['seller_id'] == 'seller-beacon' for item in beacon))
         self.assertIn('15% restocking fee', beacon[0]['text'])
+
+    def test_generation_rejects_cross_seller_evidence_before_calling_model(self):
+        connection = indexing.open_index()
+        for seller_id in ('seller-aurora', 'seller-beacon'):
+            documents = ingestion.ingest_seller_corpus(seller_id, root=REPO)
+            chunks = [chunk for document in documents
+                      for chunk in chunking.chunk_document(document, chunk_size=180, overlap=20)]
+            indexing.index_chunks(connection, seller_id, chunks)
+        beacon = indexing.retrieve_chunks(
+            connection, 'seller-beacon', '15% restocking fee', top_k=1)
+
+        def unexpected(*_):
+            self.fail('model transport must not receive cross-seller evidence')
+
+        with self.assertRaises(generation.GenerationError):
+            generation.generate_answer(
+                'seller-aurora', 'Is there a restocking fee?', beacon, transport=unexpected)
+        with self.assertRaises(generation.GenerationError):
+            generation.resolve_citations('seller-aurora', beacon, ['E1'])
 
 
 if __name__ == '__main__':

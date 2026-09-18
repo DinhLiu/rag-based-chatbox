@@ -1,0 +1,18 @@
+{
+  "task_id": null,
+  "gate": "unit",
+  "command": [
+    "/home/liu/Code/Projects/rag-based-chatbox/.venv/bin/python",
+    "scripts/harness.py",
+    "_run",
+    "unit"
+  ],
+  "timeout_seconds": 60,
+  "timed_out": false,
+  "timestamp": "2026-09-18T02:10:56.802014+00:00",
+  "snapshot_sha256": "e5b5c41a4ae8b67a4293d97228701db331dfd06ed26dff25ab1fdf34ed778d46",
+  "exit_code": 0,
+  "status": "passed",
+  "stdout": "{\n  \"gate\": \"unit\",\n  \"collected\": 17,\n  \"executed\": 17,\n  \"skipped\": 0,\n  \"failed\": 0,\n  \"status\": \"passed\"\n}\n",
+  "stderr": "test_fixed_chunks_preserve_metadata_positions_and_overlap (test_chunking_unit.ChunkingUnitTests.test_fixed_chunks_preserve_metadata_positions_and_overlap) ... ok\ntest_page_chunks_preserve_page_references (test_chunking_unit.ChunkingUnitTests.test_page_chunks_preserve_page_references) ... ok\ntest_recursive_chunks_use_boundaries_and_keep_sections_separate (test_chunking_unit.ChunkingUnitTests.test_recursive_chunks_use_boundaries_and_keep_sections_separate) ... ok\ntest_rejects_invalid_document_and_configuration (test_chunking_unit.ChunkingUnitTests.test_rejects_invalid_document_and_configuration) ... ok\ntest_builds_fixed_ollama_request_from_first_five_evidence_chunks (test_generation_unit.GenerationUnitTests.test_builds_fixed_ollama_request_from_first_five_evidence_chunks) ... ok\ntest_rejects_invalid_or_unknown_model_output (test_generation_unit.GenerationUnitTests.test_rejects_invalid_or_unknown_model_output) ... ok\ntest_rejects_missing_or_cross_seller_evidence_before_transport (test_generation_unit.GenerationUnitTests.test_rejects_missing_or_cross_seller_evidence_before_transport) ... ok\ntest_resolves_only_trusted_available_citation_metadata (test_generation_unit.GenerationUnitTests.test_resolves_only_trusted_available_citation_metadata) ... ok\ntest_dense_retrieval_returns_ranked_top_k_evidence (test_indexing_unit.IndexingUnitTests.test_dense_retrieval_returns_ranked_top_k_evidence) ... ok\ntest_embedding_is_reproducible_normalized_and_configurable (test_indexing_unit.IndexingUnitTests.test_embedding_is_reproducible_normalized_and_configurable) ... ok\ntest_index_preserves_text_metadata_and_embedding_identity (test_indexing_unit.IndexingUnitTests.test_index_preserves_text_metadata_and_embedding_identity) ... ok\ntest_rejects_invalid_embedding_and_chunk_batches (test_indexing_unit.IndexingUnitTests.test_rejects_invalid_embedding_and_chunk_batches) ... ok\ntest_retrieval_validates_inputs_and_allows_an_empty_seller_index (test_indexing_unit.IndexingUnitTests.test_retrieval_validates_inputs_and_allows_an_empty_seller_index) ... ok\ntest_markdown_txt_and_direct_text_preserve_metadata_and_sections (test_ingestion_unit.IngestionUnitTests.test_markdown_txt_and_direct_text_preserve_metadata_and_sections) ... ok\ntest_pdf_extracts_pages_including_flate_and_show_operators (test_ingestion_unit.IngestionUnitTests.test_pdf_extracts_pages_including_flate_and_show_operators) ... ok\ntest_rejects_cross_seller_or_unsafe_paths (test_ingestion_unit.IngestionUnitTests.test_rejects_cross_seller_or_unsafe_paths) ... ok\ntest_rejects_missing_seller_empty_text_and_unsupported_format (test_ingestion_unit.IngestionUnitTests.test_rejects_missing_seller_empty_text_and_unsupported_format) ... ok\n\n----------------------------------------------------------------------\nRan 17 tests in 0.004s\n\nOK\n"
+}
